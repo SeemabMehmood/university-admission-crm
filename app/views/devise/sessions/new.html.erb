@@ -1,7 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), id: "login-form") do |f| %>
   <div class="form-group">
     <%= f.label :email, class: "control-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", title: title="Please Enter Your Email",placeholder: "example@gmail.com", class: "form-control" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", title: "Please Enter Your Email", placeholder: "example@gmail.com", class: "form-control" %>
 
     <span class="help-block small">Must Enter Unique Email</span>
   </div>
