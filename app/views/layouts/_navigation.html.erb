@@ -18,10 +18,7 @@
       <div class="collapse mobile-navbar" id="mobile-collapse">
         <ul class="nav navbar-nav">
           <li>
-          <%= link_to "Login", "#" %>
-          </li>
-          <li>
-          <%= link_to "Logout", "#" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
           </li>
           <li>
           <%= link_to "Profile", "#" %>
@@ -147,9 +144,9 @@
             </ul>
         </li>
         <li class="dropdown">
-          <a href="">
+          <%= link_to destroy_user_session_path, method: :delete do || %>
             <i class="pe-7s-upload pe-rotate-90"></i>
-          </a>
+          <% end %>
         </li>
       </ul>
     </div>

@@ -1,6 +1,5 @@
 #= require rails-ujs
 #= require activestorage
-#= require turbolinks
 #= require jquery
 #= require bootstrap-sprockets
 #= require jquery-ui
@@ -9,3 +8,4 @@
 #= require icheck
 #= require toastr
 #= require devdap
+#= require turbolinks

@@ -1,6 +1,5 @@
 // Alerts Page Js File From Vendor
 //= require sweetalert
-//= require toastr/build/toastr.min
 
 // Code Editor Page Js File From Vendor
 //= require codemirror

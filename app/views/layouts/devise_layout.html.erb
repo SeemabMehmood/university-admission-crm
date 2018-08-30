@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Access Education | CRM</title>
+
+    <%= favicon_link_tag 'favicons.ico' %>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all',
+    'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="light-skin blank" data-gr-c-s-loaded="true">
+    <div class="back-link">
+      <%= link_to "www.accesseducationdrc.com/", id: "animation-btn", class: "btn btn-success" do %>
+          Access Education
+      <% end %>
+    </div>
+    <div class="login-container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center m-b-md animated-panel bounceIn" style="animation-delay: 0.1s;">
+            <small>Welcome with the</small>
+            <h3> Access Education CRM</h3>
+          </div>
+          <div class="hpanel animated-panel zoomIn" style="animation-delay: 0.1s;">
+            <div class="panel-body no-shadow">
+              <%= yield %>
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center animated-panel bounceIn" style="animation-delay: 0.1s;">
+          <strong>Access Education | CRM</strong> - Powered by SeeGon
+          <br> 2018 Copyrights. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

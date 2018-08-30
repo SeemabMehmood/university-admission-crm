@@ -17,10 +17,10 @@
   </head>
 
   <body class="light-skin fixed-navbar sidebar-scroll">
-    <%# if current_user %>
+    <% if current_user %>
       <%= render 'layouts/navigation' %>
       <%= render 'layouts/sidebar' %>
-    <%# end %>
+    <% end %>
 
     <% unless flash.empty? %>
       <script type="text/javascript">
