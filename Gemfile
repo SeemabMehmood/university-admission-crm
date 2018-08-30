@@ -40,6 +40,9 @@ gem 'sparkline', '~> 0.1.0'
 gem 'sweetalert-rails', '~> 1.1', '>= 1.1.3'
 gem 'x-editable-rails'
 
+gem 'devise'
+gem 'toastr-rails'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

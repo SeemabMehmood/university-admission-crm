@@ -7,4 +7,5 @@
 #= require jquery.slimscroll.min
 #= require metisMenu/dist/metisMenu.min
 #= require icheck
+#= require toastr
 #= require devdap

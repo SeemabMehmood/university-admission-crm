@@ -1,6 +1,7 @@
 /*
   *= require jquery-ui/core
   *= require jquery-ui/theme
+  *= require toastr
   *= require_self
   *= require main
 */

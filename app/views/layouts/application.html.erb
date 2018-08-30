@@ -12,13 +12,24 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all',
-                            'data-turbolinks-track': 'reload' %>
+    'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="light-skin fixed-navbar sidebar-scroll">
-    <%= render 'layouts/navigation' %>
-    <%= render 'layouts/sidebar' %>
+    <%# if current_user %>
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/sidebar' %>
+    <%# end %>
+
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+          <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+          toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
 
     <%= yield %>
 
