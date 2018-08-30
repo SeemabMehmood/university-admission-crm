@@ -1,0 +1,29 @@
+<aside id="menu">
+  <div id="navigation">
+    <ul class="nav" id="side-menu">
+      <li class="active">
+        <%= link_to root_path do %>
+        <%= content_tag :span, "Dashboard", :class => "nav-label" %>
+        <span class="label label-success pull-right">v.1</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+        <%= content_tag :span, "Analytics", :class => "nav-label" %>
+        <span class="label label-warning pull-right">NEW</span>
+        <% end %>
+      </li>
+      <li>
+        <a href="#">
+          <span class="nav-label">Interface</span>
+          <span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-second-level">
+          <li>
+            <%= link_to "Panel Design", "#" %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</aside>

@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AccessEducationCrm</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="A complete landing page solution for any business">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <title>Access Education | CRM</title>
+
+    <%= favicon_link_tag 'favicons.ico' %>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all',
+                            'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="light-skin fixed-navbar sidebar-scroll">
+    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/sidebar' %>
+
     <%= yield %>
+
+    <%= render 'layouts/footer' %>
   </body>
 </html>
