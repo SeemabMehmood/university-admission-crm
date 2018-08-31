@@ -14,8 +14,11 @@
   </head>
 
   <body class="light-skin blank" data-gr-c-s-loaded="true">
+
+    <%= render "layouts/flash_messages" %>
+
     <div class="back-link">
-      <%= link_to "www.accesseducationdrc.com/", id: "animation-btn", class: "btn btn-success" do %>
+      <%= link_to "www.accesseducationdrc.com", id: "animation-btn", class: "btn btn-success" do %>
           Access Education
       <% end %>
     </div>
@@ -28,8 +31,11 @@
           </div>
           <div class="hpanel animated-panel zoomIn" style="animation-delay: 0.1s;">
             <div class="panel-body no-shadow">
+
               <%= yield %>
+
               <%= render "devise/shared/links" %>
+
             </div>
           </div>
         </div>
