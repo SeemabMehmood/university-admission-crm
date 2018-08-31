@@ -18,10 +18,13 @@
       <div class="collapse mobile-navbar" id="mobile-collapse">
         <ul class="nav navbar-nav">
           <li>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
           </li>
           <li>
-          <%= link_to "Profile", "#" %>
+            <%= link_to "Change Password", edit_user_password_path %>
+          </li>
+          <li>
+            <%= link_to "Profile", "#" %>
           </li>
         </ul>
       </div>
@@ -30,7 +33,7 @@
       <ul class="nav navbar-nav no-borders">
         <li class="dropdown">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-              <i class="pe-7s-speaker"></i>
+            <i class="pe-7s-speaker"></i>
           </a>
           <ul class="dropdown-menu hdropdown notification animated flipInX">
             <li>
@@ -60,53 +63,53 @@
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                <i class="pe-7s-keypad"></i>
+              <i class="pe-7s-keypad"></i>
             </a>
             <div class="dropdown-menu hdropdown bigmenu animated flipInX">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="projects.html">
-                                    <i class="pe pe-7s-portfolio text-info"></i>
-                                    <h5 class="text-info">Projects</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="mailbox.html">
-                                    <i class="pe pe-7s-mail text-warning"></i>
-                                    <h5 class="text-warning">Email</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="contacts.html">
-                                    <i class="pe pe-7s-users text-primary"></i>
-                                    <h5 class="text-primary">Contacts</h5>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="forum.html">
-                                    <i class="pe pe-7s-comment text-info"></i>
-                                    <h5 class="text-info">Forum</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="analytics.html">
-                                    <i class="pe pe-7s-graph1 text-danger"></i>
-                                    <h5 class="text-danger">Analytics</h5>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="file_manager.html">
-                                    <i class="pe pe-7s-box1 text-primary"></i>
-                                    <h5 class="text-primary">Files</h5>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="projects.html">
+                        <i class="pe pe-7s-portfolio text-info"></i>
+                        <h5 class="text-info">Projects</h5>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="mailbox.html">
+                        <i class="pe pe-7s-mail text-warning"></i>
+                        <h5 class="text-warning">Email</h5>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="contacts.html">
+                        <i class="pe pe-7s-users text-primary"></i>
+                        <h5 class="text-primary">Contacts</h5>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="forum.html">
+                        <i class="pe pe-7s-comment text-info"></i>
+                        <h5 class="text-info">Forum</h5>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="analytics.html">
+                        <i class="pe pe-7s-graph1 text-danger"></i>
+                        <h5 class="text-danger">Analytics</h5>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="file_manager.html">
+                        <i class="pe pe-7s-box1 text-primary"></i>
+                        <h5 class="text-primary">Files</h5>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
         </li>
         <li class="dropdown">

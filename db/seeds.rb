@@ -4,4 +4,5 @@ User.create! do |u|
 
   u.country = "USA"
   u.name = "Access Education Admin"
+  u.confirmed_at = DateTime.now
 end
