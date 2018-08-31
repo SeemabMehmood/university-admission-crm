@@ -11,16 +11,16 @@ class UsersController < ApplicationController
     @user = User.build_for_role(current_user)
   end
 
-  def edit
-
-  end
-
-  def show
-
-  end
-
   def update
-
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to users_path, notice: "#{@user.role.titleize} was successfully updated." }
+        format.json { head :no_content }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def change_status
@@ -34,6 +34,13 @@ class UsersController < ApplicationController
   def set_user
     id = params[:id] || params[:user_id]
     @user = User.find(id)
+  end
+
+  def user_params
+    params.require(:user).permit(:role, :name, :email, :phone_num,
+                                :country, :zipcode, :state,
+                                :street, :city, :website, :facebook,
+                                :google, :linkdIn, :twitter)
   end
 
 end
