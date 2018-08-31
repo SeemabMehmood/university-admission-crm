@@ -17,16 +17,15 @@
   </head>
 
   <body class="light-skin fixed-navbar sidebar-scroll">
-
-    <% if current_user %>
-      <%= render 'layouts/navigation' %>
-      <%= render 'layouts/sidebar' %>
-    <% end %>
+    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/sidebar' %>
 
     <%= render "layouts/flash_messages" %>
 
-    <%= yield %>
+    <div id="wrapper">
+      <%= yield %>
 
-    <%= render 'layouts/footer' %>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
