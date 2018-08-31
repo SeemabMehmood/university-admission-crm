@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_074030) do
     t.string "twitter"
     t.string "linkdIn"
     t.string "google"
-    t.string "status", default: "active", null: false
+    t.integer "status"
     t.string "download_csv", default: "allowed", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
