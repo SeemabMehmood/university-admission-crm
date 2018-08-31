@@ -19,7 +19,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :linkdIn
       t.string :google
 
-      t.integer :status
+      t.integer :status, default: 0
 
       t.string :download_csv, null: false, default: "allowed"
 
