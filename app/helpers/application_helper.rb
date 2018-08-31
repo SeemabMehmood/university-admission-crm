@@ -275,7 +275,8 @@ module ApplicationHelper
     return controller_name.titleize.pluralize if action_name == "index"
   end
 
-  def get_selected_country(user)
-    user.country if user.new_record?
+  def sidebar_active_class(current_path)
+    return 'active' if current_path.index(/root/) && controller_name.index(/home/)
+    'active' if current_path.index(controller_name)
   end
 end

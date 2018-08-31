@@ -1,13 +1,13 @@
 <aside id="menu">
   <div id="navigation">
     <ul class="nav" id="side-menu">
-      <li class="active">
+      <li class="<%= sidebar_active_class('root_path') %>">
         <%= link_to root_path do %>
           <%= content_tag :span, "Dashboard", :class => "nav-label" %>
           <span class="label label-success pull-right"><%= current_user.role.titleize %></span>
         <% end %>
       </li>
-      <li>
+      <li class="<%= sidebar_active_class('users_path') %>">
         <%= link_to users_path do %>
           <%= content_tag :span, accessible_role_name, class: "nav-label" %>
           <span class="label label-warning pull-right"></span>
