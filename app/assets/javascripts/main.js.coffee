@@ -11,5 +11,6 @@
 #= require footable.core
 #= require footable.paginate
 #= require footable.sort
+#= require common
 #= require users
 #= require devdap

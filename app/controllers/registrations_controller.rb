@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
         format.html { redirect_to users_path, notice: "#{@user.role.titleize} was successfully created." }
         format.json { render :index }
       else
-        format.html { render :new }
+        format.html { render new_user_path }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

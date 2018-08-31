@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   after_initialize :setup_password
 
+  validates :name, :country, presence: true
+
   scope :branch_officers, -> { where(role: 2) }
   scope :counsellors,     -> { where(role: 3) }
   scope :agents,          -> { where(role: 1) }

@@ -1,12 +1,15 @@
 <%= form_for(@user) do |f| %>
   <%= f.hidden_field :role, value: @user.role %>
+
   <div class="text-center m-b-md" id="wizardControl">
-    <%= link_to "Personal Info", "#personal_info", class: "btn btn-primary", data: { toggle: "tab" } %>
+    <%= link_to "Personal Info", "#personal_info", class: "btn btn-primary active", data: { toggle: "tab" } %>
 
     <%= link_to "Additional Info", "#additional_info", class: "btn btn-primary", data: { toggle: "tab" } %>
 
     <%= link_to "Point Of Contact", "#point_of_contact", class: "btn btn-primary", data: { toggle: "tab" } %>
   </div>
+
+  <%= render "shared/error_messages", target: @user %>
 
   <div class="tab-content">
     <div id="personal_info" class="p-m tab-pane active">
