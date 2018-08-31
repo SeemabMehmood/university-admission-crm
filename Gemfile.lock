@@ -105,6 +105,8 @@ GEM
       jquery-rails
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
+    foo_table-rails (2.0.1.5.1)
+      railties (>= 3.1)
     fullcalendar-rails (2.8.0.0)
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
@@ -121,9 +123,6 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
-    jquery-datatables (1.10.19)
-      autoprefixer-rails (>= 6.0.3)
-      sass (>= 3.5.2)
     jquery-peity-rails (3.2.0)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
@@ -278,10 +277,10 @@ DEPENDENCIES
   devise
   flot-rails (~> 0.0.7)
   font-awesome-rails
+  foo_table-rails
   fullcalendar-rails (~> 2.8)
   icheck-rails (~> 1.0, >= 1.0.2.2)
   jbuilder (~> 2.5)
-  jquery-datatables
   jquery-peity-rails
   jquery-rails
   jquery-slimscroll-rails

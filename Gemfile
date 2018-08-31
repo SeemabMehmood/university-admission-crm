@@ -27,7 +27,6 @@ gem 'flot-rails', '~> 0.0.7'
 gem 'fullcalendar-rails', '~> 2.8'
 gem 'font-awesome-rails'
 gem 'icheck-rails', '~> 1.0', '>= 1.0.2.2'
-gem 'jquery-datatables'
 gem 'jquery-rails'
 gem 'jquery-peity-rails'
 gem 'jquery-slimscroll-rails'
@@ -38,10 +37,10 @@ gem 'nestable-rails'
 gem 'select2-rails'
 gem 'sparkline', '~> 0.1.0'
 gem 'sweetalert-rails', '~> 1.1', '>= 1.1.3'
-gem 'x-editable-rails'
 
 gem 'devise'
 gem 'toastr-rails'
+gem 'foo_table-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

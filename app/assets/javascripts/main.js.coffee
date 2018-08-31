@@ -4,8 +4,12 @@
 #= require bootstrap-sprockets
 #= require jquery-ui
 #= require jquery.slimscroll.min
+#= require turbolinks
 #= require metisMenu/dist/metisMenu.min
 #= require icheck
 #= require toastr
+#= require footable.core
+#= require footable.paginate
+#= require footable.sort
+#= require users
 #= require devdap
-#= require turbolinks
