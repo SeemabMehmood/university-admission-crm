@@ -1,0 +1,116 @@
+<%= form_for(@user) do |f| %>
+  <%= f.hidden_field :role, value: @user.role %>
+  <div class="text-center m-b-md" id="wizardControl">
+    <%= link_to "Personal Info", "#personal_info", class: "btn btn-primary", data: { toggle: "tab" } %>
+
+    <%= link_to "Additional Info", "#additional_info", class: "btn btn-primary", data: { toggle: "tab" } %>
+
+    <%= link_to "Point Of Contact", "#point_of_contact", class: "btn btn-primary", data: { toggle: "tab" } %>
+  </div>
+
+  <div class="tab-content">
+    <div id="personal_info" class="p-m tab-pane active">
+      <div class="row">
+        <div class="form-group col-lg-4">
+          <%= f.label :name, class: "control-label" %>
+          <%= f.text_field :name, autofocus: true, title: "Please Enter Name", placeholder: "Name", required: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <%= f.label :email, class: "control-label" %>
+          <%= f.text_field :email, autofocus: true, title: "Please Enter Name", placeholder: "abc@example.com", required: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <%= f.label :phone_num, class: "control-label" %>
+          <%= f.number_field :phone_num, autofocus: true, title: "Please Enter Phone", placeholder: "1111111", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-4">
+          <%= f.label :street, class: "control-label" %>
+          <%= f.text_field :street, autofocus: true, title: "Please Enter Name", placeholder: "Street", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <%= f.label :city, class: "control-label" %>
+          <%= f.text_field :city, autofocus: true, title: "Please Enter City", placeholder: "City", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <%= f.label :state, class: "control-label" %>
+          <%= f.text_field :state, autofocus: true, title: "Please Enter State", placeholder: "State", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-4">
+          <%= f.label :country, class: "control-label" %>
+          <%= f.select :country, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <%= f.label :zipcode, class: "control-label" %>
+          <%= f.number_field :zipcode, autofocus: true, title: "Please Enter Zipcode", placeholder: "Zipcode", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <%= f.label :website, class: "control-label" %>
+          <%= f.text_field :website, autofocus: true, title: "Please Enter Website", placeholder: "www.abc.com", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div id="additional_info" class="p-m tab-pane">
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <%= f.label :facebook, class: "control-label" %>
+          <%= f.text_field :facebook, autofocus: true, title: "Please Enter Facebook URL", placeholder: "Facebook URL", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-6">
+          <%= f.label :google, class: "control-label" %>
+          <%= f.text_field :google, autofocus: true, title: "Please Enter Google URL", placeholder: "Google URL", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <%= f.label :twitter, class: "control-label" %>
+          <%= f.text_field :twitter, autofocus: true, title: "Please Enter Twitter URL", placeholder: "Twitter URL", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-6">
+          <%= f.label :linkdIn, class: "control-label" %>
+          <%= f.text_field :linkdIn, autofocus: true, title: "Please Enter LinkdIn URL", placeholder: "LinkdIn URL", class: "form-control" %>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="form-group col-lg-4">
+        </div>
+      </div>
+    </div>
+
+    <div id="point_of_contact" class="tab-pane">
+      <div class="row text-center m-t-lg m-b-lg">
+         <div class="col-lg-12">
+            <i class="pe-7s-check fa-5x text-muted"></i>
+            <p class="small m-t-md">
+              <strong>will update it later </strong>
+         </div>
+         <div class="checkbox col-lg-12">
+            <div class="icheckbox_square-green" style="position: relative;">
+              <input type="checkbox" class="i-checks approveCheck" name="approve" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+            </div>
+            Approve this form
+         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-right m-t-xs">
+    <%= f.submit "Submit", class: "btn btn-success submitWizard" %>
+  </div>
+<% end %>

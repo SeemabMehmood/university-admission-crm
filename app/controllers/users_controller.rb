@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [:index, :create, :new]
+  before_action :set_user, except: [:index, :new]
 
   def index
     @users = User.get_users_by_role(current_user)
@@ -8,11 +8,7 @@ class UsersController < ApplicationController
   end
 
   def new
-
-  end
-
-  def create
-
+    @user = User.build_for_role(current_user)
   end
 
   def edit
