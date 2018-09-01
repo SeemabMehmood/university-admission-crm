@@ -1,6 +1,3 @@
-$ ->
-  $('.footable').footable()
-
 ready = ->
   $('#error_explanation').delay(10000).fadeOut(3000)
 
@@ -10,6 +7,8 @@ ready = ->
     $(this).addClass 'active'
 
   $('[data-toggle="tooltip"]').tooltip()
+
+  $('.footable').footable()
 
 $(document).ready ready
 document.addEventListener 'turbolinks:load', ready
