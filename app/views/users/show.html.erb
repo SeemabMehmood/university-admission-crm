@@ -1,0 +1,85 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel horange">
+        <div class="panel-heading hbuilt">
+          <p>
+            <%= image_tag 'favicon.ico', class: "m-b float-margin-left" %>
+            <div class="vertical-center">
+              <h3><%= @user.name.titleize %></h3>
+            </div>
+            <div class="clearfix"></div>
+          </p>
+        </div>
+        <div class="panel-body no-padding">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-address-card"></i> <%= not_available(@user.state_address) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-building"></i> <%= not_available(@user.street_address) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-phone"></i> <%= not_available(@user.phone_num) %>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-envelope"></i> <%= not_available(@user.email) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-globe"></i> <%= not_available(@user.website) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-skype"></i> <%= not_available(@user.skypeId) %>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-lg-4">
+                  <i class=" fa fa-facebook font-18 h4"></i> <%= not_available(@user.facebook) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-google-plus"></i> <%= not_available(@user.google) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-twitter"></i> <%= not_available(@user.twitter) %>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-linkedin"></i> <%= not_available(@user.linkdIn) %>
+                </div>
+                <div class="col-lg-4">
+                  <div class="col-sm-6 pad-0">
+                    <div class="user-status">
+                      <i class="h4 font-18 fa fa-<%= @user.inactive? ? 'user-times' : 'users' %>"></i> <%= @user.status.titleize %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 pad-0">
+                    <%= link_to user_change_status_path(user_id: @user, page: "show"), method: :post, remote: true, title: "Change Status" do %>
+                      <div id="change-icon-<%= @user.id %>">
+                        <% if @user.inactive? %>
+                          <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                        <% else %>
+                          <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

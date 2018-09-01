@@ -1,5 +1,5 @@
 <%= form_for(@user) do |f| %>
-  <%= f.hidden_field :role, value: @user.role %>
+  <%= f.hidden_field :type, value: @user.type %>
 
   <div class="text-center m-b-md" id="wizardControl">
     <%= link_to "Personal Info", "#personal_info", class: "btn btn-primary active", data: { toggle: "tab" } %>

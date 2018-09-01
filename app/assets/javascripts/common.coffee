@@ -6,5 +6,7 @@ ready = ->
     $('a').removeClass 'active'
     $(this).addClass 'active'
 
+  $('[data-toggle="tooltip"]').tooltip()
+
 $(document).ready ready
 document.addEventListener 'turbolinks:load', ready

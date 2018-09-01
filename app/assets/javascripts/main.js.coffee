@@ -1,10 +1,10 @@
 #= require rails-ujs
 #= require activestorage
 #= require jquery
-#= require bootstrap-sprockets
-#= require jquery-ui
 #= require jquery.slimscroll.min
-#= require turbolinks
+#= require jquery-ui
+#= require bootstrap
+#= require bootstrap-sprockets
 #= require metisMenu/dist/metisMenu.min
 #= require icheck
 #= require toastr
@@ -13,4 +13,4 @@
 #= require footable.sort
 #= require common
 #= require users
-#= require devdap
+#= require turbolinks

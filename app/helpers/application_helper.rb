@@ -279,4 +279,9 @@ module ApplicationHelper
     return 'active' if current_path.index(/root/) && controller_name.index(/home/)
     'active' if current_path.index(controller_name)
   end
+
+  def not_available(field)
+    return "Not Available" if field.nil?
+    field
+  end
 end

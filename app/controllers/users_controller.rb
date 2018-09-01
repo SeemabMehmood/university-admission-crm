@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.get_users_by_role(current_user)
-    @agents_count = User.agents.count if current_user.admin?
   end
 
   def new
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:role, :name, :email, :phone_num,
+    params.require(:user).permit(:type, :name, :email, :phone_num,
                                 :country, :zipcode, :state,
                                 :street, :city, :website, :facebook,
                                 :google, :linkdIn, :twitter)
