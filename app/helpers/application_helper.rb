@@ -253,13 +253,6 @@ module ApplicationHelper
     "Counsellors"            if current_user.branch_officer?
   end
 
-  def associated_users(user)
-    return "--" if user.admin?
-    return "BO's"          if user.agent?
-    return "Counsellors"   if user.branch_officer?
-    "Applications"         if user.counsellor?
-  end
-
   def no_data_message(collection_object)
     ["<b>No ", titleize(model_name(collection_object.table_name)), " found.</b>"].join.html_safe unless collection_object.any?
   end

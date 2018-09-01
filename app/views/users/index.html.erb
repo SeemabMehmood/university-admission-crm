@@ -46,7 +46,11 @@
                   <%= user.country %>
                 </td>
                 <td>
-                  <%= show_users_count(@users.count) %> <%= associated_users(user) %>
+                  <% if user.admin? %>
+                   ----
+                  <% else %>
+                    <%= user.subordinate_count %>
+                  <% end %>
                 </td>
 
                 <% if current_user.admin? %>

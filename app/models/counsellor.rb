@@ -1,2 +1,0 @@
-class Counsellor < User
-end

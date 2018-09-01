@@ -9,5 +9,7 @@ module AccessEducationCrm
     config.load_defaults 5.2
 
     config.assets.enabled = true
+
+    config.autoload_paths += %W(#{Rails.root}/app/models/user)
   end
 end

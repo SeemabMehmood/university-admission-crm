@@ -1,2 +1,0 @@
-class BranchOfficer < User
-end
