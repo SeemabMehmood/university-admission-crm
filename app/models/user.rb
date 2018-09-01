@@ -3,7 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :timeoutable, :trackable
 
   enum status: [:active, :inactive]
-  enum role:   [:admin, :agent, :branch_officer, :counsellor]
 
   after_initialize :setup_password
 
@@ -19,10 +18,13 @@ class User < ApplicationRecord
     all                    if current_user.admin?
   end
 
-  def self.build_for_role(current_user)
-    return new(role: 1) if current_user.admin?
-    return new(role: 2) if current_user.agent?
-    return new(role: 3) if current_user.branch_officer?
+  def street_address
+    [street, city].join(', ') if street && city
+  end
+
+  def state_address
+    return country unless state && zipcode
+    [[zipcode, state].join(' - '), country].join(' | ')
   end
 
   private
