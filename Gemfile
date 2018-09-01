@@ -25,6 +25,7 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.4'
 gem 'devise'
 gem 'toastr-rails'
 gem 'foo_table-rails'
+gem 'cancancan', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
