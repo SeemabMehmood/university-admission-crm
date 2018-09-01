@@ -8,10 +8,6 @@ class User < ApplicationRecord
 
   validates :name, :country, presence: true
 
-  scope :branch_officers, -> { where(role: 2) }
-  scope :counsellors,     -> { where(role: 3) }
-  scope :agents,          -> { where(role: 1) }
-
   def self.get_users_by_role(current_user)
     return branch_officers if current_user.agent?
     return counsellors     if current_user.branch_officer?
