@@ -1,0 +1,2 @@
+class Counsellor < User
+end

@@ -23,6 +23,26 @@ class User < ApplicationRecord
     [[zipcode, state].join(' - '), country].join(' | ')
   end
 
+  def role
+    type.present? ? type : "admin"
+  end
+
+  def admin?
+    type == nil
+  end
+
+  def agent?
+    type == 'Agent'
+  end
+
+  def branch_officer?
+    type == 'BranchOfficer'
+  end
+
+  def counsellor?
+    type == 'Counsellor'
+  end
+
   private
 
   def setup_password
