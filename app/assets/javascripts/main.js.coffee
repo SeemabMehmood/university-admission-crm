@@ -13,4 +13,5 @@
 #= require footable.sort
 #= require common
 #= require users
+#= require devdap
 #= require turbolinks

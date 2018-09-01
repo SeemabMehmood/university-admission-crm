@@ -2,93 +2,101 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="hpanel">
-       <div class="panel-heading hbuilt">
+        <div class="panel-heading hbuilt">
           <%= show_users_count(@users.count) %>
           <div class="pull-right">
             <%= link_to new_user_path, class: "btn btn-primary btn-xs ripple" do %>
               <i class="fa fa-plus"></i> Add New <%= accessible_role_name.singularize %>
             <% end %>
           </div>
-       </div>
-       <div class="panel-body no-shadow">
+        </div>
+        <div class="panel-body no-shadow">
 
-        <table class="table table-stripped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Country</th>
-              <th>No. of Subordinates</th>
-
-              <% if current_user.admin? %>
-                <th>Role</th>
-              <% end %>
-
-              <th>Created Date</th>
-              <th>Last Sign In</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= no_data_message(@users) %>
-            <% @users.each_with_index do |user, index| %>
+          <table class="footable" data-page-size="10" data-page-navigation=".pagination">
+            <thead>
               <tr>
-                <td>
-                  <%= user.name.titleize %>
-                </td>
-                <td>
-                  <%= user.email %>
-                </td>
-                <td>
-                  <%= user.phone_num %>
-                </td>
-                <td>
-                  <%= user.country %>
-                </td>
-                <td>
-                  <% if user.admin? %>
-                   ----
-                  <% else %>
-                    <%= user.subordinate_count %>
-                  <% end %>
-                </td>
+                <th data-title="Name" data-breakpoints="xs">Name</th>
+                <th>Email</th>
+                <th data-title="Phone" data-breakpoints="xs">Phone</th>
+                <th>Country</th>
+                <th data-title="No of Subordinates" data-breakpoints="xs sm">No. of Subordinates</th>
 
                 <% if current_user.admin? %>
-                  <td><%= user.role.titleize %></td>
+                  <th>Role</th>
                 <% end %>
 
-                <td>
-                  <%= format_datetime(user.created_at) %>
-                </td>
-                <td>
-                  <%= format_datetime(user.last_sign_in_at) %>
-                </td>
-                <td>
-                  <%= link_to edit_user_path(user) do %>
-                    <i class="fa fa-pencil"></i>
+                <th data-title="Created At" data-breakpoints="xs sm md">Created Date</th>
+                <th data-title="Last Sign In" data-breakpoints="xs sm md">Last Sign In</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= no_data_message(@users) %>
+              <% @users.each_with_index do |user, index| %>
+                <tr>
+                  <td>
+                    <%= user.name.titleize %>
+                  </td>
+                  <td>
+                    <%= user.email %>
+                  </td>
+                  <td>
+                    <%= user.phone_num %>
+                  </td>
+                  <td>
+                    <%= user.country %>
+                  </td>
+                  <td>
+                    <% if user.admin? %>
+                     ----
+                    <% else %>
+                      <%= user.subordinate_count %>
+                    <% end %>
+                  </td>
+
+                  <% if current_user.admin? %>
+                    <td><%= user.role.titleize %></td>
                   <% end %>
-                </td>
-                <td>
-                  <%= link_to user_path(user) do %>
-                    <i class="fa fa-eye"></i>
-                  <% end %>
-                </td>
-                <td>
-                  <%= link_to user_change_status_path(user), method: :post, remote: true do %>
-                    <div id="change-icon-<%= user.id %>">
-                      <% if user.inactive? %>
-                        <i class="fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
-                      <% else %>
-                        <i class="fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
+
+                  <td>
+                    <%= format_datetime(user.created_at) %>
+                  </td>
+                  <td>
+                    <%= format_datetime(user.last_sign_in_at) %>
+                  </td>
+                  <td>
+                    <%= link_to edit_user_path(user) do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to user_path(user) do %>
+                      <i class="fa fa-eye"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to user_change_status_path(user), method: :post, remote: true do %>
+                      <div id="change-icon-<%= user.id %>">
+                        <% if user.inactive? %>
+                          <i class="fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                        <% else %>
+                          <i class="fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                  <div class="pagination"></div>
                 </td>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-       </div>
+             </tfoot>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

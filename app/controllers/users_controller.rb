@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index, :new]
 
   def index
-    @users = User.get_users_by_role(current_user)
+    @users = get_users_by_role.order(:created_at)
   end
 
   def new
-    @user = User.build_for_role(current_user)
+    @user = current_user.admin? ? User.new : current_user.build_user()
   end
 
   def update
@@ -42,4 +42,9 @@ class UsersController < ApplicationController
                                 :google, :linkdIn, :twitter)
   end
 
+  def get_users_by_role
+    return current_user.branch_officers if current_user.agent?
+    return current_user.counsellors     if current_user.branch_officer?
+    User.all                    if current_user.admin?
+  end
 end

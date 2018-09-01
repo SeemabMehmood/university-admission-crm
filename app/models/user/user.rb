@@ -8,11 +8,7 @@ class User < ApplicationRecord
 
   validates :name, :country, presence: true
 
-  def self.get_users_by_role(current_user)
-    return branch_officers if current_user.agent?
-    return counsellors     if current_user.branch_officer?
-    all                    if current_user.admin?
-  end
+  ROLES = ["admin", "agent", "branch_officer", "counsellor"]
 
   def street_address
     [street, city].join(', ') if street && city
@@ -28,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    type == nil
+    type.nil? || type.empty?
   end
 
   def agent?
@@ -41,6 +37,11 @@ class User < ApplicationRecord
 
   def counsellor?
     type == 'Counsellor'
+  end
+
+  def build_user
+    return BranchOfficer.new if self.agent?
+    return Counsellor.new    if self.branch_officer?
   end
 
   private

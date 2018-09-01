@@ -1,3 +1,6 @@
+$ ->
+  $('.footable').footable()
+
 ready = ->
   $('#error_explanation').delay(10000).fadeOut(3000)
 

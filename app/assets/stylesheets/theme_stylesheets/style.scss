@@ -3913,7 +3913,9 @@ a:hover,a:focus {
 
 @media(max-width:320px) {
   #wrapper {
-      overflow: hidden
+      overflow: hidden;
+      width: 100%;
+      position: relative
   }
 }
 
