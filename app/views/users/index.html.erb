@@ -19,7 +19,7 @@
               <th>Email</th>
               <th>Phone</th>
               <th>Country</th>
-              <th>No. of <%= accessible_subordinate_name %></th>
+              <th>No. of Subordinates</th>
 
               <% if current_user.admin? %>
                 <th>Role</th>
@@ -46,7 +46,7 @@
                   <%= user.country %>
                 </td>
                 <td>
-                  <%= show_users_count(@users.count) %>
+                  <%= show_users_count(@users.count) %> <%= associated_users(user) %>
                 </td>
 
                 <% if current_user.admin? %>

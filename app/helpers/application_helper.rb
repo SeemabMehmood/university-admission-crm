@@ -248,15 +248,16 @@ module ApplicationHelper
   ]
 
   def accessible_role_name
-    return "Agents"          if current_user.admin?
+    return "Users"           if current_user.admin?
     return "Branch Officers" if current_user.agent?
     "Counsellors"            if current_user.branch_officer?
   end
 
-  def accessible_subordinate_name
-    return "BO's"          if current_user.admin?
-    return "Counsellors"   if current_user.agent?
-    "Applications"         if current_user.branch_officer?
+  def associated_users(user)
+    return "--" if user.admin?
+    return "BO's"          if user.agent?
+    return "Counsellors"   if user.branch_officer?
+    "Applications"         if user.counsellor?
   end
 
   def no_data_message(collection_object)
