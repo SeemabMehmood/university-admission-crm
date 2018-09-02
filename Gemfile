@@ -24,7 +24,6 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.4'
 
 gem 'devise'
 gem 'toastr-rails'
-gem 'foo_table-rails'
 gem 'cancancan', '~> 2.0'
 gem 'filterrific'
 
