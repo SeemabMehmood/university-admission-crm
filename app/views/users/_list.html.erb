@@ -2,18 +2,18 @@
   <table class="table table-stripped">
     <thead>
       <tr>
-        <th data-title="Name">Name</th>
-        <th data-title="Email">Email</th>
-        <th data-title="Phone">Phone</th>
-        <th data-title="Country">Country</th>
-        <th>No. of Subordinates</th>
+        <th>Name</th>
+        <th data-breakpoints="xs" data-title="Email">Email</th>
+        <th data-breakpoints="xs" data-title="Phone">Phone</th>
+        <th data-breakpoints="xs" data-title="Country">Country</th>
 
         <% if current_user.admin? %>
-          <th>Role</th>
+          <th data-breakpoints="xs md" data-title="Role">Role</th>
         <% end %>
 
-        <th data-title="Created At">Created Date</th>
-        <th>Last Sign In</th>
+        <th data-breakpoints="xs md" data-title="Subordinates">No. of Subordinates</th>
+        <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
+        <th data-breakpoints="xs md" data-title="Last Sign In">Last Sign In</th>
         <th></th>
         <th></th>
         <th></th>
@@ -34,17 +34,18 @@
           <td>
             <%= user.country %>
           </td>
-          <td>
-            <% if user.admin? %>
-            ----
-            <% else %>
-            <%= user.subordinate_count %>
-            <% end %>
-          </td>
 
           <% if current_user.admin? %>
-          <td><%= user.role.titleize %></td>
+            <td><%= user.role.titleize %></td>
           <% end %>
+
+          <td>
+            <% if user.admin? %>
+              ----
+            <% else %>
+              <%= user.subordinate_count %>
+            <% end %>
+          </td>
 
           <td>
             <%= format_datetime(user.created_at) %>

@@ -1,5 +1,7 @@
 $ ->
-  footable
+  footable()
+
+  ready()
 
 ready = ->
   $('#error_explanation').delay(10000).fadeOut(3000)
@@ -11,6 +13,11 @@ ready = ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
+turboload = ->
+  footable()
+
+  $('#side-menu').metisMenu();
+
 footable = ->
   $('.table').footable
     "paging":
@@ -18,6 +25,5 @@ footable = ->
       "size": 10
       "container": "#paging-ui-container"
 
-$(document).ready ready
 document.addEventListener 'turbolinks:load', ready
-document.addEventListener 'turbolinks:load', footable
+document.addEventListener 'turbolinks:load', turboload
