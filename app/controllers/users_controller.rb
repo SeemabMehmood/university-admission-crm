@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params.except(:type))
         format.html { redirect_to users_path, notice: "#{@user.role.titleize} was successfully updated." }
         format.json { head :no_content }
       else
@@ -41,7 +41,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:type, :name, :email, :phone_num,
                                 :country, :zipcode, :state,
                                 :street, :city, :website, :facebook,
-                                :google, :linkdIn, :twitter)
+                                :google, :linkdIn, :twitter,
+                                :contact_person_name, :contact_person_email,
+                                :contact_person_phone, :contact_person_mobile,
+                                :contact_person_skype, :contact_person_designation)
   end
 
   def get_users_by_role

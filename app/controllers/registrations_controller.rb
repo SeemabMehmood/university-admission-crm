@@ -19,7 +19,10 @@ class RegistrationsController < Devise::RegistrationsController
       params.require(:user).permit(:type, :name, :email, :phone_num,
                                   :country, :zipcode, :state, :skypeId,
                                   :street, :city, :website, :facebook,
-                                  :google, :linkdIn, :twitter)
+                                  :google, :linkdIn, :twitter,
+                                  :contact_person_name, :contact_person_email,
+                                  :contact_person_phone, :contact_person_mobile,
+                                  :contact_person_skype, :contact_person_designation)
     end
 
     def initialize_user(params)
