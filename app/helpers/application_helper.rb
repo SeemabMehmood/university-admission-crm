@@ -275,7 +275,7 @@ module ApplicationHelper
   end
 
   def not_available(field)
-    return "Not Available" if field.nil?
+    return "Not Available" if field.nil? || field.empty?
     field
   end
 end
