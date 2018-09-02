@@ -13,10 +13,11 @@ ready = ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
+
 turboload = ->
   footable()
 
-  $('#side-menu').metisMenu();
+  $('#side-menu').metisMenu()
 
 footable = ->
   $('.table').footable
