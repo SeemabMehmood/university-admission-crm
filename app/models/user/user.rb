@@ -7,6 +7,8 @@ class User < ApplicationRecord
   after_initialize :setup_password
 
   validates :name, :country, presence: true
+  validates :contact_person_name, :contact_person_email,
+            :contact_person_mobile, :contact_person_designation, presence: true, unless: Proc.new { |u| u.admin? }
 
   ROLES = ["admin", "agent", "branch_officer", "counsellor"]
 
