@@ -7,12 +7,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :name,    null: false, default: ""
       t.string :country, null: false, default: ""
-      t.integer :phone_num
+      t.string :phone_num
       t.string :zipcode
       t.string :website
       t.string :skypeId
       t.string :street
       t.string :city
+      t.string :state
 
       t.string :facebook
       t.string :twitter

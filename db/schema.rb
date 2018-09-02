@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_164004) do
+ActiveRecord::Schema.define(version: 2018_09_02_103126) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "country", default: "", null: false
-    t.integer "phone_num"
+    t.string "phone_num"
     t.string "zipcode"
     t.string "website"
     t.string "skypeId"
     t.string "street"
     t.string "city"
+    t.string "state"
     t.string "facebook"
     t.string "twitter"
     t.string "linkdIn"
@@ -43,11 +44,16 @@ ActiveRecord::Schema.define(version: 2018_09_01_164004) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "state"
     t.string "type"
     t.integer "agent_id"
     t.integer "counsellor_id"
     t.integer "branch_officer_id"
+    t.string "contact_person_name", default: "", null: false
+    t.string "contact_person_designation", default: "", null: false
+    t.string "contact_person_email", default: "", null: false
+    t.string "contact_person_mobile", default: "", null: false
+    t.string "contact_person_phone"
+    t.string "contact_person_skype"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
