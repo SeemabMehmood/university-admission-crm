@@ -1,0 +1,21 @@
+<div class="hpanel hblue contact-panel">
+  <div class="panel-body">
+    <span class="label label-success pull-right">Contact Person Details</span>
+    <h3><%= contactee.contact_person_name %></h3>
+    <div class="text-muted font-bold m-b-xs"><i class="fa fa-id-badge"></i> <%= contactee.contact_person_designation %></div>
+    <h4><i class="fa fa-envelope-square"></i> <%= contactee.contact_person_email %></h4>
+  </div>
+  <div class="panel-footer contact-footer round-corner-one">
+    <div class="row">
+      <div class="col-md-4 border-right">
+        <div class="contact-stat"><span><i class="fa fa-phone-square"></i> Phone No.: </span> <strong><%= contactee.contact_person_phone %></strong></div>
+      </div>
+      <div class="col-md-4 border-right">
+        <div class="contact-stat"><span><i class="fa fa-mobile"></i> Mobile No.: </span> <strong><%= contactee.contact_person_mobile %></strong></div>
+      </div>
+      <div class="col-md-4">
+        <div class="contact-stat"><span><i class="fa fa-skype"></i> Skype ID: </span> <strong><%= contactee.contact_person_skype %></strong></div>
+      </div>
+    </div>
+  </div>
+</div>
