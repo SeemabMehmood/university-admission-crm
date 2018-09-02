@@ -11,6 +11,7 @@
 #= require footable.core
 #= require footable.paginate
 #= require footable.sort
+#= require filterrific/filterrific-jquery
 #= require common
 #= require users
 #= require devdap

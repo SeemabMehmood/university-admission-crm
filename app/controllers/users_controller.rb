@@ -5,7 +5,30 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index, :new]
 
   def index
-    @users = get_users_by_role.order(:created_at)
+    begin
+      @filterrific = initialize_filterrific(
+        User,
+        params[:filterrific],
+        select_options: {
+          sorted_by: User.options_for_sorted_by
+        },
+        persistence_id: 'shared_key',
+        default_filter_params: {},
+        available_filters: [:sorted_by, :with_country_name,
+                            :with_role],
+        sanitize_params: true
+      ) or return
+
+      @users = @filterrific.find
+
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      puts "Had to reset filterrific params: #{ e.message }"
+      redirect_to(reset_filterrific_url(format: :html)) and return
+    end
   end
 
   def new

@@ -26,6 +26,7 @@ gem 'devise'
 gem 'toastr-rails'
 gem 'foo_table-rails'
 gem 'cancancan', '~> 2.0'
+gem 'filterrific'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

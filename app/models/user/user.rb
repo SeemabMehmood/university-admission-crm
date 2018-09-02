@@ -4,6 +4,37 @@ class User < ApplicationRecord
 
   enum status: [:active, :inactive]
 
+  filterrific(
+     default_filter_params: { sorted_by: 'created_at_desc' },
+     available_filters: [
+       :sorted_by,
+       :with_role,
+       :with_country_name
+     ]
+   )
+
+  scope :sorted_by, lambda { |sort_option|
+    direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+    case sort_option.to_s
+    when /^created_at_/
+      order("users.created_at #{ direction }")
+    when /^name_/
+      order("LOWER(users.name) #{ direction }")
+    when /^country_name_/
+      order("LOWER(users.country) #{ direction }")
+    else
+      raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
+
+  scope :with_country_name, lambda { |country_name|
+    where(country: country_name)
+  }
+
+  scope :with_role, lambda { |role_name|
+    where(type: role_name)
+  }
+
   after_initialize :setup_password
 
   validates :name, :country, presence: true
@@ -44,6 +75,13 @@ class User < ApplicationRecord
   def build_user
     return BranchOfficer.new if self.agent?
     return Counsellor.new    if self.branch_officer?
+  end
+
+  def self.options_for_sorted_by
+    [
+      ['Name (a-z)', 'name_asc'],
+      ['Country (a-z)', 'country_name_asc']
+    ]
   end
 
   private
