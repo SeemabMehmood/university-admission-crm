@@ -1,10 +1,9 @@
 #= require rails-ujs
 #= require activestorage
 #= require jquery
-#= require jquery.slimscroll.min
 #= require jquery-ui
-#= require bootstrap
 #= require bootstrap-sprockets
+#= require jquery.slimscroll.min
 #= require dist/metisMenu.min
 #= require js/footable.js
 #= require icheck
