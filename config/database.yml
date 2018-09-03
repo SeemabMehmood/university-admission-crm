@@ -17,11 +17,5 @@ test:
   host: localhost
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  database: access_education_production
-  pool: 5
-  username: root
-  password:
-  reconnect: false
-  host: localhost
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: 15
