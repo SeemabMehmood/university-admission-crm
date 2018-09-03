@@ -13,6 +13,14 @@ ready = ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
+  $('#populate_agents').hide()
+
+  $('#user_type').on 'change', (e) ->
+    selected = e.target.options[e.target.selectedIndex].value
+    if selected == "Branch Officer"
+      $('#populate_agents').show()
+    else
+      $('#populate_agents').hide()
 
 turboload = ->
   footable()
