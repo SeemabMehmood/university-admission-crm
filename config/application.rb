@@ -10,6 +10,8 @@ module AccessEducationCrm
 
     config.assets.enabled = true
 
+    config.assets.initialize_on_precompile = false
+
     config.autoload_paths += %W(#{Rails.root}/app/models/user)
   end
 end
