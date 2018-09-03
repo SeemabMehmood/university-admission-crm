@@ -85,6 +85,11 @@ class User < ApplicationRecord
     self.all                    if user.admin?
   end
 
+  def get_counsellors
+    return unless current_user.agent?
+    Counsellor.get_agent(current_user)
+  end
+
   private
 
   def setup_password

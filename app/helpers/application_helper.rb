@@ -263,6 +263,7 @@ module ApplicationHelper
   end
 
   def head_title
+    return "Dashboard" if controller_name == "home"
     return "Add New #{controller_name.titleize.singularize}"if action_name == "new"
     return "Edit #{controller_name.titleize}"if action_name == "edit"
     return "View #{controller_name.titleize}"if action_name == "show"
