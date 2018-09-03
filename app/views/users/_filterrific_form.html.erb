@@ -3,9 +3,11 @@
 
     <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
 
-      <div class="col-md-3">
-        <%= f.select(:with_role, roles_map, { include_blank: '- Select Role -' }, { class: "form-control" }) %>
-      </div>
+      <% if current_user.admin? %>
+        <div class="col-md-3">
+          <%= f.select(:with_role, roles_map, { include_blank: '- Select Role -' }, { class: "form-control" }) %>
+        </div>
+      <% end %>
 
       <div class="col-md-3">
         <%= f.select(:with_country_name, ApplicationHelper::COUNTRIES, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
