@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new]
   before_action :set_user, except: [:index, :new]
 
   def index
@@ -12,14 +12,14 @@ class UsersController < ApplicationController
         select_options: {
           sorted_by: User.options_for_sorted_by
         },
-        persistence_id: 'shared_key',
-        default_filter_params: {},
-        available_filters: [:sorted_by, :with_country_name,
-                            :with_role],
+        persistence_id: true,
         sanitize_params: true
       ) or return
 
-      @users = @filterrific.find
+      @users = User.get_users_for(current_user)
+      if @users.any?
+        @users = @users.filterrific_find(@filterrific)
+      end
 
       respond_to do |format|
         format.html
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = current_user.admin? ? User.new : current_user.build_user()
+    @user = build_users
   end
 
   def update
@@ -70,9 +70,9 @@ class UsersController < ApplicationController
                                 :contact_person_skype, :contact_person_designation)
   end
 
-  def get_users_by_role
-    return current_user.branch_officers if current_user.agent?
-    return current_user.counsellors     if current_user.branch_officer?
-    User.all                    if current_user.admin?
+  def build_users
+    return current_user.branch_officers.new if current_user.agent?
+    return current_user.counsellors.new     if current_user.branch_officer?
+    User.new                                if current_user.admin?
   end
 end
