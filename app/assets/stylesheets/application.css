@@ -1,6 +1,8 @@
 /*
   *= require jquery-ui/core
   *= require jquery-ui/theme
+  *= require css/footable.bootstrap
+  *= require css/footable.bootstrap.min
   *= require toastr
   *= require main
   *= require_self

@@ -5,8 +5,8 @@
 #= require jquery-ui
 #= require bootstrap
 #= require bootstrap-sprockets
-#= require metisMenu/dist/metisMenu.min
-#= require footable-bootstrap.latest/js/footable.js
+#= require dist/metisMenu.min
+#= require js/footable.js
 #= require icheck
 #= require toastr
 #= require filterrific/filterrific-jquery
