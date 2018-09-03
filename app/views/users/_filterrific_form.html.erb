@@ -4,7 +4,7 @@
     <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
 
       <div class="col-md-3">
-        <%= f.select(:with_role, User::ROLES.map { |r| [r.titleize, r == "admin" ? nil : r.titleize] }, { include_blank: '- Select Role -' }, { class: "form-control" }) %>
+        <%= f.select(:with_role, roles_map, { include_blank: '- Select Role -' }, { class: "form-control" }) %>
       </div>
 
       <div class="col-md-3">

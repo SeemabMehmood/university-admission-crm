@@ -13,4 +13,8 @@ module UsersHelper
     end
     h
   end
+
+  def roles_map
+    User::ROLES.map { |r| [r.titleize, r == "admin" ? nil : r == "branch_officer" ? "BranchOfficer" : r.titleize] }
+  end
 end
