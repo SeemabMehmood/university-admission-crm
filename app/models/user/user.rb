@@ -72,16 +72,17 @@ class User < ApplicationRecord
     type == 'Counsellor'
   end
 
-  def build_user
-    return BranchOfficer.new if self.agent?
-    return Counsellor.new    if self.branch_officer?
-  end
-
   def self.options_for_sorted_by
     [
       ['Name (a-z)', 'name_asc'],
       ['Country (a-z)', 'country_name_asc']
     ]
+  end
+
+  def self.get_users_for(user)
+    return user.branch_officers if user.agent?
+    return user.counsellors     if user.branch_officer?
+    self.all                    if user.admin?
   end
 
   private
