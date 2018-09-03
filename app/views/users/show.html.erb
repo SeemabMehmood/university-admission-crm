@@ -2,14 +2,16 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="hpanel horange">
-        <div class="panel-heading">
+        <div class="panel-heading hbuilt">
+          <div class="pull-right">
+            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-xs ripple" %>
+          </div>
           <p>
             <%= image_tag 'favicon.ico', class: "m-b float-margin-left" %>
             <div class="vertical-center">
               <h3><%= @user.name.titleize %></h3>
               <small><%= @user.role.titleize %></small>
             </div>
-            <div class="clearfix"></div>
           </p>
         </div>
         <div class="panel-body no-padding">
