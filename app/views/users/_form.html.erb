@@ -1,4 +1,5 @@
 <%= form_for(@user.becomes(User), error_form_url(@user)) do |f| %>
+  <%= f.hidden_field "#{current_user.type.underscore}_id", value: current_user.id unless current_user.admin? %>
 
   <div class="text-center m-b-md" id="wizardControl">
     <%= link_to "Personal Info", "#personal_info", class: "btn btn-primary active", data: { toggle: "tab" } %>
@@ -58,11 +59,11 @@
         </div>
 
         <div class="form-group col-lg-4">
-          <% if @user.persisted? %>
-            <%= f.hidden_field :type, value: @user.type %>
-          <% else %>
+          <% if @user.new_record? && @user.admin? %>
             <%= f.label :type, class: "control-label" %>
-            <%= f.select :type, User::ROLES.map { |r| [r.titleize, r] }, { prompt: "Select Type", selected: "#{ @user.type.nil? ? "admin" : @user.type }" }, { required: true, class: "form-control" } %>
+            <%= f.select :type, User::ROLES.map { |r| [r.titleize, r.titleize] }, { prompt: "Select Type", selected: "#{ @user.type.present? ? @user.type.underscore : "admin" }" }, { required: true, class: "form-control" } %>
+          <% else %>
+            <%= f.hidden_field :type, value: @user.type %>
           <% end %>
         </div>
       </div>

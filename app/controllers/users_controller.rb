@@ -67,7 +67,8 @@ class UsersController < ApplicationController
                                 :google, :linkdIn, :twitter,
                                 :contact_person_name, :contact_person_email,
                                 :contact_person_phone, :contact_person_mobile,
-                                :contact_person_skype, :contact_person_designation)
+                                :contact_person_skype, :contact_person_designation,
+                                :agent_id, :branch_officer_id)
   end
 
   def build_users

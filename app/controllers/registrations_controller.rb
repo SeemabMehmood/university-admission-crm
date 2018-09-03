@@ -22,20 +22,21 @@ class RegistrationsController < Devise::RegistrationsController
                                   :google, :linkdIn, :twitter,
                                   :contact_person_name, :contact_person_email,
                                   :contact_person_phone, :contact_person_mobile,
-                                  :contact_person_skype, :contact_person_designation)
+                                  :contact_person_skype, :contact_person_designation,
+                                  :agent_id, :branch_officer_id)
     end
 
     def initialize_user(params)
       type = params[:type]
 
       case type
-      when "admin"
+      when "Admin"
         User.new(params.except(:type))
-      when "agent"
+      when "Agent"
         Agent.new(params.except(:type))
-      when "branch_officer"
+      when "BranchOfficer", "Branch Officer"
         BranchOfficer.new(params.except(:type))
-      when "counsellor"
+      when "Counsellor"
         Counsellor.new(params.except(:type))
       end
     end
