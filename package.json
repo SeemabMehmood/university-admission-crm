@@ -1,5 +1,8 @@
 {
   "name": "access_education_crm",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "yarn": "1.7.0"
+  }
 }
