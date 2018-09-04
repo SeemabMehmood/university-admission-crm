@@ -3,7 +3,7 @@ class RepresentingCountry < ApplicationRecord
 
   belongs_to :agent
 
-  validates :name, presence: true
+  validates :name, :agent_id, presence: true
 
   filterrific(
      default_filter_params: { sorted_by: 'created_at_desc' },
