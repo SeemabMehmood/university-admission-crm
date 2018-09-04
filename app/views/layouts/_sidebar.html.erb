@@ -7,7 +7,7 @@
           <span class="label label-success pull-right"><%= current_user.role.titleize %></span>
         <% end %>
       </li>
-      <% if can? :read, User %>
+      <% unless current_user.counsellor? %>
         <li class="<%= sidebar_active_class('users_path') %>">
           <%= link_to users_path do %>
             <%= content_tag :span, accessible_role_name, class: "nav-label" %>
