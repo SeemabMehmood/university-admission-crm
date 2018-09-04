@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :timeoutable, :trackable
 
   enum status: [:active, :inactive]
+  enum download_csv: [:yes, :no]
 
   mount_uploader :logo, ImageUploader
 
@@ -13,6 +14,7 @@ class User < ApplicationRecord
             :contact_person_mobile, :contact_person_designation, presence: true, unless: Proc.new { |u| u.admin? }
 
   ROLES = ["admin", "agent", "branch_officer", "counsellor"]
+  OPTIONS = ["yes", "no"]
 
   filterrific(
      default_filter_params: { sorted_by: 'created_at_desc' },
