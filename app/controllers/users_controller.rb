@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:type, :name, :email, :phone_num,
                                 :country, :zipcode, :state, :logo,
                                 :street, :city, :website, :facebook,
-                                :google, :linkdIn, :twitter,
+                                :google, :linkdIn, :twitter, :download_csv,
                                 :contact_person_name, :contact_person_email,
                                 :contact_person_phone, :contact_person_mobile,
                                 :contact_person_skype, :contact_person_designation,
