@@ -9,16 +9,14 @@ class Ability
 
       elsif user.agent?
         can :manage, RepresentingCountry
+        can :manage, User, agent_id: user.id
 
-        can :new, User
         can [:read, :edit, :update], User, id: user.id
-        can [:read, :create, :update, :change_status], BranchOfficer, agent_id: user.id
       elsif user.branch_officer?
         can :read, RepresentingCountry
+        can :manage, User, branch_officer_id: user.id
 
-        can :new, User
         can [:read, :edit, :update], User, id: user.id
-        can [:read, :create, :edit, :update, :change_status], Counsellor, branch_officer_id: user.id
       elsif user.counsellor?
         can :read, RepresentingCountry
 
