@@ -26,7 +26,7 @@
 
         <div class="form-group col-lg-4">
           <%= f.label :country, class: "control-label" %>
-          <%= f.select :country, ApplicationHelper::COUNTRIES, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
+          <%= f.select :country, @countries, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
         </div>
       </div>
 

@@ -33,6 +33,13 @@ class UsersController < ApplicationController
 
   def new
     @user = build_users
+    if current_user.admin?
+      @countries = ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name)
+    else
+      @countries = [current_user.country]
+    end
   end
 
   def update
