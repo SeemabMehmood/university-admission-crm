@@ -1,6 +1,8 @@
 class RepresentingCountry < ApplicationRecord
   enum status: [:active, :inactive]
 
+  belongs_to :agent
+
   validates :name, presence: true
 
   filterrific(

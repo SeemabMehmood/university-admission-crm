@@ -6,6 +6,7 @@ class Ability
     if user.present?
       if user.admin?
         can :manage, :all
+
       elsif user.agent?
         can :manage, RepresentingCountry
 
@@ -13,7 +14,7 @@ class Ability
         can [:read, :edit, :update], User, id: user.id
         can [:read, :create, :update, :change_status], BranchOfficer, agent_id: user.id
       elsif user.branch_officer?
-        can :manage, RepresentingCountry
+        can :read, RepresentingCountry
 
         can :new, User
         can [:read, :edit, :update], User, id: user.id
