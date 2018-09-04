@@ -25,40 +25,46 @@
         </div>
 
         <div class="form-group col-lg-4">
-          <%= f.label :phone_num, class: "control-label" %>
-          <%= f.number_field :phone_num, title: "Please Enter Phone", placeholder: "1111111", class: "form-control" %>
+          <%= f.label :country, class: "control-label" %>
+          <%= f.select :country, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group col-lg-4">
+        <div class="form-group col-lg-3">
           <%= f.label :street, class: "control-label" %>
           <%= f.text_field :street, title: "Please Enter Name", placeholder: "Street", class: "form-control" %>
         </div>
 
-        <div class="form-group col-lg-4">
+        <div class="form-group col-lg-3">
           <%= f.label :city, class: "control-label" %>
           <%= f.text_field :city, title: "Please Enter City", placeholder: "City", class: "form-control" %>
         </div>
 
-        <div class="form-group col-lg-4">
+        <div class="form-group col-lg-3">
           <%= f.label :state, class: "control-label" %>
           <%= f.text_field :state, title: "Please Enter State", placeholder: "State", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-lg-3">
+          <%= f.label :zipcode, class: "control-label" %>
+          <%= f.number_field :zipcode, title: "Please Enter Zipcode", placeholder: "Zipcode", class: "form-control" %>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group col-lg-4">
-          <%= f.label :country, class: "control-label" %>
-          <%= f.select :country, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
+          <%= f.label :logo, class: "control-label" %>
+          <%= f.file_field :logo, title: "Please Upload Logo", class: "form-control" %>
+          <%= label_tag "files", f.object.logo.filename if @user.persisted? %>
         </div>
 
-        <div class="form-group col-lg-4">
-          <%= f.label :zipcode, class: "control-label" %>
-          <%= f.number_field :zipcode, title: "Please Enter Zipcode", placeholder: "Zipcode", class: "form-control" %>
+        <div class="form-group col-lg-3">
+          <%= f.label :phone_num, class: "control-label" %>
+          <%= f.number_field :phone_num, title: "Please Enter Phone", placeholder: "1111111", class: "form-control" %>
         </div>
 
-        <div class="form-group col-lg-4">
+        <div class="form-group col-lg-2">
           <% if @user.new_record? && @user.admin? %>
             <%= f.label :type, class: "control-label" %>
             <%= f.select :type, User::ROLES.map { |r| [r.titleize, r.titleize] }, { prompt: "Select Type", selected: "#{ @user.type.present? ? @user.type.underscore : "admin" }" }, { required: true, class: "form-control" } %>
@@ -66,9 +72,8 @@
             <%= f.hidden_field :type, value: @user.type %>
           <% end %>
         </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-lg-4">
+
+        <div class="form-group col-lg-3">
           <div id="populate_agents">
             <%= f.label :agent_id, "Agent", class: "control-label" %>
             <%= f.select :agent_id, Agent.all.collect { |a| [a.name.titleize, a.id] }, { prompt: "Please Select Agent" }, { required: true, class: "form-control", id: "agents" } %>

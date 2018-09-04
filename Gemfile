@@ -26,6 +26,7 @@ gem 'devise'
 gem 'toastr-rails'
 gem 'cancancan', '~> 2.0'
 gem 'filterrific'
+gem 'carrierwave'
 
 gem 'exception_notification'
 

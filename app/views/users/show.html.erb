@@ -7,7 +7,7 @@
             <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-xs ripple" %>
           </div>
           <p>
-            <%= image_tag 'favicon.ico', class: "m-b float-margin-left" %>
+            <%= image_tag @user.logo_url.to_s, class: "m-b float-margin-left" %>
             <div class="vertical-center">
               <h3><%= @user.name.titleize %></h3>
               <small><%= @user.role.titleize %></small>

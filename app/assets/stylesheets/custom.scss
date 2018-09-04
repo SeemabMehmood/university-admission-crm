@@ -21,7 +21,8 @@
 .float-margin-left {
   float: left;
   margin: 0px 10px 0px 0px;
-  width: 150px;
+  max-width: 110px;
+  max-height: 92px;
 }
 
 .vertical-center {

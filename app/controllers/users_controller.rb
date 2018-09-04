@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:type, :name, :email, :phone_num,
-                                :country, :zipcode, :state,
+                                :country, :zipcode, :state, :logo,
                                 :street, :city, :website, :facebook,
                                 :google, :linkdIn, :twitter,
                                 :contact_person_name, :contact_person_email,
