@@ -16,7 +16,7 @@ class RepresentingCountriesController < ApplicationController
         sanitize_params: true
       ) or return
 
-      @representing_countries = @filterrific.find()
+      @representing_countries = for_user().filterrific_find(@filterrific)
 
       respond_to do |format|
         format.html
@@ -78,5 +78,10 @@ class RepresentingCountriesController < ApplicationController
 
     def representing_country_params
       params.require(:representing_country).permit(:name, :agent_id)
+    end
+
+    def for_user
+      return RepresentingCountry.all if current_user.admin?
+      RepresentingCountry.for_agent(current_user.id)
     end
 end

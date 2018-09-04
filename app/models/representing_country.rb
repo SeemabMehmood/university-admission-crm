@@ -29,6 +29,8 @@ class RepresentingCountry < ApplicationRecord
     where(name: country_name)
   }
 
+  scope :for_agent, -> (agent_id) { where(agent_id: agent_id) }
+
   def self.options_for_sorted_by
     [
       ['Name (a-z)', 'name_asc']
