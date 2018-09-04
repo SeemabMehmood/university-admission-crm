@@ -77,6 +77,6 @@ class RepresentingCountriesController < ApplicationController
     end
 
     def representing_country_params
-      params.require(:representing_country).permit(:name)
+      params.require(:representing_country).permit(:name, :agent_id)
     end
 end

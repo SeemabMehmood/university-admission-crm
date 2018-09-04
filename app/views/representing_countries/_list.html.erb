@@ -3,7 +3,11 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th data-breakpoints="xs md" data-title="Agent">Agent</th>
+
+        <% if current_user.admin? %>
+          <th data-breakpoints="xs md" data-title="Agent">Agent</th>
+        <% end %>
+
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
         <th></th>
         <th></th>
@@ -16,9 +20,12 @@
           <td>
             <%= representing_country.name.titleize %>
           </td>
-          <td>
-            Agent Name
-          </td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to representing_country.agent.name.titleize,
+                  user_path(representing_country.agent) if representing_country.agent.present? %>
+            </td>
+          <% end %>
           <td>
             <%= format_datetime(representing_country.created_at) %>
           </td>
@@ -28,7 +35,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to representing_countries_path(representing_country) do %>
+            <%= link_to representing_country_path(representing_country) do %>
               <i class="fa fa-eye"></i>
             <% end %>
           </td>

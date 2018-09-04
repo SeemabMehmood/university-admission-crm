@@ -21,14 +21,33 @@
             <% end %>
           </div>
           <p>
-            <%= image_tag current_user.logo_url.to_s, class: "m-b float-margin-left" %>
+            <% if current_user.agent? %>
+              <%= image_tag current_user.logo_url.to_s, class: "m-b float-margin-left" %>
+
+            <% else %>
+              <%= image_tag @representing_country.agent.logo_url.to_s, class: "m-b float-margin-left" %>
+
+            <% end %>
             <div class="vertical-center">
               <h3><%= @representing_country.name.titleize %></h3>
-              <small>Application Processes???</small>
+              <small>
+                <% if current_user.admin? %>
+                  <i class="h4 font-18 fa fa-user"></i>
+                  <%= link_to @representing_country.agent.name.titleize,
+                      user_path(@representing_country.agent) if @representing_country.agent.present? %>
+                <% end %>
+              </small>
             </div>
           </p>
         </div>
         <div class="panel-body no-padding">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="row">
+
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
