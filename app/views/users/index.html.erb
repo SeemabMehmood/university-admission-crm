@@ -6,7 +6,7 @@
           <%= show_users_count(@users.count) %>
           <div class="pull-right">
             <%= link_to new_user_path, class: "btn btn-primary btn-xs ripple" do %>
-              <i class="fa fa-plus"></i> Add New <%= accessible_role_name.singularize %>
+              <i class="fa fa-plus"></i> Add <%= accessible_role_name.singularize %>
             <% end %>
           </div>
         </div>
