@@ -1,0 +1,21 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel">
+        <div class="panel-heading hbuilt">
+          Representing Countries: <%= @representing_countries.count %>
+          <div class="pull-right">
+            <%= link_to new_representing_country_path, class: "btn btn-primary btn-xs ripple" do %>
+              <i class="fa fa-plus"></i> Add Representing Country
+            <% end %>
+          </div>
+        </div>
+        <div class="panel-body no-shadow">
+          <%= render partial: "filterrific_form", locals: { filterrific: @filterrific } %>
+
+          <%= render partial: "representing_countries/list", locals: { representing_countries: @representing_countries } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

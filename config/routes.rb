@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, except: [:create] do
+  resources :users, except: [:create, :destroy] do
+    post 'change_status'
+  end
+
+  resources :representing_countries, except: [:destroy] do
     post 'change_status'
   end
 

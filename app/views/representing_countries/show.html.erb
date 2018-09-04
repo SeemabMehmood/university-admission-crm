@@ -1,0 +1,36 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel horange">
+        <div class="panel-heading hbuilt">
+          <div class="pull-right">
+
+            <%= link_to "Edit", edit_representing_country_path(@representing_country), class: "btn btn-primary btn-xs ripple" %>
+
+            <%= link_to representing_country_change_status_path(representing_country_id: @representing_country.id, page: "show"), method: :post, remote: true, title: "Change Status" do %>
+
+              <div id="change-icon-<%= @representing_country.id %>">
+
+                <% if @representing_country.inactive? %>
+                  <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+
+                <% else %>
+                  <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <p>
+            <%= image_tag current_user.logo_url.to_s, class: "m-b float-margin-left" %>
+            <div class="vertical-center">
+              <h3><%= @representing_country.name.titleize %></h3>
+              <small>Application Processes???</small>
+            </div>
+          </p>
+        </div>
+        <div class="panel-body no-padding">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
