@@ -10,6 +10,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    File.basename(path)
+    File.basename(path) if path.present?
   end
 end
