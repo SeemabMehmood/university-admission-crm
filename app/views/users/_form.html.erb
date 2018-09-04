@@ -56,7 +56,7 @@
         <div class="form-group col-lg-4">
           <%= f.label :logo, class: "control-label" %>
           <%= f.file_field :logo, title: "Please Upload Logo", class: "form-control" %>
-          <%= label_tag "files", f.object.logo.filename if @user.persisted? && f.object.logo.filename.present? %>
+          <%= label_tag "files", @user.logo.filename if @user.persisted? && @user.logo.file.present? %>
         </div>
 
         <div class="form-group col-lg-3">
