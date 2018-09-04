@@ -6,7 +6,7 @@ module UsersHelper
   end
 
   def error_form_url(user)
-    h = {}
+    h = { html: { novalidate: true } }
     if user.new_record? && user.errors.any?
       h[:url] = { controller: "registrations", action: "create" }
       h[:method] = :post
