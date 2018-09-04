@@ -89,6 +89,9 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.7.1)
+    exception_notification (4.2.2)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     ffi (1.9.25)
     filterrific (5.1.0)
@@ -238,6 +241,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  exception_notification
   filterrific
   font-awesome-rails
   icheck-rails (~> 1.0, >= 1.0.2.2)

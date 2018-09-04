@@ -48,4 +48,10 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    email_prefix: "Access Education CRM Error",
+    sender_address: %{"notifier" <notifier@access_education_crm.com>},
+    exception_recipients: %w{seemab.mehmood25@gmail.com}
+  }
 end
