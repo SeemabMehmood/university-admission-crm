@@ -43,7 +43,7 @@ class RepresentingCountriesController < ApplicationController
 
     respond_to do |format|
       if @representing_country.save
-        format.html { redirect_to @representing_country, notice: 'Representing country was successfully created.' }
+        format.html { redirect_to representing_countries_path, notice: 'Representing country was successfully created.' }
         format.json { render :show, status: :created, location: @representing_country }
       else
         format.html { render :new }
