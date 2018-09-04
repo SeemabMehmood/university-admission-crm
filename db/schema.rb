@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_09_04_131809) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "agent_id"
+    t.integer "agent_id", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
