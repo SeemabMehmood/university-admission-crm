@@ -26,7 +26,7 @@
 
         <div class="form-group col-lg-4">
           <%= f.label :country, class: "control-label" %>
-          <%= f.select :country, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
+          <%= f.select :country, ApplicationHelper::COUNTRIES, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
         </div>
       </div>
 
@@ -76,12 +76,12 @@
         <div class="form-group col-lg-3">
           <div id="populate_agents">
             <%= f.label :agent_id, "Agent", class: "control-label" %>
-            <%= f.select :agent_id, Agent.all.collect { |a| [a.name.titleize, a.id] }, { prompt: "Please Select Agent" }, { required: true, class: "form-control", id: "agents" } %>
+            <%= f.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
           </div>
 
           <div id="populate_branch_officers">
             <%= f.label :branch_officer_id, "Branch Officer", class: "control-label" %>
-            <%= f.select :branch_officer_id, BranchOfficer.all.collect { |a| [a.name.titleize, a.id] }, { prompt: "Please Select Branch Officer" }, { required: true, class: "form-control", id: "branch_officers" } %>
+            <%= f.select :branch_officer_id, BranchOfficer.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Branch Officer -" }, { required: true, class: "form-control", id: "branch_officers" } %>
           </div>
         </div>
       </div>
