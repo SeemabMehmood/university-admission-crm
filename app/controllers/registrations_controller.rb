@@ -2,6 +2,13 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
 
   def create
+    if current_user.admin?
+      @countries = ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name)
+    else
+      @countries = [current_user.country]
+    end
     @user = initialize_user(sign_up_params)
     respond_to do |format|
       if @user.save
