@@ -1,5 +1,5 @@
 <% if current_user.admin? || current_user.agent? %>
-  <%= render "form_for_agent_and_admin" %>
+  <%= render "users/form_for_agent_and_admin" %>
 <% elsif current_user.branch_officer? %>
-  <%= render "form_for_branch_officer" %>
+  <%= render "users/form_for_branch_officer" %>
 <% end %>
