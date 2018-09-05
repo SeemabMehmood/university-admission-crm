@@ -1,7 +1,7 @@
 <% if @branch_officers.present? %>
   $("#branch_officers").html("<%= j render 'branch_officers_select', locals: { branch_officers: @branch_officers } %>");
 <% else %>
-  $("#branch_officers").hide();
+  $("#populate_branch_officers").hide();
   alert("Please add at least one branch officer for selected agent.");
 <% end %>
 
