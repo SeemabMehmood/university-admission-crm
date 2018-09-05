@@ -78,7 +78,9 @@
             <%= f.label :agent_id, "Agent", class: "control-label" %>
             <%= f.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
           </div>
+        </div>
 
+        <div class="form-group col-lg-3">
           <div id="populate_branch_officers">
             <%= f.label :branch_officer_id, "Branch Officer", class: "control-label" %>
             <%= f.select :branch_officer_id, BranchOfficer.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Branch Officer -" }, { required: true, class: "form-control", id: "branch_officers" } %>
