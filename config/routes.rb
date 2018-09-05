@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
   resources :users, except: [:create, :destroy] do
+    get 'agent_branch_officers'
     post 'change_status'
   end
 

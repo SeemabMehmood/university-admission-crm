@@ -24,9 +24,21 @@ ready = ->
       $('#populate_agents').hide()
 
     if selected == "Counsellor"
-      $('#populate_branch_officers').show()
+      $('#populate_agents').show()
+      $('#wizardControl').hide()
+
+      $('#agents').on 'change', (eve) ->
+        selected_agent = eve.target.options[eve.target.selectedIndex].value
+
+        $.ajax
+          type: "GET"
+          url: "/users/#{selected_agent}/agent_branch_officers"
+
+        $('#populate_branch_officers').show()
     else
+      $('#populate_agents').hide()
       $('#populate_branch_officers').hide()
+      $('#wizardControl').show()
 
 turboload = ->
   footable()

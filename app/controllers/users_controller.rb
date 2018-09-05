@@ -60,6 +60,11 @@ class UsersController < ApplicationController
     @message = "Status successfully changed to #{@user.status}"
   end
 
+  def agent_branch_officers
+    @branch_officers = @user.branch_officers.active.pluck(:id, :name)
+    render layout: false
+  end
+
   private
 
   def set_user
