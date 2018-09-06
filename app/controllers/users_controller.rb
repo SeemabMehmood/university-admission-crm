@@ -53,6 +53,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    if current_user.admin?
+      @countries = @user.branch_officer? ? @user.agent.representing_countries.active.pluck(:name, :id) : ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name, :id)
+    else
+      @countries = [current_user.country]
+    end
     respond_to do |format|
       if @user.update(user_params.except(:type))
         format.html { redirect_to users_path, notice: "#{@user.role.titleize} was successfully updated." }
