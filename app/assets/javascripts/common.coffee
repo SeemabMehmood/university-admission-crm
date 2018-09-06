@@ -13,11 +13,14 @@ ready = ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
-  if $("#new_user").length > 0
+  if $("#new_user").length > 0 || $(".edit_user").length > 0
     $('#populate_agents').hide()
     $('#populate_branch_officers').hide()
 
-    $("#download_csv").hide()
+    if $(".edit_user").length > 0 && $('#user_type').val() == "Counsellor"
+      $("#download_csv").show()
+    else
+      $("#download_csv").hide()
 
     if $(".field_with_errors").length && $('.country-select').length == 0
       $("#download_csv").show(1000)

@@ -4,6 +4,9 @@
       <div class="hpanel">
         <div class="panel-heading">
           Update <%= @user.name.titleize %>'s Information Below
+          <div class="panel-tools">
+            Type: <%= @user.type %>
+          </div>
         </div>
         <div class="panel-body">
           <%= render "users/form" %>

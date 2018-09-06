@@ -36,7 +36,17 @@ class UsersController < ApplicationController
     if current_user.admin?
       @countries = ApplicationHelper::COUNTRIES
     elsif current_user.agent?
-      @countries = current_user.representing_countries.active.pluck(:name)
+      @countries = current_user.representing_countries.active.pluck(:name, :id)
+    else
+      @countries = [current_user.country]
+    end
+  end
+
+  def edit
+    if current_user.admin?
+      @countries = @user.branch_officer? ? @user.agent.representing_countries.active.pluck(:name, :id) : ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name, :id)
     else
       @countries = [current_user.country]
     end

@@ -1,5 +1,5 @@
 <% if current_user.admin? || current_user.agent? %>
-  <% if controller_name == "registrations" && @user.counsellor? %>
+  <% if @user.counsellor? %>
     <%= render "users/form_for_branch_officer" %>
   <% else %>
     <%= render "users/form_for_agent_and_admin" %>
