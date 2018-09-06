@@ -12,10 +12,6 @@ class Counsellor < User
     ]
   )
 
-  scope :with_country_name, lambda { |representing_country_id|
-    where(country: representing_country_id)
-  }
-
   def subordinate_count
     "Applications count"
   end
