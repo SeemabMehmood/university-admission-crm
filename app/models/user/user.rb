@@ -21,7 +21,7 @@ class User < ApplicationRecord
     available_filters: [
       :sorted_by,
       :with_role,
-      :with_country_name
+      :with_country
      ]
    )
 
@@ -32,13 +32,15 @@ class User < ApplicationRecord
       order("users.created_at #{ direction }")
     when /^name_/
       order("LOWER(users.name) #{ direction }")
+    when /^country_/
+      order("LOWER(users.country) #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
   }
 
-  scope :with_country_name, lambda { |country_name|
-    where(country: country_name)
+  scope :with_country, lambda { |country|
+    where(country: country)
   }
 
   scope :with_role, lambda { |role_name|
@@ -76,7 +78,8 @@ class User < ApplicationRecord
 
   def self.options_for_sorted_by
     [
-      ['Name (a-z)', 'name_asc']
+      ['Name (a-z)', 'name_asc'],
+      ['Country (a-z)', 'country_asc']
     ]
   end
 
@@ -92,10 +95,6 @@ class User < ApplicationRecord
 
   def inactive_message
     "Sorry, This account has been deactivated by the admin."
-  end
-
-  def country_name
-    country.to_i == 0 ? country : self.representing_country.name
   end
 
   private

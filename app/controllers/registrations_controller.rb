@@ -5,11 +5,11 @@ class RegistrationsController < Devise::RegistrationsController
     @user = initialize_user(sign_up_params)
 
     if current_user.admin?
-      @countries = ["Branch Officer", "BranchOfficer"].include?(sign_up_params[:type]) && @user.new_record? ? Agent.find(sign_up_params[:agent_id]).representing_countries.active.pluck(:name, :id) : ApplicationHelper::COUNTRIES
+      @countries = ["Branch Officer", "BranchOfficer"].include?(sign_up_params[:type]) && @user.new_record? ? Agent.find(sign_up_params[:agent_id]).representing_countries.active.pluck(:name) : ApplicationHelper::COUNTRIES
     elsif current_user.agent?
-      @countries = current_user.representing_countries.active.pluck(:name, :id)
+      @countries = current_user.representing_countries.active.pluck(:name)
     else
-      @countries = [current_user.country_name]
+      @countries = [current_user.country]
     end
     respond_to do |format|
       if @user.save

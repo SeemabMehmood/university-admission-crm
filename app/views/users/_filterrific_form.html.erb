@@ -10,13 +10,7 @@
       <% end %>
 
       <div class="col-md-3">
-        <% if current_user.admin? %>
-          <%= f.select(:with_country_name, ApplicationHelper::COUNTRIES, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
-        <% elsif current_user.agent? %>
-          <%= f.select(:with_country_name, current_user.representing_countries.pluck(:name, :id).collect { |n, i| [n.titleize, i] }, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
-        <% elsif current_user.branch_officer? %>
-          <%= f.select(:with_country_name, current_user.agent.representing_countries.pluck(:name).collect { |n| [n.titleize, n] }, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
-        <% end %>
+        <%= f.select(:with_country, ApplicationHelper::COUNTRIES, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
       </div>
 
       <div class="col-md-3">

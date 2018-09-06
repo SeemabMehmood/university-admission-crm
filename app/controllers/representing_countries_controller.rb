@@ -72,7 +72,7 @@ class RepresentingCountriesController < ApplicationController
 
   def get_agent_representing_countries
     @agent = User.find params[:agent_id]
-    @countries = @agent.representing_countries.pluck(:name, :id)
+    @countries = @agent.representing_countries.pluck(:name)
     render layout: false
   end
 

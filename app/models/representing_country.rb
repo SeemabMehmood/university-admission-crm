@@ -25,8 +25,8 @@ class RepresentingCountry < ApplicationRecord
     end
   }
 
-  scope :with_name, lambda { |country_name|
-    where(name: country_name)
+  scope :with_name, lambda { |country|
+    where(name: country)
   }
 
   scope :for_agent, -> (agent_id) { where(agent_id: agent_id) }

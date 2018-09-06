@@ -8,7 +8,7 @@ class Counsellor < User
     available_filters: [
      :sorted_by,
      :with_role,
-     :with_country_name
+     :with_country
     ]
   )
 
