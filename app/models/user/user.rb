@@ -47,13 +47,15 @@ class User < ApplicationRecord
     where(type: role_name)
   }
 
+  scope :except_user, -> (user_id) { where("id != ?", user_id) }
+
   def street_address
     [street, city].join(', ') if street && city
   end
 
   def state_address
-    return country.to_i == 0 ? country : RepresentingCountry.find(country).name unless state && zipcode
-    [[zipcode, state].join(' - '), country.to_i == 0 ? country : RepresentingCountry.find(country).name].join(' | ')
+    return country unless state && zipcode
+    [[zipcode, state].join(' - '), country].join(' | ')
   end
 
   def role
