@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         sanitize_params: true
       ) or return
 
-      @users = User.get_users_for(current_user)
+      @users = User.get_users_for(current_user).except_user(current_user.id)
       if @users.any?
         @users = @users.filterrific_find(@filterrific)
       end
