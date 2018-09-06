@@ -1,4 +1,17 @@
 $ ->
+  footable()
+
+  ready()
+
+ready = ->
+  $('#error_explanation').delay(10000).fadeOut(3000)
+
+  $('#wizardControl a').click (e) ->
+    e.preventDefault()
+    $('a').removeClass 'active'
+    $(this).addClass 'active'
+
+  $('[data-toggle="tooltip"]').tooltip()
 
   if $("#new_user").length > 0
     $('#populate_agents').hide()
@@ -37,12 +50,12 @@ $ ->
 
           $('#populate_branch_officers').show(1000)
 
-          $('#branch_officers').on 'change', (even) ->
-            selected_branch_officer = even.target.options[even.target.selectedIndex].value
+        $('#branch_officers').on 'change', (even) ->
+          selected_branch_officer = even.target.options[even.target.selectedIndex].value
 
-            $.ajax
-              type: "GET"
-              url: "/users/#{selected_branch_officer}/get_user_data"
+          $.ajax
+            type: "GET"
+            url: "/users/#{selected_branch_officer}/get_user_data"
       else
         $(".country-select").show(1000);
         $("#download_csv").hide(100);
@@ -50,20 +63,6 @@ $ ->
         $(".logo").show(1000);
         $('#populate_branch_officers').hide(1000)
         $('#wizardControl').show(1000)
-
-  footable()
-
-  ready()
-
-ready = ->
-  $('#error_explanation').delay(10000).fadeOut(3000)
-
-  $('#wizardControl a').click (e) ->
-    e.preventDefault()
-    $('a').removeClass 'active'
-    $(this).addClass 'active'
-
-  $('[data-toggle="tooltip"]').tooltip()
 
 turboload = ->
   footable()

@@ -52,8 +52,8 @@ class User < ApplicationRecord
   end
 
   def state_address
-    return country unless state && zipcode
-    [[zipcode, state].join(' - '), country].join(' | ')
+    return country.to_i == 0 ? country : RepresentingCountry.find(country).name unless state && zipcode
+    [[zipcode, state].join(' - '), country.to_i == 0 ? country : RepresentingCountry.find(country).name].join(' | ')
   end
 
   def role
