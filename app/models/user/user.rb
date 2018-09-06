@@ -17,11 +17,11 @@ class User < ApplicationRecord
   OPTIONS = ["yes", "no"]
 
   filterrific(
-     default_filter_params: { sorted_by: 'created_at_desc' },
-     available_filters: [
-       :sorted_by,
-       :with_role,
-       :with_country_name
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: [
+      :sorted_by,
+      :with_role,
+      :with_country_name
      ]
    )
 
@@ -32,8 +32,6 @@ class User < ApplicationRecord
       order("users.created_at #{ direction }")
     when /^name_/
       order("LOWER(users.name) #{ direction }")
-    when /^country_name_/
-      order("LOWER(users.country) #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
@@ -78,8 +76,7 @@ class User < ApplicationRecord
 
   def self.options_for_sorted_by
     [
-      ['Name (a-z)', 'name_asc'],
-      ['Country (a-z)', 'country_name_asc']
+      ['Name (a-z)', 'name_asc']
     ]
   end
 

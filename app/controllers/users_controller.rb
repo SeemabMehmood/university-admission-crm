@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_user, except: [:index, :new]
+  before_action :set_countries, only: [:edit, :update]
 
   def index
     begin
@@ -35,16 +36,6 @@ class UsersController < ApplicationController
     @user = build_users
     if current_user.admin?
       @countries = ApplicationHelper::COUNTRIES
-    elsif current_user.agent?
-      @countries = current_user.representing_countries.active.pluck(:name, :id)
-    else
-      @countries = [current_user.country_name]
-    end
-  end
-
-  def edit
-    if current_user.admin?
-      @countries = @user.branch_officer? ? @user.agent.representing_countries.active.pluck(:name, :id) : ApplicationHelper::COUNTRIES
     elsif current_user.agent?
       @countries = current_user.representing_countries.active.pluck(:name, :id)
     else
@@ -108,5 +99,15 @@ class UsersController < ApplicationController
     return current_user.branch_officers.new if current_user.agent?
     return current_user.counsellors.new     if current_user.branch_officer?
     User.new                                if current_user.admin?
+  end
+
+  def set_countries
+    if current_user.admin?
+      @countries = @user.branch_officer? ? @user.agent.representing_countries.active.pluck(:name, :id) : ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name, :id)
+    else
+      @countries = [current_user.country_name]
+    end
   end
 end

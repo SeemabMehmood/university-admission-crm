@@ -11,7 +11,11 @@ class BranchOfficer < User
      :with_role,
      :with_country_name
     ]
- )
+  )
+
+  scope :with_country_name, lambda { |representing_country_id|
+    where(country: representing_country_id)
+  }
 
   def subordinate_count
     [counsellors.count, " Counsellors"].join

@@ -5,8 +5,10 @@
         <div class="panel-heading hbuilt">
           Representing Countries: <%= @representing_countries.count %>
           <div class="pull-right">
-            <%= link_to new_representing_country_path, class: "btn btn-primary btn-xs ripple" do %>
-              <i class="fa fa-plus"></i> Add Representing Country
+            <% if can? :create, RepresentingCountry %>
+              <%= link_to new_representing_country_path, class: "btn btn-primary btn-xs ripple" do %>
+                <i class="fa fa-plus"></i> Add Representing Country
+              <% end %>
             <% end %>
           </div>
         </div>
