@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params.except(:type))
-        format.html { redirect_to users_path, notice: "#{@user.role.titleize} was successfully updated." }
+        format.html { redirect_to current_user == @user ? user_path(current_user) : users_path, notice: "#{@user.role.titleize} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render :edit }
