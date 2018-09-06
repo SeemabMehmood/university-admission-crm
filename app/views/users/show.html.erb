@@ -7,10 +7,17 @@
             <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-xs ripple" %>
           </div>
           <p>
-            <%= image_tag @user.logo_url.to_s, class: "m-b float-margin-left" %>
+            <% if @user.logo.file.present? %>
+              <%= image_tag @user.logo_url.to_s, class: "m-b float-margin-left" %>
+            <% elsif @user.branch_officer? %>
+              <%= image_tag @user.agent.logo_url.to_s, class: "m-b float-margin-left" %>
+            <% elsif @user.counsellor? %>
+              <%= image_tag @user.branch_officer.agent.logo_url.to_s, class: "m-b float-margin-left" %>
+            <% end %>
+
             <div class="vertical-center">
               <h3><%= @user.name.titleize %></h3>
-              <small><%= @user.role.titleize %></small>
+              <small>Type: <%= @user.role.titleize %> <%= show_superior_name(@user) %></small>
             </div>
           </p>
         </div>

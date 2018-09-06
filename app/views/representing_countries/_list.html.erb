@@ -1,0 +1,60 @@
+<div id="filterrific_results">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Name</th>
+
+        <% if current_user.admin? %>
+          <th data-breakpoints="xs md" data-title="Agent">Agent</th>
+        <% end %>
+
+        <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% representing_countries.each_with_index do |representing_country, index| %>
+        <tr>
+          <td>
+            <%= representing_country.name.titleize %>
+          </td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to representing_country.agent.name.titleize,
+                  user_path(representing_country.agent) if representing_country.agent.present? %>
+            </td>
+          <% end %>
+          <td>
+            <%= format_datetime(representing_country.created_at) %>
+          </td>
+          <td>
+            <%= link_to edit_representing_country_path(representing_country) do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to representing_country_path(representing_country) do %>
+              <i class="fa fa-eye"></i>
+            <% end %>
+          </td>
+          <% if can? :change_status, RepresentingCountry %>
+            <td>
+              <%= link_to representing_country_change_status_path(representing_country), method: :post, remote: true do %>
+                <div id="change-icon-<%= representing_country.id %>">
+                  <% if representing_country.inactive? %>
+                    <i class="fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                  <% else %>
+                    <i class="fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="paging-ui-container"></div>
+</div>

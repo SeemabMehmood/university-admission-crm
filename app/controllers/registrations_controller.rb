@@ -3,6 +3,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = initialize_user(sign_up_params)
+
+    if current_user.admin?
+      @countries = ["Branch Officer", "BranchOfficer"].include?(sign_up_params[:type]) && @user.new_record? ? Agent.find(sign_up_params[:agent_id]).representing_countries.active.pluck(:name) : ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name)
+    else
+      @countries = [current_user.country]
+    end
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_path, notice: "#{@user.role.titleize} was successfully created." }
@@ -19,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
       params.require(:user).permit(:type, :name, :email, :phone_num,
                                   :country, :zipcode, :state, :skypeId,
                                   :street, :city, :website, :facebook,
-                                  :google, :linkdIn, :twitter, :logo,
+                                  :google, :linkdIn, :twitter, :logo, :download_csv,
                                   :contact_person_name, :contact_person_email,
                                   :contact_person_phone, :contact_person_mobile,
                                   :contact_person_skype, :contact_person_designation,

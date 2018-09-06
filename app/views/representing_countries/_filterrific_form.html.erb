@@ -1,16 +1,8 @@
 <div class="col-sm-12 text-center m-b-md">
   <div class="row">
-
     <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
-
-      <% if current_user.admin? %>
-        <div class="col-md-3">
-          <%= f.select(:with_role, roles_map, { include_blank: '- Select Role -' }, { class: "form-control" }) %>
-        </div>
-      <% end %>
-
       <div class="col-md-3">
-        <%= f.select(:with_country, ApplicationHelper::COUNTRIES, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
+        <%= f.select(:with_name, ApplicationHelper::COUNTRIES, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
       </div>
 
       <div class="col-md-3">

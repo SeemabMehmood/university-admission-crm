@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :timeoutable, :trackable
 
   enum status: [:active, :inactive]
+  enum download_csv: [:yes, :no]
 
   mount_uploader :logo, ImageUploader
 
@@ -13,13 +14,14 @@ class User < ApplicationRecord
             :contact_person_mobile, :contact_person_designation, presence: true, unless: Proc.new { |u| u.admin? }
 
   ROLES = ["admin", "agent", "branch_officer", "counsellor"]
+  OPTIONS = ["yes", "no"]
 
   filterrific(
-     default_filter_params: { sorted_by: 'created_at_desc' },
-     available_filters: [
-       :sorted_by,
-       :with_role,
-       :with_country_name
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: [
+      :sorted_by,
+      :with_role,
+      :with_country
      ]
    )
 
@@ -30,15 +32,15 @@ class User < ApplicationRecord
       order("users.created_at #{ direction }")
     when /^name_/
       order("LOWER(users.name) #{ direction }")
-    when /^country_name_/
+    when /^country_/
       order("LOWER(users.country) #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
   }
 
-  scope :with_country_name, lambda { |country_name|
-    where(country: country_name)
+  scope :with_country, lambda { |country|
+    where(country: country)
   }
 
   scope :with_role, lambda { |role_name|
@@ -50,8 +52,8 @@ class User < ApplicationRecord
   end
 
   def state_address
-    return country unless state && zipcode
-    [[zipcode, state].join(' - '), country].join(' | ')
+    return country.to_i == 0 ? country : RepresentingCountry.find(country).name unless state && zipcode
+    [[zipcode, state].join(' - '), country.to_i == 0 ? country : RepresentingCountry.find(country).name].join(' | ')
   end
 
   def role
@@ -77,7 +79,7 @@ class User < ApplicationRecord
   def self.options_for_sorted_by
     [
       ['Name (a-z)', 'name_asc'],
-      ['Country (a-z)', 'country_name_asc']
+      ['Country (a-z)', 'country_asc']
     ]
   end
 
@@ -85,11 +87,6 @@ class User < ApplicationRecord
     return user.branch_officers if user.agent?
     return user.counsellors     if user.branch_officer?
     self.all                    if user.admin?
-  end
-
-  def get_counsellors
-    return unless current_user.agent?
-    Counsellor.get_agent(current_user)
   end
 
   def active_for_authentication?

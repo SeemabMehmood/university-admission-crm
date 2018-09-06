@@ -1,0 +1,26 @@
+<%= form_with(model: representing_country, local: true) do |form| %>
+  <%= render "shared/error_messages", target: representing_country %>
+
+  <div class="form-group col-md-6">
+    <%= form.label :name, class: "control-label" %>
+    <%= form.select :name, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
+  </div>
+
+  <div class="form-group col-md-6">
+
+    <% if current_user.agent? || current_user.branch_officer? %>
+
+      <%= form.hidden_field "agent_id", value: current_user.agent? ? current_user.id : current_user.agent.id %>
+
+    <% elsif current_user.admin? %>
+
+      <%= form.label :agent_id, "Agent", class: "control-label" %>
+      <%= form.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
+
+    <% end %>
+  </div>
+
+  <div class="text-right m-t-xs">
+    <%= form.submit "Submit", class: "btn btn-success submitWizard" %>
+  </div>
+<% end %>

@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @counsellors = Counsellor.all
     elsif current_user.agent?
       @branch_officers = current_user.branch_officers
-      @counsellors = current_user.get_counsellors
+      @counsellors = Counsellor.for_agent(current_user.id)
     elsif current_user.branch_officer?
       @counsellors = current_user.counsellors
     end

@@ -1,0 +1,1 @@
+<%= select_tag :branch_officer_id, options_for_select(@branch_officers.collect { |i, n| [n.titleize, i] }.insert(0, '- Select Branch Officer -')), { class: 'form-control', id: 'branch_officers' } %>

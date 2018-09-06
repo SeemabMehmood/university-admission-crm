@@ -1,0 +1,4 @@
+<div class="form-group col-lg-4">
+  <%= label_tag :download_csv, "Download CSV", class: "control-label" %>
+  <%= select_tag :download_csv, options_for_select(User::OPTIONS.collect { |o| [o.titleize, o] }, selected: @user.download_csv), { class: "form-control" } %>
+</div>

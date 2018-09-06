@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_user, except: [:index, :new]
+  before_action :set_countries, only: [:edit, :update]
 
   def index
     begin
@@ -33,6 +34,13 @@ class UsersController < ApplicationController
 
   def new
     @user = build_users
+    if current_user.admin?
+      @countries = ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name)
+    else
+      @countries = [current_user.country]
+    end
   end
 
   def update
@@ -53,6 +61,15 @@ class UsersController < ApplicationController
     @message = "Status successfully changed to #{@user.status}"
   end
 
+  def agent_branch_officers
+    @branch_officers = @user.branch_officers.active.pluck(:id, :name)
+    render layout: false
+  end
+
+  def get_user_data
+    render layout: false
+  end
+
   private
 
   def set_user
@@ -64,7 +81,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:type, :name, :email, :phone_num,
                                 :country, :zipcode, :state, :logo,
                                 :street, :city, :website, :facebook,
-                                :google, :linkdIn, :twitter,
+                                :google, :linkdIn, :twitter, :download_csv,
                                 :contact_person_name, :contact_person_email,
                                 :contact_person_phone, :contact_person_mobile,
                                 :contact_person_skype, :contact_person_designation,
@@ -75,5 +92,15 @@ class UsersController < ApplicationController
     return current_user.branch_officers.new if current_user.agent?
     return current_user.counsellors.new     if current_user.branch_officer?
     User.new                                if current_user.admin?
+  end
+
+  def set_countries
+    if current_user.admin?
+      @countries = @user.branch_officer? ? @user.agent.representing_countries.active.pluck(:name) : ApplicationHelper::COUNTRIES
+    elsif current_user.agent?
+      @countries = current_user.representing_countries.active.pluck(:name)
+    else
+      @countries = [current_user.country]
+    end
   end
 end

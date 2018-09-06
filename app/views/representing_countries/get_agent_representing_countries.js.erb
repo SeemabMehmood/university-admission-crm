@@ -1,0 +1,16 @@
+$("#download_csv").hide(1000);
+$("#user_country").empty();
+
+x = document.getElementById("user_country");
+c = document.createElement("option");
+
+c.text = '- Select Representing Country -';
+c.value = "";
+x.options.add(c, 0);
+
+JSON.parse('<%=j @countries.to_json.html_safe %>').forEach(function(o) {
+    c = document.createElement("option");
+    c.text = o;
+    c.value = o;
+    x.options.add(c);
+});
