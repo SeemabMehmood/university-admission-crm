@@ -1,5 +1,8 @@
 class BranchOfficer < User
   has_many :counsellors, foreign_key: :branch_officer_id
+  belongs_to :agent
+
+  belongs_to :representing_country, foreign_key: "country"
 
   filterrific(
     default_filter_params: { sorted_by: 'created_at_desc' },
@@ -9,8 +12,6 @@ class BranchOfficer < User
      :with_country_name
     ]
  )
-
-  belongs_to :agent
 
   def subordinate_count
     [counsellors.count, " Counsellors"].join

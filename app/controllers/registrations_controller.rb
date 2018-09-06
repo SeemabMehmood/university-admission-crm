@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
     elsif current_user.agent?
       @countries = current_user.representing_countries.active.pluck(:name, :id)
     else
-      @countries = [current_user.country]
+      @countries = [current_user.country_name]
     end
     respond_to do |format|
       if @user.save

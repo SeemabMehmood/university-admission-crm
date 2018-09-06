@@ -17,7 +17,7 @@ ready = ->
     $('#populate_agents').hide()
     $('#populate_branch_officers').hide()
 
-    if $(".edit_user").length > 0 && $('#user_type').val() == "Counsellor"
+    if $('#user_type').val() == "Counsellor"
       $("#download_csv").show()
     else
       $("#download_csv").hide()

@@ -97,6 +97,10 @@ class User < ApplicationRecord
     "Sorry, This account has been deactivated by the admin."
   end
 
+  def country_name
+    country.to_i == 0 ? country : self.representing_country.name
+  end
+
   private
 
   def setup_password

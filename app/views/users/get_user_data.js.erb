@@ -5,7 +5,7 @@ $(".logo").hide(1000);
 
 $("#download_csv").html("<%= j render 'users/download_csv' %>");
 
-$("#user_country").val("<%= @user.country %>");
+$("#user_country").val("<%= @user.country_name %>");
 $("#user_contact_person_name").val("<%= @user.name %>");
 $("#user_contact_person_email").val("<%= @user.email %>");
 $("#user_contact_person_designation").val("<%= @user.type %>");
