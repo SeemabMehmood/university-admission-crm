@@ -65,6 +65,10 @@ class UsersController < ApplicationController
     render layout: false
   end
 
+  def get_user_data
+    render layout: false
+  end
+
   private
 
   def set_user

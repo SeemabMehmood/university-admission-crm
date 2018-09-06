@@ -1,5 +1,9 @@
 <%= form_for(@user.becomes(User), error_form_url(@user)) do |f| %>
-  <%= f.hidden_field "#{current_user.type.underscore}_id", value: current_user.id unless current_user.admin? %>
+  <% if current_user.branch_officer? %>
+    <%= f.hidden_field "#{current_user.type.underscore}_id", value: current_user.id %>
+  <% else %>
+    <%= f.hidden_field "branch_officer_id", value: params[:user][:branch_officer_id] %>
+  <% end %>
 
   <%= render "shared/error_messages", target: @user %>
 
@@ -20,20 +24,14 @@
       <%= f.label :phone_num, class: "control-label" %>
       <%= f.number_field :phone_num, title: "Please Enter Phone", placeholder: "1111111", class: "form-control" %>
     </div>
-
-    <div id="download_csv">
-      <div class="form-group col-lg-6">
-        <%= f.label :download_csv, class: "control-label" %>
-        <%= f.select :download_csv, User::OPTIONS.collect { |o| [o.titleize, o] }, { selected: @user.download_csv }, { class: "form-control" } %>
-      </div>
-    </div>
+    <div id="download_csv"><%= render "users/download_csv" %></div>
   </div>
   <%= f.hidden_field :type, value: "Counsellor" %>
-  <%= f.hidden_field :country, value: current_user.country %>
-  <%= f.hidden_field :contact_person_name, value: current_user.name %>
-  <%= f.hidden_field :contact_person_designation, value: "branch officer"%>
-  <%= f.hidden_field :contact_person_email, value: current_user.email %>
-  <%= f.hidden_field :contact_person_mobile, value: current_user.phone_num %>
+  <%= f.hidden_field :country, value: current_user.branch_officer? ? current_user.country : params[:user][:country] %>
+  <%= f.hidden_field :contact_person_name, value: current_user.branch_officer? ? current_user.name : params[:user][:contact_person_name] %>
+  <%= f.hidden_field :contact_person_designation, value: "BranchOfficer" %>
+  <%= f.hidden_field :contact_person_email, value: current_user.branch_officer? ? current_user.email : params[:user][:contact_person_email] %>
+  <%= f.hidden_field :contact_person_mobile, value: current_user.branch_officer? ? current_user.phone_num : params[:user][:contact_person_mobile] %>
 
   <div class="text-right m-t-xs">
     <%= f.submit "Submit", class: "btn btn-success submitWizard" %>

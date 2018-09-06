@@ -16,29 +16,43 @@ ready = ->
   $('#populate_agents').hide()
   $('#populate_branch_officers').hide()
 
-  $('#user_type').on 'change', (e) ->
-    selected = e.target.options[e.target.selectedIndex].value
-    if selected == "Branch Officer"
-      $('#populate_agents').show()
-    else
-      $('#populate_agents').hide()
+  if $("#new_user").length > 0
 
-    if selected == "Counsellor"
-      $('#populate_agents').show()
-      $('#wizardControl').hide()
+    $("#download_csv").hide()
 
-      $('#agents').on 'change', (eve) ->
-        selected_agent = eve.target.options[eve.target.selectedIndex].value
+    if $(".field_with_errors").length && $('.country-select').length == 0
+      $("#download_csv").show()
 
-        $.ajax
-          type: "GET"
-          url: "/users/#{selected_agent}/agent_branch_officers"
+    $('#user_type').on 'change', (e) ->
+      selected = e.target.options[e.target.selectedIndex].value
+      if selected == "Branch Officer"
+        $('#populate_agents').show()
+      else
+        $('#populate_agents').hide()
 
-        $('#populate_branch_officers').show()
-    else
-      $('#populate_agents').hide()
-      $('#populate_branch_officers').hide()
-      $('#wizardControl').show()
+      if selected == "Counsellor"
+        $('#populate_agents').show()
+        $('#wizardControl').hide()
+
+        $('#agents').on 'change', (eve) ->
+          selected_agent = eve.target.options[eve.target.selectedIndex].value
+
+          $.ajax
+            type: "GET"
+            url: "/users/#{selected_agent}/agent_branch_officers"
+
+          $('#populate_branch_officers').show()
+
+          $('#branch_officers').on 'change', (even) ->
+            selected_branch_officer = even.target.options[even.target.selectedIndex].value
+
+            $.ajax
+              type: "GET"
+              url: "/users/#{selected_branch_officer}/get_user_data"
+      else
+        $('#populate_agents').hide()
+        $('#populate_branch_officers').hide()
+        $('#wizardControl').show()
 
 turboload = ->
   footable()

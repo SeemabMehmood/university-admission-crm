@@ -1,0 +1,12 @@
+$(".country-select").hide();
+$("#download_csv").show();
+$(".address").hide();
+$(".logo").hide();
+
+$("#download_csv").html("<%= j render 'download_csv' %>");
+
+$("#user_country").val("<%= @user.country %>");
+$("#user_contact_person_name").val("<%= @user.name %>");
+$("#user_contact_person_email").val("<%= @user.email %>");
+$("#user_contact_person_designation").val("<%= @user.type %>");
+$("#user_contact_person_mobile").val("<%= @user.phone_num %>");
