@@ -91,10 +91,6 @@ class User < ApplicationRecord
     self.all                    if user.admin?
   end
 
-  def active_for_authentication?
-    super && self.active?
-  end
-
   def inactive_message
     "Sorry, This account has been deactivated by the admin."
   end
