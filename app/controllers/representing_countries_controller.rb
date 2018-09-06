@@ -70,6 +70,12 @@ class RepresentingCountriesController < ApplicationController
     @message = "Status successfully changed to #{@representing_country.status}"
   end
 
+  def get_agent_representing_countries
+    @agent = User.find params[:agent_id]
+    @countries = @agent.representing_countries.pluck(:name, :id)
+    render layout: false
+  end
+
   private
     def set_representing_country
       id = params[:id] || params[:representing_country_id]

@@ -1,9 +1,9 @@
-$(".country-select").hide();
-$("#download_csv").show();
-$(".address").hide();
-$(".logo").hide();
+$(".country-select").hide(1000);
+$("#download_csv").show(1000);
+$(".address").hide(1000);
+$(".logo").hide(1000);
 
-$("#download_csv").html("<%= j render 'download_csv' %>");
+$("#download_csv").html("<%= j render 'users/download_csv' %>");
 
 $("#user_country").val("<%= @user.country %>");
 $("#user_contact_person_name").val("<%= @user.name %>");

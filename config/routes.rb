@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :representing_countries, except: [:destroy] do
+    collection do
+      get 'get_agent_representing_countries'
+    end
     post 'change_status'
   end
 
