@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_142634) do
+ActiveRecord::Schema.define(version: 2018_09_07_115207) do
+
+  create_table "application_processes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "serial"
+    t.integer "status", default: 0
+    t.bigint "representing_country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["representing_country_id"], name: "index_application_processes_on_representing_country_id"
+  end
 
   create_table "representing_countries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
