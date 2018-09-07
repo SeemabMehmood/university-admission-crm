@@ -2,24 +2,27 @@
   <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
 
   <%= render "shared/error_messages", target: representing_country %>
-
-  <div class="form-group col-md-6">
-    <%= form.label :name, class: "control-label" %>
-    <%= form.select :name, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :name, class: "control-label" %>
+      <%= form.select :name, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
+    </div>
   </div>
 
-  <div class="form-group col-md-6">
+  <div class="row">
+    <div class="form-group col-md-6">
 
-    <% if current_user.agent? || current_user.branch_officer? %>
+      <% if current_user.agent? || current_user.branch_officer? %>
 
-      <%= form.hidden_field "agent_id", value: current_user.agent? ? current_user.id : current_user.agent.id %>
+        <%= form.hidden_field "agent_id", value: current_user.agent? ? current_user.id : current_user.agent.id %>
 
-    <% elsif current_user.admin? %>
+      <% elsif current_user.admin? %>
 
-      <%= form.label :agent_id, "Agent", class: "control-label" %>
-      <%= form.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
+        <%= form.label :agent_id, "Agent", class: "control-label" %>
+        <%= form.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
 
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div class="text-right m-t-xs">
