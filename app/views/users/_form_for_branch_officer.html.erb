@@ -1,4 +1,6 @@
 <%= form_for(@user.becomes(User), error_form_url(@user)) do |f| %>
+  <%= f.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+
   <% if current_user.branch_officer? %>
     <%= f.hidden_field "#{current_user.type.underscore}_id", value: current_user.id %>
   <% else %>
@@ -34,6 +36,7 @@
   <%= f.hidden_field :contact_person_mobile, value: current_user.branch_officer? ? current_user.phone_num : @user.persisted? ? @user.branch_officer_id : params[:user][:contact_person_mobile] %>
 
   <div class="text-right m-t-xs">
-    <%= f.submit "Submit", class: "btn btn-success submitWizard" %>
+    <%= f.submit "Submit", class: "btn btn-success" %>
+    <%= link_to "Back", back_user_form_url(params[:method], f.object), class: "btn btn-default" %>
   </div>
 <% end %>

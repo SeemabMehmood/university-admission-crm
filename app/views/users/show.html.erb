@@ -4,7 +4,8 @@
       <div class="hpanel horange">
         <div class="panel-heading hbuilt">
           <div class="pull-right">
-            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-xs ripple" %>
+            <%= link_to "Edit", edit_user_path(@user, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+            <%= link_to "Back", users_path, class: "btn btn-default btn-xs ripple" %>
           </div>
           <p>
             <% if @user.logo.file.present? %>

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, except: [:index, :new]
   before_action :set_countries, only: [:edit, :update]
+  before_action :set_redirect_url, only: [:update]
 
   def index
     begin
@@ -45,8 +46,8 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params.except(:type))
-        format.html { redirect_to current_user == @user ? user_path(current_user) : users_path, notice: "#{@user.role.titleize} was successfully updated." }
+      if @user.update(user_params.except(:type, :action_name))
+        format.html { redirect_to @redirect_url, notice: "#{@user.role.titleize} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render :edit }
@@ -85,7 +86,7 @@ class UsersController < ApplicationController
                                 :contact_person_name, :contact_person_email,
                                 :contact_person_phone, :contact_person_mobile,
                                 :contact_person_skype, :contact_person_designation,
-                                :agent_id, :branch_officer_id)
+                                :agent_id, :branch_officer_id, :action_name)
   end
 
   def build_users
@@ -102,5 +103,9 @@ class UsersController < ApplicationController
     else
       @countries = [current_user.country]
     end
+  end
+
+  def set_redirect_url
+    @redirect_url = user_params[:action_name] == "show" ? @user : users_path
   end
 end
