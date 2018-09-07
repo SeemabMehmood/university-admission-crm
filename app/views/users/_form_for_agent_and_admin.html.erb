@@ -1,4 +1,6 @@
 <%= form_for(@user.becomes(User), error_form_url(@user)) do |f| %>
+  <%= f.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+
   <%= f.hidden_field "#{current_user.type.underscore}_id", value: current_user.id unless current_user.admin? %>
 
   <div class="text-center m-b-md" id="wizardControl">
@@ -167,6 +169,7 @@
   </div>
 
   <div class="text-right m-t-xs">
-    <%= f.submit "Submit", class: "btn btn-success submitWizard" %>
+    <%= f.submit "Submit", class: "btn btn-success" %>
+    <%= link_to "Back", back_user_form_url(params[:method], f.object), class: "btn btn-default" %>
   </div>
 <% end %>

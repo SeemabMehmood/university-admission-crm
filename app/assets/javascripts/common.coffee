@@ -1,6 +1,6 @@
 $ ->
   footable()
-
+  theme_issues()
   ready()
 
 ready = ->
@@ -69,8 +69,17 @@ ready = ->
 
 turboload = ->
   footable()
+  theme_issues()
 
   $('#side-menu').metisMenu()
+
+theme_issues = ->
+  $('.hide-menu').on 'click', (event) ->
+    event.preventDefault()
+    if $(window).width() < 769
+      $('body').toggleClass 'show-sidebar'
+    else
+      $('body').toggleClass 'hide-sidebar'
 
 footable = ->
   $('.table').footable

@@ -30,13 +30,17 @@
             <%= format_datetime(representing_country.created_at) %>
           </td>
           <td>
-            <%= link_to edit_representing_country_path(representing_country) do %>
-              <i class="fa fa-pencil"></i>
+            <% if can? :edit, RepresentingCountry %>
+              <%= link_to edit_representing_country_path(representing_country, method: "index") do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
             <% end %>
           </td>
           <td>
-            <%= link_to representing_country_path(representing_country) do %>
-              <i class="fa fa-eye"></i>
+            <% if can? :read, RepresentingCountry %>
+              <%= link_to representing_country_path(representing_country) do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
             <% end %>
           </td>
           <% if can? :change_status, RepresentingCountry %>

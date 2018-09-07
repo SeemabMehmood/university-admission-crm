@@ -44,16 +44,18 @@ class User < ApplicationRecord
   }
 
   scope :with_role, lambda { |role_name|
-    where(type: role_name)
+    role_name == "Admin" ? where(type: nil) : where(type: role_name)
   }
+
+  scope :except_user, -> (user_id) { where("id != ?", user_id) }
 
   def street_address
     [street, city].join(', ') if street && city
   end
 
   def state_address
-    return country.to_i == 0 ? country : RepresentingCountry.find(country).name unless state && zipcode
-    [[zipcode, state].join(' - '), country.to_i == 0 ? country : RepresentingCountry.find(country).name].join(' | ')
+    return country unless state && zipcode
+    [[zipcode, state].join(' - '), country].join(' | ')
   end
 
   def role
@@ -87,10 +89,6 @@ class User < ApplicationRecord
     return user.branch_officers if user.agent?
     return user.counsellors     if user.branch_officer?
     self.all                    if user.admin?
-  end
-
-  def active_for_authentication?
-    super && self.active?
   end
 
   def inactive_message

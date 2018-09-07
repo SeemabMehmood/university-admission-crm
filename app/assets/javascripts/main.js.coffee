@@ -6,7 +6,6 @@
 #= require jquery.slimscroll.min
 #= require dist/metisMenu.min
 #= require js/footable.js
-#= require icheck
 #= require toastr
 #= require filterrific/filterrific-jquery
 #= require common

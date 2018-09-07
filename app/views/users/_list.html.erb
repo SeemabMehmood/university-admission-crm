@@ -54,22 +54,22 @@
             <%= format_datetime(user.last_sign_in_at) %>
           </td>
           <td>
-            <%= link_to edit_user_path(user) do %>
-            <i class="fa fa-pencil"></i>
+            <%= link_to edit_user_path(user, method: 'index') do %>
+              <i class="fa fa-pencil"></i>
             <% end %>
           </td>
           <td>
             <%= link_to user_path(user) do %>
-            <i class="fa fa-eye"></i>
+              <i class="fa fa-eye"></i>
             <% end %>
           </td>
           <td>
             <%= link_to user_change_status_path(user), method: :post, remote: true do %>
               <div id="change-icon-<%= user.id %>">
                 <% if user.inactive? %>
-                <i class="fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                  <i class="fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
                 <% else %>
-                <i class="fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                  <i class="fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
                 <% end %>
               </div>
             <% end %>

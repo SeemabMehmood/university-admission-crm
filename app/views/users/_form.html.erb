@@ -1,10 +1,10 @@
-<% if current_user.admin? || current_user.agent? %>
+<% if current_user.admin? || current_user.agent? || (current_user.branch_officer? && @user.persisted? && @user.branch_officer?) %>
   <% if @user.counsellor? %>
     <%= render "users/form_for_branch_officer" %>
   <% else %>
     <%= render "users/form_for_agent_and_admin" %>
   <% end %>
 
-<% elsif current_user.branch_officer? %>
+<% elsif (current_user.branch_officer? && (params[:user].present? && params[:user][:type] == "Counsellor" || @user.counsellor?)) || current_user.counsellor? %>
   <%= render "users/form_for_branch_officer" %>
 <% end %>
