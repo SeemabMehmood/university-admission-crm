@@ -5,9 +5,7 @@
         <div class="panel-heading hbuilt">
           <div class="pull-right">
 
-            <%= link_to "Edit", edit_representing_country_path(@representing_country), class: "btn btn-primary btn-xs ripple" %>
-
-            <%= link_to representing_country_change_status_path(representing_country_id: @representing_country.id, page: "show"), method: :post, remote: true, title: "Change Status" do %>
+            <%= link_to representing_country_change_status_path(representing_country_id: @representing_country.id, page: "show"), method: :post, remote: true, class: "btn", title: "Change Status" do %>
 
               <div id="change-icon-<%= @representing_country.id %>">
 
@@ -19,6 +17,10 @@
                 <% end %>
               </div>
             <% end %>
+
+            <%= link_to "Edit", edit_representing_country_path(@representing_country, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+
+            <%= link_to "Back", representing_countries_path, class: "btn btn-default btn-xs ripple" %>
           </div>
           <p>
             <% if current_user.agent? %>

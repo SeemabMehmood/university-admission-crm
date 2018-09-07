@@ -1,4 +1,6 @@
 <%= form_with(model: representing_country, local: true) do |form| %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+
   <%= render "shared/error_messages", target: representing_country %>
 
   <div class="form-group col-md-6">
@@ -21,6 +23,7 @@
   </div>
 
   <div class="text-right m-t-xs">
-    <%= form.submit "Submit", class: "btn btn-success submitWizard" %>
+    <%= form.submit "Submit", class: "btn btn-success" %>
+    <%= link_to "Back", back_representing_country_form_url(params[:method], form.object), class: "btn btn-default" %>
   </div>
 <% end %>

@@ -3,6 +3,7 @@ class RepresentingCountriesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_representing_country, only: [:show, :edit, :update, :change_status]
+  before_action :set_redirect_url, only: [:update]
 
   def index
     begin
@@ -55,7 +56,7 @@ class RepresentingCountriesController < ApplicationController
   def update
     respond_to do |format|
       if @representing_country.update(representing_country_params)
-        format.html { redirect_to @representing_country, notice: 'Representing country was successfully updated.' }
+        format.html { redirect_to @redirect_url, notice: "Representing country was successfully updated." }
         format.json { render :show, status: :ok, location: @representing_country }
       else
         format.html { render :edit }
@@ -91,5 +92,9 @@ class RepresentingCountriesController < ApplicationController
       return RepresentingCountry.for_agent(current_user.id) if current_user.agent?
       return RepresentingCountry.for_agent(current_user.agent.id) if current_user.branch_officer?
       return RepresentingCountry.for_agent(current_user.branch_officer.agent.id) if current_user.counsellor?
+    end
+
+    def set_redirect_url
+      @redirect_url = user_params[:action_name] == "show" ? @user : users_path
     end
 end
