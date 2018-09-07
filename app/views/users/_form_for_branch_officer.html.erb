@@ -29,7 +29,7 @@
     <div id="download_csv"><%= render "users/download_csv" %></div>
   </div>
   <%= f.hidden_field :type, value: "Counsellor" %>
-  <%= f.hidden_field :country, value: current_user.branch_officer? ? current_user.country : @user.persisted? ? @user.branch_officer_id : params[:user][:country] %>
+  <%= f.hidden_field :country, value: current_user.branch_officer? ? current_user.country : @user.persisted? ? @user.branch_officer.country : params[:user][:country] %>
   <%= f.hidden_field :contact_person_name, value: current_user.branch_officer? ? current_user.name : @user.persisted? ? @user.branch_officer_id : params[:user][:contact_person_name] %>
   <%= f.hidden_field :contact_person_designation, value: "BranchOfficer" %>
   <%= f.hidden_field :contact_person_email, value: current_user.branch_officer? ? current_user.email : @user.persisted? ? @user.branch_officer_id : params[:user][:contact_person_email] %>
