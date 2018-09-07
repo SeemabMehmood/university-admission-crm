@@ -263,6 +263,7 @@ module ApplicationHelper
   end
 
   def head_title
+    return "Update Password" if controller_name == "registrations" && action_name == "edit"
     return "#{current_user.name.titleize}'s Dashboard" if controller_name == "home"
     return "Add New #{controller_name.titleize.singularize}"if action_name == "new"
     return "Edit #{controller_name.titleize}"if action_name == "edit"
