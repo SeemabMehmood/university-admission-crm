@@ -11,6 +11,7 @@
         <li class="<%= sidebar_active_class('users_path') %>">
           <%= link_to users_path do %>
             <%= content_tag :span, accessible_role_name, class: "nav-label" %>
+            <i class="fa fa-users pull-right"></i>
           <% end %>
         </li>
       <% end %>
@@ -18,6 +19,7 @@
         <li class="<%= sidebar_active_class('representing_countries_path') %>">
           <%= link_to representing_countries_path do %>
             <%= content_tag :span, "Respresenting Countries", class: "nav-label" %>
+            <i class="fa fa-map-marker pull-right"></i>
           <% end %>
         </li>
       <% end %>
