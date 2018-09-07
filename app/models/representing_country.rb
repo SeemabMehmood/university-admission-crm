@@ -6,6 +6,8 @@ class RepresentingCountry < ApplicationRecord
 
   validates :name, :agent_id, presence: true
 
+  accepts_nested_attributes_for :application_processes
+
   filterrific(
      default_filter_params: { sorted_by: 'created_at_desc' },
      available_filters: [

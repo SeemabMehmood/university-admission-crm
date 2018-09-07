@@ -34,6 +34,7 @@ class RepresentingCountriesController < ApplicationController
 
   def new
     @representing_country = RepresentingCountry.new
+    @representing_country.application_processes.build
   end
 
   def edit
