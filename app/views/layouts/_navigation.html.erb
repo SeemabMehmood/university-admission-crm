@@ -36,19 +36,22 @@
             <i class="fa fa-id-badge"></i>
           <% end %>
           <ul class="dropdown-menu hdropdown animated flipInX">
-             <div class="title">
-                Your Area
-             </div>
-             <li>
-                <%= link_to user_path(current_user) do %>
-                  <span class="text-primary">View Profile</span>
-                <% end %>
-             </li>
-             <li>
-                <%= link_to edit_user_path(current_user) do %>
-                  <span class="text-primary">Edit Profile</span>
-                <% end %>
-             </li>
+            <div class="title">Your Area</div>
+            <li>
+              <%= link_to user_path(current_user) do %>
+                <span class="text-primary">View Profile</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_path(current_user) do %>
+                <span class="text-primary">Edit Profile</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_registration_path(current_user) do %>
+              <span class="text-primary">Change Password</span>
+              <% end %>
+            </li>
           </ul>
         </li>
 
