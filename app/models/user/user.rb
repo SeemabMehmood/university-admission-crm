@@ -44,7 +44,7 @@ class User < ApplicationRecord
   }
 
   scope :with_role, lambda { |role_name|
-    where(type: role_name)
+    role_name == "Admin" ? where(type: nil) : where(type: role_name)
   }
 
   scope :except_user, -> (user_id) { where("id != ?", user_id) }
