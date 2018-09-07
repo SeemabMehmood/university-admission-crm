@@ -18,7 +18,6 @@ gem 'jquery-rails'
 gem 'animate-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-rails'
-gem 'icheck-rails', '~> 1.0', '>= 1.0.2.2'
 gem 'jquery-slimscroll-rails'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.4'
 

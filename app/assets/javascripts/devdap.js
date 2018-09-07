@@ -32,12 +32,6 @@ $(document).ready(function () {
     // Initialize metsiMenu plugin to sidebar menu
     $('#side-menu').metisMenu();
 
-    // Initialize iCheck plugin
-    $('.i-checks').iCheck({
-        checkboxClass: 'icheckbox_square-green',
-        radioClass: 'iradio_square-green'
-    });
-
     // Initialize animate panel function
     $('.animate-panel').animatePanel();
 
