@@ -1,0 +1,26 @@
+<%= form_for @email_template do |form| %>
+  <%= render "shared/error_messages", target: @email_template %>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= form.label :subject, class: "control-label" %>
+      <%= form.text_field :subject, required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12">
+      <%= form.label :content, class: "control-label" %>
+      <%= form.text_area :content, required: true, "data-provider": :summernote %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <%= form.button :submit, class: "btn btn-success" do %>
+      <i class="fa fa-send-o"></i>
+      <%= form_submit_text(form.object) %>
+    <% end %>
+
+    <%= link_to "Close", "#", data: { dismiss: "modal" }, class: "btn btn-default" %>
+  </div>
+<% end %>

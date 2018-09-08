@@ -9,6 +9,7 @@
 #= require toastr
 #= require filterrific/filterrific-jquery
 #= require nested_form_fields
+#= require summernote/summernote-bs4.min
 #= require common
 #= require representing_countries
 #= require users

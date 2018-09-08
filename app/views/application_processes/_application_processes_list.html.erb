@@ -16,7 +16,11 @@
           </div>
           <div class="panel-footer app-process-footer text-right">
 
-            <%= link_to application_process_change_status_path(id: application_process.id, page: "show"), method: :post, remote: true, class: "btn pull-right", title: "Change Status" do %>
+            <%= link_to new_email_template_path(application_process_id: application_process.id), { remote: true, data: { toggle:  "modal", target: '#add_email_template' } , class: "btn btn-info pad-footer-btn pull-right", title: "Add Email Template" } do %>
+              <i class="h4 font-18 fa fa-code"></i>
+            <% end %>
+
+            <%= link_to application_process_change_status_path(id: application_process.id, page: "show"), method: :post, remote: true, class: "btn btn-warning pad-footer-btn pull-right", title: "Change Status" do %>
               <div id="change-icon-application-<%= application_process.id %>">
                 <% if application_process.inactive? %>
                   <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
@@ -31,3 +35,5 @@
     </div>
   <% end %>
 </div>
+
+<div id="add_email_template" class="modal fade" role="dialog" aria-labelledby="AddEmailTemplate"></div>

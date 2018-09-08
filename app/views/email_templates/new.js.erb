@@ -1,0 +1,8 @@
+$("#add_email_template").modal();
+$("#add_email_template").html("<%= escape_javascript(render 'email_templates/new') %>");
+
+$('[data-provider="summernote"]').each(function() {
+  return $(this).summernote({
+    height: 300
+  });
+});

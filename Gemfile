@@ -27,6 +27,7 @@ gem 'cancancan', '~> 2.0'
 gem 'filterrific'
 gem 'carrierwave'
 gem 'nested_form_fields'
+gem 'summernote-rails', '~> 0.8.10.0'
 
 gem 'exception_notification'
 
