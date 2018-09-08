@@ -11,4 +11,9 @@ module RepresentingCountriesHelper
     countries = current_user.branch_officer.agent.representing_countries if current_user.counsellor?
     countries.pluck(:name).map(&:titleize)
   end
+
+  def email_template_link(application_process)
+    return edit_email_template_path(application_process.email_template) if application_process.email_template.present?
+    new_email_template_path(application_process_id: application_process.id)
+  end
 end

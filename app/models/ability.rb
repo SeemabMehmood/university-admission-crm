@@ -8,6 +8,7 @@ class Ability
         can :manage, :all
 
       elsif user.agent?
+        can :manage, EmailTemplate
         can :manage, ApplicationProcess
         can :manage, RepresentingCountry
         can :manage, User, agent_id: user.id

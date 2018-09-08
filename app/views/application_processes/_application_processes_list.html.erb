@@ -16,7 +16,7 @@
           </div>
           <div class="panel-footer app-process-footer text-right">
 
-            <%= link_to new_email_template_path(application_process_id: application_process.id), { remote: true, data: { toggle:  "modal", target: '#add_email_template' } , class: "btn btn-info pad-footer-btn pull-right", title: "Add Email Template" } do %>
+            <%= link_to email_template_link(application_process), { remote: true, data: { toggle:  "modal", target: '#add_email_template' } , class: "btn btn-info pad-footer-btn pull-right", title: "Add Email Template" } do %>
               <i class="h4 font-18 fa fa-code"></i>
             <% end %>
 

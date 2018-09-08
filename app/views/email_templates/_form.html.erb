@@ -1,5 +1,6 @@
 <%= form_for @email_template do |form| %>
   <%= render "shared/error_messages", target: @email_template %>
+  <%= form.hidden_field :application_process_id, value: params[:application_process_id] %>
 
   <div class="row">
     <div class="form-group col-md-12">
