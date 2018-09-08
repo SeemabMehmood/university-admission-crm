@@ -38,6 +38,7 @@ class RepresentingCountriesController < ApplicationController
   end
 
   def edit
+    @representing_country.application_processes.build unless @representing_country.application_processes.any?
   end
 
   def create
