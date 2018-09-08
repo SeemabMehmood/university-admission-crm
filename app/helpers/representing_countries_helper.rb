@@ -3,4 +3,12 @@ module RepresentingCountriesHelper
     return representing_countries_path if action_name == 'index' || country.new_record?
     country if action_name == 'show' || action_name.blank?
   end
+
+  def country_filter_options
+    return ApplicationHelper::COUNTRIES if current_user.admin?
+    countries = current_user.representing_countries if current_user.agent?
+    countries = current_user.agent.representing_countries if current_user.branch_officer?
+    countries = current_user.branch_officer.agent.representing_countries if current_user.counsellor?
+    countries.pluck(:name).map(&:titleize)
+  end
 end

@@ -12,7 +12,8 @@ class RepresentingCountry < ApplicationRecord
      default_filter_params: { sorted_by: 'created_at_desc' },
      available_filters: [
        :sorted_by,
-       :with_name
+       :with_name,
+       :with_agent
      ]
    )
 
@@ -30,6 +31,10 @@ class RepresentingCountry < ApplicationRecord
 
   scope :with_name, lambda { |country|
     where(name: country)
+  }
+
+  scope :with_agent, lambda { |agent_id|
+    where(agent_id: agent_id)
   }
 
   scope :for_agent, -> (agent_id) { where(agent_id: agent_id) }
