@@ -16,7 +16,9 @@
 
       <div class="col-md-3">
         <%= f.submit 'Filter', class: "btn btn-primary" %>
-        <%= link_to('Reset filters', reset_filterrific_url, class: "btn btn-default" ) %>
+        <%= link_to reset_filterrific_url, class: "btn btn-default" do %>
+          <i class="fa fa-refresh"></i>
+        <% end %>
       </div>
     <% end %>
   </div>
