@@ -1,4 +1,6 @@
 class Counsellor < User
+  has_many :representing_institutions
+
   belongs_to :branch_officer
 
   scope :for_agent, -> (user_id) { includes(:branch_officer).where(users: { agent_id: user_id }) }

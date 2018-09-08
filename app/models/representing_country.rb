@@ -2,6 +2,8 @@ class RepresentingCountry < ApplicationRecord
   enum status: [:active, :inactive]
 
   has_many :application_processes
+  has_many :representing_institutions
+
   belongs_to :agent
 
   validates :name, :agent_id, presence: true
