@@ -171,7 +171,7 @@
   <div class="text-right m-t-xs">
     <%= f.button :submit, class: "btn btn-success" do %>
       <i class="fa fa-send-o"></i>
-      <%= form_submit_text(f.object) %>
+      <%= user_form_submit_text(f.object) %>
     <% end %>
 
     <%= link_to back_user_form_url(params[:method], f.object), class: "btn btn-default" do %>
