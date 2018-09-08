@@ -3,5 +3,7 @@ class ApplicationProcess < ApplicationRecord
 
   belongs_to :representing_country
 
+  has_one :email_template
+
   validates :name, :serial, presence: true
 end
