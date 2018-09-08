@@ -29,4 +29,8 @@ module UsersHelper
     return users_path if action_name == 'index' || user.new_record?
     user if action_name == 'show' || action_name.blank?
   end
+
+  def form_submit_text(form_object)
+    [form_object.new_record? ? "Add" : "Update", form_object.role.titleize].join(" ")
+  end
 end

@@ -36,7 +36,13 @@
   <%= f.hidden_field :contact_person_mobile, value: current_user.branch_officer? ? current_user.phone_num : @user.persisted? ? @user.branch_officer_id : params[:user][:contact_person_mobile] %>
 
   <div class="text-right m-t-xs">
-    <%= f.submit "Submit", class: "btn btn-success" %>
-    <%= link_to "Back", back_user_form_url(params[:method], f.object), class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-success" do %>
+      <i class="fa fa-send-o"></i>
+      <%= form_submit_text(f.object) %>
+    <% end %>
+
+    <%= link_to back_user_form_url(params[:method], f.object), class: "btn btn-default" do %>
+      <i class="fa fa-arrow-right"></i>
+    <% end %>
   </div>
 <% end %>
