@@ -8,7 +8,7 @@
 <% class_icon = "" %>
 
 <% if params[:page].present? && params[:page] == "show" %>
-  $(".user-status").html("<i class='h4 font-18 fa fa-<%= @user.inactive? ? "user-times" : "users" %>'></i> <%= @user.status.titleize %>");
+  $("#change-icon-<%= @user.id %>").html("<i class='h4 font-18 fa fa-<%= @user.inactive? ? "user-times" : "users" %>'></i> <%= @user.status.titleize %>");
   <% class_icon = "h4 font-18" %>
 <% end %>
 
