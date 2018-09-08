@@ -8,7 +8,7 @@
 <% class_icon = "" %>
 
 <% if params[:page].present? && params[:page] == "show" %>
-  $(".representing_country-status").html("<i class='h4 font-18 fa fa-<%= @representing_country.inactive? ? "user-times" : "users" %>'></i> <%= @representing_country.status.titleize %>");
+  $("#change-icon-<%= @representing_country.id %>").html("<i class='h4 font-18 fa fa-<%= @representing_country.inactive? ? "user-times" : "users" %>'></i> <%= @representing_country.status.titleize %>");
   <% class_icon = "h4 font-18" %>
 <% end %>
 
