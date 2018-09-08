@@ -14,14 +14,11 @@ class Ability
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.branch_officer?
-        can :manage, ApplicationProcess
-        can [:edit, :read, :update], RepresentingCountry
+        can :read, ApplicationProcess
         can :manage, User, branch_officer_id: user.id
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.counsellor?
-        can :read, RepresentingCountry
-
         can [:read, :edit, :update], User, id: user.id
       end
     end

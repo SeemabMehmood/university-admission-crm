@@ -9,11 +9,11 @@
     </div>
 
     <div class="form-group col-md-5">
-      <% if current_user.agent? || current_user.branch_officer? %>
+      <% if current_user.agent? %>
 
-        <%= form.hidden_field "agent_id", value: current_user.agent? ? current_user.id : current_user.agent.id %>
+        <%= form.hidden_field "agent_id", value: current_user.id %>
 
-      <% elsif current_user.admin? %>
+      <% else %>
         <%= form.label :agent_id, "Agent", class: "control-label" %>
         <%= form.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
 
