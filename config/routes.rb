@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     post 'change_status'
   end
 
+  post 'application_processes/:id/change_status', to: 'application_processes#change_status', as: :application_process_change_status
+
   root 'home#index'
   get 'home/index', to: 'home#index'
 end

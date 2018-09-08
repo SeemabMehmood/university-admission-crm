@@ -20,7 +20,7 @@
 
             <%= link_to "Edit", edit_representing_country_path(@representing_country, method: "show"), class: "btn btn-primary btn-xs ripple" %>
 
-            <%= link_to "Back", representing_countries_path, class: "btn btn-default btn-xs ripple" %>
+            <%= link_to "Back", representing_countries_path(mthod: "show"), class: "btn btn-default btn-xs ripple" %>
           </div>
           <p>
             <% if current_user.agent? %>
@@ -30,26 +30,24 @@
               <%= image_tag @representing_country.agent.logo_url.to_s, class: "m-b float-margin-left" %>
 
             <% end %>
+
             <div class="vertical-center">
               <h3><%= @representing_country.name.titleize %></h3>
               <small>
                 <% if current_user.admin? %>
                   <i class="h4 font-18 fa fa-user"></i>
-                  <%= link_to @representing_country.agent.name.titleize,
+                   Agent: <%= link_to @representing_country.agent.name.titleize,
                       user_path(@representing_country.agent) if @representing_country.agent.present? %>
+                <% end %>
+                <% if @representing_country.branch_officer.present? %>
+                | Branch Officer: <%= link_to @representing_country.branch_officer.name.titleize, user_path(@representing_country.branch_officer)  %>
                 <% end %>
               </small>
             </div>
           </p>
         </div>
         <div class="panel-body no-padding">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <div class="row">
-
-              </div>
-            </li>
-          </ul>
+          <%= render "application_processes/application_processes_list", locals: { representing_country: @representing_country } %>
         </div>
       </div>
     </div>
