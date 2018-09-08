@@ -6,4 +6,6 @@ class ApplicationProcess < ApplicationRecord
   has_one :email_template
 
   validates :name, :serial, presence: true
+
+  default_scope { order(serial: :asc) }
 end
