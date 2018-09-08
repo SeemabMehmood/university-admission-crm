@@ -3,21 +3,17 @@
 
   <%= render "shared/error_messages", target: representing_country %>
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
       <%= form.label :name, class: "control-label" %>
       <%= form.select :name, ApplicationHelper::COUNTRIES, { prompt: "Select Country" }, { required: true, class: "form-control" } %>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="form-group col-md-6">
-
+    <div class="form-group col-md-5">
       <% if current_user.agent? || current_user.branch_officer? %>
 
         <%= form.hidden_field "agent_id", value: current_user.agent? ? current_user.id : current_user.agent.id %>
 
       <% elsif current_user.admin? %>
-
         <%= form.label :agent_id, "Agent", class: "control-label" %>
         <%= form.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { required: true, class: "form-control", id: "agents" } %>
 
@@ -26,18 +22,40 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-md-8">
-      <%= form.fields_for :application_processes do |application_process| %>
-        <% if application_process.object.active? %>
-          <%= application_process.label :name, class: "control-label" %>
-          <%= application_process.text_field :name, required: true, class: "form-control" %>
-        <% end %>
-      <% end %>
+    <div class="col-md-10">
+      <div class="hpanel">
+        <div class="panel-heading">Application Processes</div>
+        <div class="panel-body">
+          <div class="form-group col-md-12">
+            <%= form.nested_fields_for :application_processes do |form_application| %>
+              <% if form_application.object.active? %>
+                <%= form_application.label nil, "Serial No. #{form_application.object.persisted? ? form_application.object.serial : 1}", class: "control-label" %>
+                <%= form_application.hidden_field :serial, value: form_application.object.persisted? ? form_application.object.serial : 1, class: "serialno" %>
+                <%= form_application.text_field :name, required: true, class: "form-control" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="form-group col-md-12">
+            <div class="pull-right">
+              <%= form.add_nested_fields_link :application_processes, class: "btn btn-xs btn-success" do %>
+                <i class="fa fa-plus-square"></i>
+                 Add Application Process
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="text-right m-t-xs">
-    <%= form.submit "Submit", class: "btn btn-success" %>
-    <%= link_to "Back", back_representing_country_form_url(params[:method], form.object), class: "btn btn-default" %>
+    <%= form.button :submit, class: "btn btn-success" do %>
+      <i class="fa fa-send-o"></i>
+      <%= form_submit_text(form.object) %>
+    <% end %>
+
+    <%= link_to back_representing_country_form_url(params[:method], form.object), class: "btn btn-default" do %>
+      <i class="fa fa-arrow-right"></i>
+    <% end %>
   </div>
 <% end %>

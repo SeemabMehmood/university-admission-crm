@@ -280,4 +280,8 @@ module ApplicationHelper
     return "Not Available" if field.nil? || field.empty?
     field
   end
+
+  def form_submit_text(form_object)
+    [form_object.new_record? ? "Add" : "Update", form_object.class.name].join(" ")
+  end
 end

@@ -41,7 +41,7 @@ class RepresentingCountriesController < ApplicationController
   end
 
   def create
-    @representing_country = RepresentingCountry.new(representing_country_params)
+    @representing_country = RepresentingCountry.new(representing_country_params.except(:action_name))
 
     respond_to do |format|
       if @representing_country.save
@@ -56,7 +56,7 @@ class RepresentingCountriesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @representing_country.update(representing_country_params)
+      if @representing_country.update(representing_country_params.except(:action_name))
         format.html { redirect_to @redirect_url, notice: "Representing country was successfully updated." }
         format.json { render :show, status: :ok, location: @representing_country }
       else
@@ -85,7 +85,7 @@ class RepresentingCountriesController < ApplicationController
     end
 
     def representing_country_params
-      params.require(:representing_country).permit(:name, :agent_id)
+      params.require(:representing_country).permit(:name, :agent_id, :action_name, application_processes_attributes: [:id, :name, :serial])
     end
 
     def for_user
@@ -96,6 +96,6 @@ class RepresentingCountriesController < ApplicationController
     end
 
     def set_redirect_url
-      @redirect_url = user_params[:action_name] == "show" ? @user : users_path
+      @redirect_url = representing_country_params[:action_name] == "show" ? @representing_country : representing_countries_path
     end
 end

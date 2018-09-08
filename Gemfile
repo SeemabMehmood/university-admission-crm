@@ -26,6 +26,7 @@ gem 'toastr-rails'
 gem 'cancancan', '~> 2.0'
 gem 'filterrific'
 gem 'carrierwave'
+gem 'nested_form_fields'
 
 gem 'exception_notification'
 

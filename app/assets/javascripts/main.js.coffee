@@ -8,7 +8,9 @@
 #= require js/footable.js
 #= require toastr
 #= require filterrific/filterrific-jquery
+#= require nested_form_fields
 #= require common
+#= require representing_countries
 #= require users
 #= require devdap
 #= require turbolinks
