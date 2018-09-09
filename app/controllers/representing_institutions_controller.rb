@@ -73,6 +73,7 @@ class RepresentingInstitutionsController < ApplicationController
     @counsellor = User.find(params[:user_id])
     if @counsellor.branch_officer.representing_country.present?
       @institutions = @counsellor.branch_officer.representing_institutions.active
+      @message = "Please add at least one representing institutions for the selected country." unless @institutions.present?
     else
       @message = "Please add a representing country for selected counsellor's branch officer."
     end
