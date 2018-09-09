@@ -19,7 +19,7 @@
       <% representing_countries.each_with_index do |representing_country, index| %>
         <tr>
           <td>
-            <%= representing_country.name.titleize %>
+            <%= link_to representing_country.name.titleize, representing_country_path(representing_country.id) %>
           </td>
           <% if current_user.admin? %>
             <td>
