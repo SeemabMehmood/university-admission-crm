@@ -38,6 +38,7 @@ class RepresentingInstitution < ApplicationRecord
   }
 
   scope :for_agent, -> (agent_id) { where(representing_countries: { agent_id: agent_id }).joins(:representing_country) }
+  scope :for_counsellor, -> (counsellor_id) { where(counsellor_id: counsellor_id ) }
 
   def self.options_for_sorted_by
     [
@@ -51,5 +52,10 @@ class RepresentingInstitution < ApplicationRecord
 
   def branch_officer
     self.representing_country.branch_officer
+  end
+
+  def self.for_branch_officer(branch_officer_id)
+    branch_officer = User.find(branch_officer_id)
+    where(representing_countries: { name: branch_officer.country } ).joins(:representing_country)
   end
 end

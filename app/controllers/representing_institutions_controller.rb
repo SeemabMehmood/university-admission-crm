@@ -86,8 +86,8 @@ class RepresentingInstitutionsController < ApplicationController
     def for_user
       return RepresentingInstitution.all if current_user.admin?
       return RepresentingInstitution.for_agent(current_user.id) if current_user.agent?
-      return RepresentingInstitution.for_agent(current_user.agent.id) if current_user.branch_officer?
-      return RepresentingInstitution.for_agent(current_user.branch_officer.agent.id) if current_user.counsellor?
+      return RepresentingInstitution.for_branch_officer(current_user.id) if current_user.branch_officer?
+      return RepresentingInstitution.for_counsellor(current_user.id) if current_user.counsellor?
     end
 
     def set_representing_countries
