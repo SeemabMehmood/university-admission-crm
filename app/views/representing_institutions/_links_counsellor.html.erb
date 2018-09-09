@@ -1,0 +1,7 @@
+<%= link_to manage_counsellor_path(@representing_institution.id, @representing_institution.counsellor.try(:id), action_name: params[:action_name] == "add" ? "remove" : "add"), method: :post, remote: true do %>
+  <% if params[:action_name] == "add" %>
+    <i class="fa fa-trash"></i>
+  <% else %>
+    <i class="fa fa-calendar-check-o"></i>
+  <% end %>
+<% end %>

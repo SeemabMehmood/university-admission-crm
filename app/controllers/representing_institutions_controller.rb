@@ -73,6 +73,17 @@ class RepresentingInstitutionsController < ApplicationController
     @institutions = @counsellor.branch_officer.representing_institutions.active
   end
 
+  def manage_counsellor
+    @representing_institution = RepresentingInstitution.find(params[:representing_institution_id])
+    if params[:action_name] == "add"
+      @representing_institution.update_attributes(user_id: params[:user_id])
+      @message = "Institution #{@representing_institution.name.titleize} successfully assigned to #{@representing_institution.counsellor.name.titleize}."
+    elsif params[:action_name] == "remove"
+      @representing_institution.update_attributes(user_id: nil)
+      @message = "Institution #{@representing_institution.name.titleize} successfully uassigned from #{User.find(params[:user_id]).name.titleize}."
+    end
+  end
+
   private
     def set_representing_institution
       id = params[:id] || params[:representing_institution_id]

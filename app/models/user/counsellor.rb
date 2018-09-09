@@ -17,4 +17,8 @@ class Counsellor < User
   def subordinate_count
     "Applications count"
   end
+
+  def institution_assigned?(institution_id)
+    self.representing_institutions.active.pluck(:id).include?(institution_id)
+  end
 end

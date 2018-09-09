@@ -12,9 +12,29 @@
       <tbody>
         <% @institutions.each do |institution| %>
           <tr>
-            <td><%= institution.name.titleize %></td>
+            <td>
+              <div>
+                <span id="icon-assigned-<%= institution.id %>">
+                  <% if @counsellor.institution_assigned?(institution.id) %>
+                    <i class="fa fa-check-circle-o text-success"></i>
+                  <% end %>
+                </span>
+                <%= institution.name.titleize %>
+              </div>
+            </td>
             <td><%= institution.campus.titleize %></td>
             <td><%= format_datetime(institution.created_at) %></td>
+            <td id="manage_links-<%= institution.id %>">
+              <% if @counsellor.institution_assigned?(institution.id) %>
+                <%= link_to manage_counsellor_path(institution.id, @counsellor.id, action_name: "remove"), method: :post, remote: true do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              <% else %>
+                <%= link_to manage_counsellor_path(institution.id, @counsellor.id, action_name: "add"), method: :post, remote: true do %>
+                  <i class="fa fa-calendar-check-o"></i>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
