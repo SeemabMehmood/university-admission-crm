@@ -92,9 +92,9 @@ class RepresentingInstitutionsController < ApplicationController
 
     def set_representing_countries
       if current_user.admin?
-        @representing_countries = @representing_institution.new_record? ? [] : @representing_institution.agent.representing_countries.pluck(:name, :id)
+        @representing_countries = @representing_institution.new_record? ? [] : @representing_institution.agent.representing_countries.active.pluck(:name, :id)
       else
-        @representing_countries = current_user.agent? ?  current_user.representing_countries.pluck(:name, :id) : current_user.agent.representing_countries.pluck(:name, :id)
+        @representing_countries = current_user.agent? ?  current_user.representing_countries.active.pluck(:name, :id) : current_user.agent.representing_countries.active.pluck(:name, :id)
       end
     end
 end

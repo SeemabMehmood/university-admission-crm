@@ -75,7 +75,7 @@ class RepresentingCountriesController < ApplicationController
 
   def get_agent_representing_countries
     @agent = User.find params[:agent_id]
-    @countries = params[:institution_form] ? @agent.representing_countries.pluck(:name, :id) : @agent.representing_countries.pluck(:name)
+    @countries = params[:institution_form] ? @agent.representing_countries.active.pluck(:name, :id) : @agent.representing_countries.active.pluck(:name)
     render layout: false
   end
 
