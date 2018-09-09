@@ -68,6 +68,9 @@ class RepresentingInstitutionsController < ApplicationController
     @message = "Status successfully changed to #{@representing_institution.status}"
   end
 
+  def assign_institutions
+  end
+
   private
     def set_representing_institution
       id = params[:id] || params[:representing_institution_id]

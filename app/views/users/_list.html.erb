@@ -17,6 +17,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -54,12 +55,17 @@
             <%= format_datetime(user.last_sign_in_at) %>
           </td>
           <td>
-            <%= link_to edit_user_path(user, method: 'index') do %>
+            <%= link_to assign_institutions_path(user.id), method: :post, title: "Assign Institutions" do %>
+              <i class="fa fa-list-ul"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_user_path(user, method: 'index'), title: "Edit" do %>
               <i class="fa fa-pencil"></i>
             <% end %>
           </td>
           <td>
-            <%= link_to user_path(user) do %>
+            <%= link_to user_path(user), title: "View" do %>
               <i class="fa fa-eye"></i>
             <% end %>
           </td>
