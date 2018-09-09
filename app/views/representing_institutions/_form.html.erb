@@ -1,0 +1,75 @@
+<%= form_for @representing_institution do |form| %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+
+  <%= render "shared/error_messages", target: @representing_institution %>
+
+  <div class="row">
+    <% if current_user.admin? || current_user.agent? %>
+      <% if current_user.admin? && @representing_institution.new_record? %>
+        <div class="form-group col-md-3" id="agents">
+          <%= label_tag :agent, "Agent", class: "control-label" %>
+          <%= select_tag :agent, options_for_select(Agent.active.collect { |a| [a.name.titleize, a.id] }.insert(0, "- Select Agent -")), { class: "form-control" } %>
+        </div>
+      <% end %>
+      <div class="form-group col-md-<%= current_user.admin? ? 3 : 6 %> rep-countries">
+        <%= form.label :representing_country_id, class: "control-label" %>
+        <%= form.select :representing_country_id, @representing_countries.collect { |n, i| [n.titleize, i] }, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
+      </div>
+    <% elsif current_user.branch_officer? %>
+      <%= form.hidden_field :representing_country_id, value: current_user.representing_country.id %>
+    <% end %>
+
+    <div class="form-group col-md-6">
+      <%= form.label :name, class: "control-label" %>
+      <%= form.text_field :name, required: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :campus, class: "control-label" %>
+      <%= form.text_field :campus, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-md-6 logo">
+      <%= form.label :logo, class: "control-label" %>
+      <%= form.file_field :logo, title: "Please Upload Logo", class: "form-control" %>
+      <%= label_tag "files", @representing_institution.logo.filename if @representing_institution.persisted? && @representing_institution.logo.file.present? %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :contact_person, class: "control-label" %>
+      <%= form.text_field :contact_person, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :email, class: "control-label" %>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :contact, class: "control-label" %>
+      <%= form.text_field :contact, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :website, class: "control-label" %>
+      <%= form.text_field :website, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="text-right m-t-xs">
+    <%= form.button :submit, class: "btn btn-success" do %>
+      <i class="fa fa-send-o"></i>
+      <%= form_submit_text(form.object) %>
+    <% end %>
+
+    <%= link_to back_representing_institution_form_url(params[:method], form.object), class: "btn btn-default" do %>
+      <i class="fa fa-arrow-left"></i>
+    <% end %>
+  </div>
+<% end %>

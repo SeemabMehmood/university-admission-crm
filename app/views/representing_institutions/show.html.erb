@@ -1,0 +1,61 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel horange">
+        <div class="panel-heading hbuilt">
+          <div class="pull-right">
+
+            <%= link_to representing_institution_change_status_path(representing_institution_id: @representing_institution.id, page: "show"), method: :post, remote: true, class: "btn", title: "Change Status" do %>
+              <div id="change-icon-<%= @representing_institution.id %>">
+                <% if @representing_institution.inactive? %>
+                  <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                <% else %>
+                  <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                <% end %>
+              </div>
+            <% end %>
+
+            <%= link_to "Edit", edit_representing_institution_path(@representing_institution, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+
+            <%= link_to "Back", representing_institutions_path, class: "btn btn-default btn-xs ripple" %>
+          </div>
+          <p>
+            <%= image_tag @representing_institution.logo_url.to_s, class: "m-b float-margin-left" %>
+
+            <div class="vertical-center">
+              <h3><%= @representing_institution.name.titleize %></h3>
+              <small>Campus: <%= @representing_institution.campus.titleize %></small>
+            </div>
+          </p>
+        </div>
+        <div class="panel-body no-padding">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-address-card"></i> <%= not_available(@representing_institution.representing_country.name) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-building"></i> <%= not_available(@representing_institution.contact_person) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-phone"></i> <%= not_available(@representing_institution.email) %>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-envelope"></i> <%= not_available(@representing_institution.contact) %>
+                </div>
+                <div class="col-lg-4">
+                  <i class="h4 font-18 fa fa-globe"></i> <%= not_available(@representing_institution.website) %>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

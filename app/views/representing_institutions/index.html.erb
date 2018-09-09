@@ -1,0 +1,23 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel">
+        <div class="panel-heading hbuilt">
+          Representing Institutions: <%= @representing_institutions.count %>
+          <div class="pull-right">
+            <% if can? :create, RepresentingInstitution %>
+              <%= link_to new_representing_institution_path, class: "btn btn-primary btn-xs ripple" do %>
+                <i class="fa fa-plus"></i> Add Representing Institution
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="panel-body no-shadow">
+          <%= render partial: "filterrific_form", locals: { filterrific: @filterrific } %>
+
+          <%= render partial: "representing_institutions/list", locals: { representing_institutions: @representing_institutions } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

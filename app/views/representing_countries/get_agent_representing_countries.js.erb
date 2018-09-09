@@ -1,16 +1,31 @@
-$("#download_csv").hide(1000);
-$("#user_country").empty();
+x = ""
+c = ""
+<% if params[:institution_form] %>
+  $(".rep-countries").show(1000);
+  $("#representing_institution_representing_country_id").empty();
 
-x = document.getElementById("user_country");
-c = document.createElement("option");
+  x = document.getElementById("representing_institution_representing_country_id");
+  c = document.createElement("option");
+<% else %>
+  $("#download_csv").hide(1000);
+  $("#user_country").empty();
+
+  x = document.getElementById("user_country");
+  c = document.createElement("option");
+<% end %>
 
 c.text = '- Select Representing Country -';
 c.value = "";
 x.options.add(c, 0);
 
-JSON.parse('<%=j @countries.to_json.html_safe %>').forEach(function(o) {
+JSON.parse('<%= j @countries.to_json.html_safe %>').forEach(function(o) {
     c = document.createElement("option");
-    c.text = o;
-    c.value = o;
+    <% if params[:institution_form] %>
+      c.text = o[0];
+      c.value = o[1];
+    <% else %>
+      c.text = o;
+      c.value = o;
+    <% end %>
     x.options.add(c);
 });

@@ -1,0 +1,18 @@
+<%
+  if @representing_institution.active?
+    tooltip = "Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"
+  else
+    tooltip = "Status: <strong>INACTIVE</strong> - Click & Change it to Active"
+  end
+%>
+<% class_icon = "" %>
+
+<% if params[:page].present? && params[:page] == "show" %>
+  $("#change-icon-<%= @representing_institution.id %>").html("<i class='h4 font-18 fa fa-<%= @representing_institution.inactive? ? "user-times" : "users" %>'></i> <%= @representing_institution.status.titleize %>");
+  <% class_icon = "h4 font-18" %>
+<% end %>
+
+$("#change-icon-<%= @representing_institution.id %>").html("<i class='<%= class_icon %> fa fa-toggle-<%= @toggle %>' data-toggle='tooltip' data-placement='top' data-html='true' title='<%= tooltip %>'></i>");
+toastr['error']('<%= @message %>');
+
+$('[data-toggle="tooltip"]').tooltip()

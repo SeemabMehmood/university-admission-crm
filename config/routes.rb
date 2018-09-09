@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     post 'change_status'
   end
 
-  resources :email_templates, except: [:index]
+  resources :representing_institutions, except: [:destroy] do
+    post 'change_status'
+  end
+
+  resources :email_templates, except: [:index, :destroy]
 
   post 'application_processes/:id/change_status', to: 'application_processes#change_status', as: :application_process_change_status
 

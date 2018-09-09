@@ -12,6 +12,7 @@
 #= require summernote/summernote-bs4.min
 #= require common
 #= require representing_countries
+#= require representing_institutions
 #= require users
 #= require devdap
 #= require turbolinks

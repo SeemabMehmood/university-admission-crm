@@ -23,6 +23,15 @@
           <% end %>
         </li>
       <% end %>
+
+      <% if can? :read, RepresentingInstitution %>
+        <li class="<%= sidebar_active_class('representing_institutions_path') %>">
+          <%= link_to representing_institutions_path do %>
+            <%= content_tag :span, "Respresenting Institutions", class: "nav-label" %>
+            <i class="fa fa-university pull-right"></i>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </aside>

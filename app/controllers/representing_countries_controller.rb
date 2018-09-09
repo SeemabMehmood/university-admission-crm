@@ -75,7 +75,7 @@ class RepresentingCountriesController < ApplicationController
 
   def get_agent_representing_countries
     @agent = User.find params[:agent_id]
-    @countries = @agent.representing_countries.pluck(:name)
+    @countries = params[:institution_form] ? @agent.representing_countries.pluck(:name, :id) : @agent.representing_countries.pluck(:name)
     render layout: false
   end
 
@@ -92,8 +92,6 @@ class RepresentingCountriesController < ApplicationController
     def for_user
       return RepresentingCountry.all if current_user.admin?
       return RepresentingCountry.for_agent(current_user.id) if current_user.agent?
-      return RepresentingCountry.for_agent(current_user.agent.id) if current_user.branch_officer?
-      return RepresentingCountry.for_agent(current_user.branch_officer.agent.id) if current_user.counsellor?
     end
 
     def set_redirect_url
