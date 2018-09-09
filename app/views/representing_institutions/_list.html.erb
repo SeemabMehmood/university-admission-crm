@@ -6,11 +6,14 @@
         <th>Campus</th>
         <th>Contact Person</th>
 
+        <th data-breakpoints="xs md" data-title="Representing Country">Country</th>
+
         <% if current_user.admin? %>
           <th data-breakpoints="xs md" data-title="Agent">Agent</th>
         <% end %>
 
         <th data-breakpoints="xs md" data-title="Branch Officer">Branch Officer</th>
+        <th data-breakpoints="xs md" data-title="Counsellor">Counsellor</th>
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
         <th></th>
         <th></th>
@@ -21,13 +24,16 @@
       <% representing_institutions.each_with_index do |representing_institution, index| %>
         <tr>
           <td>
-            <%= representing_institution.name.titleize %>
+            <%= link_to representing_institution.name.titleize, representing_institution_path(representing_institution.id) %>
           </td>
           <td>
             <%= representing_institution.campus.titleize %>
           </td>
           <td>
             <%= representing_institution.contact_person.titleize %>
+          </td>
+          <td>
+            <%= representing_institution.representing_country.name.titleize %>
           </td>
           <% if current_user.admin? %>
             <td>
@@ -38,6 +44,9 @@
           <td>
             <%= link_to representing_institution.representing_country.branch_officer.name.titleize,
                   user_path(representing_institution.representing_country.branch_officer) if representing_institution.representing_country.branch_officer.present? %>
+          </td>
+          <td>
+            <%= link_to representing_institution.counsellor.name.titleize, user_path(representing_institution.counsellor) if representing_institution.counsellor.present? %>
           </td>
           <td>
             <%= format_datetime(representing_institution.created_at) %>
