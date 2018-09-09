@@ -13,7 +13,8 @@ class RepresentingInstitution < ApplicationRecord
    available_filters: [
      :sorted_by,
      :with_name,
-     :with_campus
+     :with_campus,
+     :with_status
    ]
  )
 
@@ -35,6 +36,10 @@ class RepresentingInstitution < ApplicationRecord
 
   scope :with_campus, lambda { |campus_name|
     where(campus: campus_name)
+  }
+
+  scope :with_status, lambda { |status_value|
+    where(status: status_value)
   }
 
   scope :for_agent, -> (agent_id) { where(representing_countries: { agent_id: agent_id }).joins(:representing_country) }
