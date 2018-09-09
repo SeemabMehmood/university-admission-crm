@@ -24,7 +24,7 @@
       <% users.each_with_index do |user, index| %>
         <tr>
           <td>
-            <%= user.name.titleize %>
+            <%= link_to user.name.titleize, user_path(user.id) %>
           </td>
           <td>
             <%= user.email %>
