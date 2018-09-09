@@ -2,5 +2,5 @@
   $("#assign_institutions").modal();
   $("#assign_institutions").html("<%= escape_javascript(render 'representing_institutions/assign_institutions') %>");
 <% else %>
-  toastr['error']('<%= @message %>');
+  toastr['error']("<%= @message %>");
 <% end %>
