@@ -1,4 +1,5 @@
 ready = ->
+  $('[data-toggle="tooltip"]').tooltip()
 
   if $("#new_user").length > 0 || $(".edit_user").length > 0
     $('#populate_agents').hide()
