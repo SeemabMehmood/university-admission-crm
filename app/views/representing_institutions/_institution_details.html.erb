@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-stripped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th data-breakpoints="xs" data-title="Campus">Campus</th>
+          <th data-breakpoints="xs" data-title="Created At">Created At</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @institutions.each do |institution| %>
+          <tr>
+            <td><%= institution.name.titleize %></td>
+            <td><%= institution.campus.titleize %></td>
+            <td><%= format_datetime(institution.created_at) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

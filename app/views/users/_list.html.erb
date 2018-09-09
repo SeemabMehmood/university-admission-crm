@@ -54,11 +54,13 @@
           <td>
             <%= format_datetime(user.last_sign_in_at) %>
           </td>
-          <td>
-            <%= link_to assign_institutions_path(user.id), method: :post, title: "Assign Institutions" do %>
-              <i class="fa fa-list-ul"></i>
-            <% end %>
-          </td>
+          <% if user.counsellor? %>
+            <td>
+              <%= link_to assign_institutions_path(user.id), method: :post, remote: true, title: "Assign Institutions" do %>
+                <i class="fa fa-list-ul"></i>
+              <% end %>
+            </td>
+          <% end %>
           <td>
             <%= link_to edit_user_path(user, method: 'index'), title: "Edit" do %>
               <i class="fa fa-pencil"></i>
@@ -86,3 +88,5 @@
   </table>
   <div id="paging-ui-container"></div>
 </div>
+
+<div id="assign_institutions" class="modal fade" role="dialog" aria-labelledby="AssignInstitutions"></div>

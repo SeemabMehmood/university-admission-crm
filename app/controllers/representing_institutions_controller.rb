@@ -69,6 +69,8 @@ class RepresentingInstitutionsController < ApplicationController
   end
 
   def assign_institutions
+    @counsellor = User.find(params[:user_id])
+    @institutions = @counsellor.branch_officer.representing_institutions.active
   end
 
   private

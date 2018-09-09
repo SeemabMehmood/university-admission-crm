@@ -1,0 +1,12 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="color-line"></div>
+    <div class="modal-header text-center">
+      <h4 class="modal-title">Assign Institutions to <%= @counsellor.name.titleize %></h4>
+      <small class="font-bold"></small>
+    </div>
+    <div class="modal-body">
+      <%= render "representing_institutions/institution_details", locals: { institutions: @institutions } %>
+    </div>
+  </div>
+</div>
