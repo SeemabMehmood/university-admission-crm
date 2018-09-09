@@ -3,7 +3,7 @@
     <ul class="nav" id="side-menu">
       <li class="<%= sidebar_active_class('root_path') %>">
         <%= link_to root_path do %>
-          <%= content_tag :span, "Dashboard", :class => "nav-label" %>
+          <%= content_tag :span, "Dashboard", class: "nav-label" %>
           <span class="label label-success pull-right"><%= current_user.role.titleize %></span>
         <% end %>
       </li>
@@ -18,7 +18,7 @@
       <% if can? :read, RepresentingCountry %>
         <li class="<%= sidebar_active_class('representing_countries_path') %>">
           <%= link_to representing_countries_path do %>
-            <%= content_tag :span, "Respresenting Countries", class: "nav-label" %>
+            <%= content_tag :span, "Countries", class: "nav-label" %>
             <i class="fa fa-map-marker pull-right"></i>
           <% end %>
         </li>
@@ -27,7 +27,7 @@
       <% if can? :read, RepresentingInstitution %>
         <li class="<%= sidebar_active_class('representing_institutions_path') %>">
           <%= link_to representing_institutions_path do %>
-            <%= content_tag :span, "Respresenting Institutions", class: "nav-label" %>
+            <%= content_tag :span, "Institutions", class: "nav-label" %>
             <i class="fa fa-university pull-right"></i>
           <% end %>
         </li>
