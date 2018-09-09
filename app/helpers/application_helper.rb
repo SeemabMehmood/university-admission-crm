@@ -282,6 +282,6 @@ module ApplicationHelper
   end
 
   def form_submit_text(form_object)
-    [form_object.new_record? ? "Add" : "Update", form_object.class.name].join(" ")
+    [form_object.new_record? ? "Add" : "Update", form_object.class.name.underscore.humanize.titleize].join(" ")
   end
 end
