@@ -36,7 +36,7 @@
             <i class="fa fa-id-badge"></i>
           <% end %>
           <ul class="dropdown-menu hdropdown animated flipInX">
-            <div class="title">Your Area</div>
+            <div class="title"><%= current_user.name.titleize %></div>
             <li>
               <%= link_to user_path(current_user) do %>
                 <span class="text-primary">View Profile</span>
