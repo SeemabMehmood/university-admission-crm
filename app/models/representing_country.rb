@@ -15,7 +15,8 @@ class RepresentingCountry < ApplicationRecord
      available_filters: [
        :sorted_by,
        :with_name,
-       :with_agent
+       :with_agent,
+       :with_status
      ]
    )
 
@@ -37,6 +38,10 @@ class RepresentingCountry < ApplicationRecord
 
   scope :with_agent, lambda { |agent_id|
     where(agent_id: agent_id)
+  }
+
+  scope :with_status, lambda { |status_value|
+    where(status: status_value)
   }
 
   scope :for_agent, -> (agent_id) { where(agent_id: agent_id) }

@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   ROLES = ["admin", "agent", "branch_officer", "counsellor"]
   OPTIONS = ["yes", "no"]
+  STATUS = [["active", 0], ["inactive", 1]]
 
   filterrific(
     default_filter_params: { sorted_by: 'created_at_desc' },
