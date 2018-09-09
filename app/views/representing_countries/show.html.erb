@@ -4,25 +4,27 @@
       <div class="hpanel horange">
         <div class="panel-heading hbuilt">
           <div class="pull-right">
+            <% if can? :change_status, RepresentingCountry %>
+              <%= link_to representing_country_change_status_path(representing_country_id: @representing_country.id, page: "show"), method: :post, remote: true, class: "btn", title: "Change Status" do %>
 
-            <%= link_to representing_country_change_status_path(representing_country_id: @representing_country.id, page: "show"), method: :post, remote: true, class: "btn", title: "Change Status" do %>
+                <div id="change-icon-<%= @representing_country.id %>">
 
-              <div id="change-icon-<%= @representing_country.id %>">
+                  <% if @representing_country.inactive? %>
+                    <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
 
-                <% if @representing_country.inactive? %>
-                  <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
-
-                <% else %>
-                  <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
-                <% end %>
-              </div>
+                  <% else %>
+                    <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
 
             <% if can? :edit, RepresentingCountry %>
               <%= link_to "Edit", edit_representing_country_path(@representing_country, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+
+              <%= link_to "Back", representing_countries_path(mthod: "show"), class: "btn btn-default btn-xs ripple" %>
             <% end %>
 
-            <%= link_to "Back", representing_countries_path(mthod: "show"), class: "btn btn-default btn-xs ripple" %>
           </div>
           <p>
             <% if current_user.agent? %>

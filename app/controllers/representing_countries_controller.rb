@@ -6,26 +6,30 @@ class RepresentingCountriesController < ApplicationController
   before_action :set_redirect_url, only: [:update]
 
   def index
-    begin
-      @filterrific = initialize_filterrific(
-        RepresentingCountry,
-        params[:filterrific],
-        select_options: {
-          sorted_by: RepresentingCountry.options_for_sorted_by
-        },
-        persistence_id: true,
-        sanitize_params: true
-      ) or return
+    if current_user.branch_officer?
+      redirect_to representing_country_path(current_user.representing_country.id)
+    else
+      begin
+        @filterrific = initialize_filterrific(
+          RepresentingCountry,
+          params[:filterrific],
+          select_options: {
+            sorted_by: RepresentingCountry.options_for_sorted_by
+          },
+          persistence_id: true,
+          sanitize_params: true
+        ) or return
 
-      @representing_countries = for_user().filterrific_find(@filterrific)
+        @representing_countries = for_user().filterrific_find(@filterrific)
 
-      respond_to do |format|
-        format.html
-        format.js
+        respond_to do |format|
+          format.html
+          format.js
+        end
+      rescue ActiveRecord::RecordNotFound => e
+        puts "Had to reset filterrific params: #{ e.message }"
+        redirect_to(reset_filterrific_url(format: :html)) and return
       end
-    rescue ActiveRecord::RecordNotFound => e
-      puts "Had to reset filterrific params: #{ e.message }"
-      redirect_to(reset_filterrific_url(format: :html)) and return
     end
   end
 
