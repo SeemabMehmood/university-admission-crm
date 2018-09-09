@@ -37,7 +37,7 @@ class RepresentingInstitution < ApplicationRecord
     where(campus: campus_name)
   }
 
-  scope :for_agent, -> (agent_id) { where(representing_country: { agent_id: agent_id }) }
+  scope :for_agent, -> (agent_id) { where(representing_countries: { agent_id: agent_id }).joins(:representing_country) }
 
   def self.options_for_sorted_by
     [
