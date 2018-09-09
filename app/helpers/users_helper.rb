@@ -31,6 +31,7 @@ module UsersHelper
   end
 
   def user_form_submit_text(form_object)
-    [form_object.new_record? ? "Add" : "Update", form_object.role.titleize].join(" ")
+    return "Add User" if form_object.new_record?
+    ["Update", form_object.role.titleize].join(" ")
   end
 end
