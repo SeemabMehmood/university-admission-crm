@@ -22,7 +22,8 @@ class User < ApplicationRecord
     available_filters: [
       :sorted_by,
       :with_role,
-      :with_country
+      :with_country,
+      :with_status
      ]
    )
 
@@ -46,6 +47,10 @@ class User < ApplicationRecord
 
   scope :with_role, lambda { |role_name|
     role_name == "Admin" ? where(type: nil) : where(type: role_name)
+  }
+
+  scope :with_status, lambda { |status_value|
+    where(status: status_value)
   }
 
   scope :except_user, -> (user_id) { where("id != ?", user_id) }
