@@ -2,6 +2,7 @@ class RepresentingInstitutionsController < ApplicationController
   load_and_authorize_resource
 
   before_action :authenticate_user!
+  before_action :check_if_representing_country_exists
   before_action :set_representing_institution, only: [:show, :edit, :update, :change_status]
   before_action :set_redirect_url, only: [:update]
   before_action :set_representing_countries, only: [:new, :create, :edit, :update]
@@ -70,10 +71,15 @@ class RepresentingInstitutionsController < ApplicationController
 
   def assign_institutions
     @counsellor = User.find(params[:user_id])
-    @institutions = @counsellor.branch_officer.representing_institutions.active
+    if @counsellor.branch_officer.representing_country.present?
+      @institutions = @counsellor.branch_officer.representing_institutions.active
+    else
+      @message = "Please add a representing country for selected counsellor's branch officer."
+    end
   end
 
   def manage_counsellor
+    @counsellor = User.find(params[:user_id])
     @representing_institution = RepresentingInstitution.find(params[:representing_institution_id])
     if params[:action_name] == "add"
       @representing_institution.update_attributes(user_id: params[:user_id])
@@ -111,6 +117,12 @@ class RepresentingInstitutionsController < ApplicationController
         @representing_countries = @representing_institution.new_record? ? [] : @representing_institution.agent.representing_countries.active.pluck(:name, :id)
       else
         @representing_countries = current_user.agent? ?  current_user.representing_countries.active.pluck(:name, :id) : current_user.agent.representing_countries.active.pluck(:name, :id)
+      end
+    end
+
+    def check_if_representing_country_exists
+      if current_user.branch_officer?
+        redirect_to root_path, alert: "You have no assigned representing country." unless current_user.representing_country.present?
       end
     end
 end

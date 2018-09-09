@@ -5,17 +5,21 @@
         <div class="panel-heading hbuilt">
           <div class="pull-right">
 
-            <%= link_to representing_institution_change_status_path(representing_institution_id: @representing_institution.id, page: "show"), method: :post, remote: true, class: "btn", title: "Change Status" do %>
-              <div id="change-icon-<%= @representing_institution.id %>">
-                <% if @representing_institution.inactive? %>
-                  <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
-                <% else %>
-                  <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
-                <% end %>
-              </div>
+            <% if can? :change_status, RepresentingInstitution %>
+              <%= link_to representing_institution_change_status_path(representing_institution_id: @representing_institution.id, page: "show"), method: :post, remote: true, class: "btn", title: "Change Status" do %>
+                <div id="change-icon-<%= @representing_institution.id %>">
+                  <% if @representing_institution.inactive? %>
+                    <i class="h4 font-18 fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                  <% else %>
+                    <i class="h4 font-18 fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
 
-            <%= link_to "Edit", edit_representing_institution_path(@representing_institution, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+            <% if can? :change_status, RepresentingInstitution %>
+              <%= link_to "Edit", edit_representing_institution_path(@representing_institution, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+            <% end %>
 
             <%= link_to "Back", representing_institutions_path, class: "btn btn-default btn-xs ripple" %>
           </div>

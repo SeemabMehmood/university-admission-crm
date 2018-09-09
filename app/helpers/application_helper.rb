@@ -284,10 +284,4 @@ module ApplicationHelper
   def form_submit_text(form_object)
     [form_object.new_record? ? "Add" : "Update", form_object.class.name.underscore.humanize.titleize].join(" ")
   end
-
-  def sidebar_countries_path
-    return representing_countries_path if current_user.admin? || current_user.agent?
-    return representing_country_path(current_user.representing_country) if current_user.branch_officer?
-    representing_country_path(current_user.representing_country) if current_user.counsellor?
-  end
 end

@@ -1,4 +1,4 @@
-<%= link_to manage_counsellor_path(@representing_institution.id, @representing_institution.counsellor.try(:id), action_name: params[:action_name] == "add" ? "remove" : "add"), method: :post, remote: true do %>
+<%= link_to manage_counsellor_path(@representing_institution.id, @counsellor.id, action_name: params[:action_name] == "add" ? "remove" : "add"), method: :post, remote: true do %>
   <% if params[:action_name] == "add" %>
     <i class="fa fa-trash"></i>
   <% else %>

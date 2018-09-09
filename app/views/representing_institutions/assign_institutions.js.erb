@@ -1,2 +1,6 @@
-$("#assign_institutions").modal();
-$("#assign_institutions").html("<%= escape_javascript(render 'representing_institutions/assign_institutions') %>");
+<% if @institutions.present? %>
+  $("#assign_institutions").modal();
+  $("#assign_institutions").html("<%= escape_javascript(render 'representing_institutions/assign_institutions') %>");
+<% else %>
+  toastr['error']('<%= @message %>');
+<% end %>

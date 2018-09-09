@@ -7,7 +7,11 @@ class RepresentingCountriesController < ApplicationController
 
   def index
     if current_user.branch_officer?
-      redirect_to representing_country_path(current_user.representing_country.id)
+      if current_user.representing_country.present?
+        redirect_to representing_country_path(current_user.representing_country.id)
+      else
+        redirect_to root_path, alert: "You have no assigned representing country."
+      end
     else
       begin
         @filterrific = initialize_filterrific(

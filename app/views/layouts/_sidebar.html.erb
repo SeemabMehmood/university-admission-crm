@@ -17,7 +17,7 @@
       <% end %>
       <% if can? :read, RepresentingCountry %>
         <li class="<%= sidebar_active_class('representing_countries_path') %>">
-          <%= link_to sidebar_countries_path do %>
+          <%= link_to representing_countries_path do %>
             <%= content_tag :span, "Countries", class: "nav-label" %>
             <i class="fa fa-map-marker pull-right"></i>
           <% end %>
