@@ -70,19 +70,19 @@ class RepresentingInstitutionsController < ApplicationController
   end
 
   def assign_institutions
-    @counsellor = User.find(params[:user_id])
+    @counsellor = User.find(params[:counsellor_id])
     @institutions = @counsellor.branch_officer.representing_institutions.active
   end
 
   def manage_counsellor
-    @counsellor = User.find(params[:user_id])
+    @counsellor = User.find(params[:counsellor_id])
     @representing_institution = RepresentingInstitution.find(params[:representing_institution_id])
     if params[:action_name] == "add"
-      @representing_institution.update_attributes(user_id: params[:user_id])
+      @representing_institution.update_attributes(counsellor_id: params[:counsellor_id])
       @message = "Institution #{@representing_institution.name.titleize} successfully assigned to #{@representing_institution.counsellor.name.titleize}."
     elsif params[:action_name] == "remove"
-      @representing_institution.update_attributes(user_id: nil)
-      @message = "Institution #{@representing_institution.name.titleize} successfully uassigned from #{User.find(params[:user_id]).name.titleize}."
+      @representing_institution.update_attributes(counsellor_id: nil)
+      @message = "Institution #{@representing_institution.name.titleize} successfully uassigned from #{User.find(params[:counsellor_id]).name.titleize}."
     end
   end
 
@@ -94,7 +94,7 @@ class RepresentingInstitutionsController < ApplicationController
 
     def representing_institution_params
       params.require(:representing_institution).permit(:name, :campus, :contact_person, :email, :contact, :website, :logo,
-                                                        :representing_country_id, :user_id, :action_name, :agent_id)
+                                                        :representing_country_id, :counsellor_id, :action_name, :agent_id)
     end
 
     def set_redirect_url

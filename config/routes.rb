@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   resources :applications, except: [:destroy]
 
   post 'application_processes/:id/change_status', to: 'application_processes#change_status', as: :application_process_change_status
-  post 'representing_institutions/:user_id/assign_institutions', to: 'representing_institutions#assign_institutions', as: :assign_institutions
-  post 'representing_institutions/:representing_institution_id/manage_counsellor/(:user_id)', to: 'representing_institutions#manage_counsellor', as: :manage_counsellor
+  post 'representing_institutions/:counsellor_id/assign_institutions', to: 'representing_institutions#assign_institutions', as: :assign_institutions
+  post 'representing_institutions/:representing_institution_id/manage_counsellor/(:counsellor_id)', to: 'representing_institutions#manage_counsellor', as: :manage_counsellor
 
   root 'home#index'
   get 'home/index', to: 'home#index'

@@ -18,7 +18,7 @@ class Ability
         can [:read, :edit, :update], User, id: user.id
       elsif user.branch_officer?
 
-        can :read, RepresentingInstitution, agent_id: user.agent.id
+        can [:read, :assign_institutions, :manage_counsellor], RepresentingInstitution, agent_id: user.agent.id
         can :read, RepresentingCountry, agent_id: user.agent.id
         can :manage, User, branch_officer_id: user.id
 
