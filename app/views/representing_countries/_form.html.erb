@@ -35,18 +35,17 @@
           </div>
         </div>
         <div class="panel-body">
-          <div class="form-group col-md-12">
+          <div class="col-md-12">
             <%= form.nested_fields_for :application_processes do |form_application| %>
               <% if form_application.object.active? %>
-
                 <%= form_application.label nil,
                     "Serial No. #{form_serial_no(form_application.object, representing_country)}",
-                    class: "control-label" %>
+                    class: "control-label label-status" %>
 
                 <%= form_application.hidden_field :serial,
                     value: form_serial_no(form_application.object, representing_country), class: "serialno" %>
 
-                <%= form_application.text_field :name, required: true, class: "form-control" %>
+                <%= form_application.text_field :name, required: true, class: "form-control text-status-name" %>
               <% end %>
             <% end %>
           </div>
