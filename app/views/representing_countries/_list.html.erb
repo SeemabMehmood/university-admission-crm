@@ -8,7 +8,6 @@
           <th data-breakpoints="xs md" data-title="Agent">Agent</th>
         <% end %>
 
-        <th data-breakpoints="xs md" data-title="Branch Officer">Branch Officer</th>
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
         <th></th>
         <th></th>
@@ -27,10 +26,6 @@
                   user_path(representing_country.agent) if representing_country.agent.present? %>
             </td>
           <% end %>
-          <td>
-            <%= link_to representing_country.branch_officer.name.titleize,
-                  user_path(representing_country.branch_officer) if representing_country.branch_officer.present? %>
-          </td>
           <td>
             <%= format_datetime(representing_country.created_at) %>
           </td>

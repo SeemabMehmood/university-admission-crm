@@ -24,6 +24,8 @@ class Ability
         can [:read, :edit, :update], User, id: user.id
       elsif user.counsellor?
         can :manage, Application
+
+        can :read, RepresentingCountry, agent_id: user.branch_officer.agent.id
         can [:read], RepresentingInstitution, user_id: user.id
         can [:read, :edit, :update], User, id: user.id
       end

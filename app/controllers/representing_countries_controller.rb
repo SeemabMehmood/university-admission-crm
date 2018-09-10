@@ -6,34 +6,26 @@ class RepresentingCountriesController < ApplicationController
   before_action :set_redirect_url, only: [:update]
 
   def index
-    if current_user.branch_officer?
-      if current_user.representing_country.present?
-        redirect_to representing_country_path(current_user.representing_country.id)
-      else
-        redirect_to root_path, alert: "You have no assigned representing country."
-      end
-    else
-      begin
-        @filterrific = initialize_filterrific(
-          RepresentingCountry,
-          params[:filterrific],
-          select_options: {
-            sorted_by: RepresentingCountry.options_for_sorted_by
-          },
-          persistence_id: true,
-          sanitize_params: true
-        ) or return
+    begin
+      @filterrific = initialize_filterrific(
+        RepresentingCountry,
+        params[:filterrific],
+        select_options: {
+          sorted_by: RepresentingCountry.options_for_sorted_by
+        },
+        persistence_id: true,
+        sanitize_params: true
+      ) or return
 
-        @representing_countries = for_user().filterrific_find(@filterrific)
+      @representing_countries = for_user().filterrific_find(@filterrific)
 
-        respond_to do |format|
-          format.html
-          format.js
-        end
-      rescue ActiveRecord::RecordNotFound => e
-        puts "Had to reset filterrific params: #{ e.message }"
-        redirect_to(reset_filterrific_url(format: :html)) and return
+      respond_to do |format|
+        format.html
+        format.js
       end
+    rescue ActiveRecord::RecordNotFound => e
+      puts "Had to reset filterrific params: #{ e.message }"
+      redirect_to(reset_filterrific_url(format: :html)) and return
     end
   end
 
@@ -100,6 +92,8 @@ class RepresentingCountriesController < ApplicationController
     def for_user
       return RepresentingCountry.all if current_user.admin?
       return RepresentingCountry.for_agent(current_user.id) if current_user.agent?
+      return RepresentingCountry.for_agent(current_user.agent.id) if current_user.branch_officer?
+      return RepresentingCountry.for_agent(current_user.branch_officer.agent.id) if current_user.counsellor?
     end
 
     def set_redirect_url
