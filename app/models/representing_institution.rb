@@ -53,8 +53,4 @@ class RepresentingInstitution < ApplicationRecord
       ['Name (a-z)', 'name_asc']
     ]
   end
-
-  def agent
-    self.representing_country.agent
-  end
 end

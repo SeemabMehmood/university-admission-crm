@@ -8,7 +8,7 @@ ready = ->
     else
       $(".rep-countries").hide()
 
-    $('#agent').on 'change', (eve) ->
+    $('#representing_institution_agent_id').on 'change', (eve) ->
       selected_agent = eve.target.options[eve.target.selectedIndex].value
 
       $.ajax

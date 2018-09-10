@@ -6,9 +6,11 @@
   <div class="row">
     <% if current_user.admin? && @representing_institution.new_record? %>
       <div class="form-group col-md-3" id="agents">
-        <%= label_tag :agent, "Agent", class: "control-label" %>
-        <%= select_tag :agent, options_for_select(Agent.active.collect { |a| [a.name.titleize, a.id] }.insert(0, "- Select Agent -")), { class: "form-control" } %>
+        <%= form.label :agent_id, "Agent", class: "control-label" %>
+        <%= form.select :agent_id, Agent.active.collect { |a| [a.name.titleize, a.id] }, { prompt: "- Select Agent -" }, { class: "form-control" } %>
       </div>
+    <% else %>
+      <%= form.hidden_field :agent_id, value: @representing_institution.new_record? ? current_user.id : @representing_institution.agent_id %>
     <% end %>
     <div class="form-group col-md-<%= current_user.admin? ? 3 : 6 %> rep-countries">
       <%= form.label :representing_country_id, class: "control-label" %>

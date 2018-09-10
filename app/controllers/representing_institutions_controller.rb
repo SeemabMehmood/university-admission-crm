@@ -94,7 +94,7 @@ class RepresentingInstitutionsController < ApplicationController
 
     def representing_institution_params
       params.require(:representing_institution).permit(:name, :campus, :contact_person, :email, :contact, :website, :logo,
-                                                        :representing_country_id, :user_id, :action_name)
+                                                        :representing_country_id, :user_id, :action_name, :agent_id)
     end
 
     def set_redirect_url
