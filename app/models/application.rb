@@ -1,7 +1,7 @@
 class Application < ApplicationRecord
   belongs_to :representing_country
   belongs_to :representing_institution
-  belongs_to :counsellor, foreign_key: :user_id
+  belongs_to :counsellor, foreign_key: :counsellor_id
 
   validates :course_name, :intake_year, :intake_month, presence: true
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_160201) do
+ActiveRecord::Schema.define(version: 2018_09_10_160600) do
 
   create_table "application_processes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -30,12 +30,11 @@ ActiveRecord::Schema.define(version: 2018_09_10_160201) do
     t.string "reference_no", default: "", null: false
     t.bigint "representing_country_id"
     t.bigint "representing_institution_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "counsellor_id", null: false
     t.index ["representing_country_id"], name: "index_applications_on_representing_country_id"
     t.index ["representing_institution_id"], name: "index_applications_on_representing_institution_id"
-    t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
   create_table "email_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -121,7 +120,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_160201) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "applications", "users"
   add_foreign_key "email_templates", "application_processes"
   add_foreign_key "representing_institutions", "representing_countries"
 end
