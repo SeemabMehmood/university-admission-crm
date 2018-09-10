@@ -249,7 +249,7 @@ module ApplicationHelper
 
   def accessible_role_name
     return "Users"           if current_user.admin?
-    return "Branch Officers" if current_user.agent?
+    return "Branch Offices" if current_user.agent?
     "Counsellors"            if current_user.branch_officer?
   end
 
