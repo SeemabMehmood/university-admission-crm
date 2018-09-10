@@ -1,5 +1,6 @@
 class Counsellor < User
   has_many :representing_institutions, foreign_key: :user_id
+  has_many :applications, foreign_key: :user_id
 
   belongs_to :branch_officer
 

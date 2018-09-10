@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_182535) do
+ActiveRecord::Schema.define(version: 2018_09_10_092033) do
 
   create_table "application_processes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(version: 2018_09_08_182535) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["representing_country_id"], name: "index_application_processes_on_representing_country_id"
+  end
+
+  create_table "applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "course_name", default: "", null: false
+    t.string "intake_month", default: "", null: false
+    t.string "intake_year", default: "", null: false
+    t.string "additional_document"
+    t.string "reference_no", default: "", null: false
+    t.bigint "representing_country_id"
+    t.bigint "representing_institution_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["representing_country_id"], name: "index_applications_on_representing_country_id"
+    t.index ["representing_institution_id"], name: "index_applications_on_representing_institution_id"
+    t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
   create_table "email_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,8 +66,12 @@ ActiveRecord::Schema.define(version: 2018_09_08_182535) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "counsellor_id"
+    t.bigint "counsellors_id"
     t.bigint "user_id"
     t.bigint "representing_country_id"
+    t.index ["counsellor_id"], name: "index_representing_institutions_on_counsellor_id"
+    t.index ["counsellors_id"], name: "index_representing_institutions_on_counsellors_id"
     t.index ["representing_country_id"], name: "index_representing_institutions_on_representing_country_id"
     t.index ["user_id"], name: "index_representing_institutions_on_user_id"
   end
@@ -104,6 +124,7 @@ ActiveRecord::Schema.define(version: 2018_09_08_182535) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "applications", "users"
   add_foreign_key "email_templates", "application_processes"
   add_foreign_key "representing_institutions", "representing_countries"
   add_foreign_key "representing_institutions", "users"

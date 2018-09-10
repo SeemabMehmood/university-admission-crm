@@ -1,6 +1,7 @@
 class RepresentingCountry < ApplicationRecord
   enum status: [:active, :inactive]
 
+  has_many :applications
   has_many :application_processes
   has_many :representing_institutions
 

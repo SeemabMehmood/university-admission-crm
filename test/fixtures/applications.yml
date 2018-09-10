@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  representing_country: one
+  representing_institution: one
+  course_name: MyString
+  intake_month: MyString
+  intake_year: MyString
+  additional_document: MyString
+
+two:
+  representing_country: two
+  representing_institution: two
+  course_name: MyString
+  intake_month: MyString
+  intake_year: MyString
+  additional_document: MyString

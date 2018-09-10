@@ -1,6 +1,8 @@
 class RepresentingInstitution < ApplicationRecord
   enum status: [:active, :inactive]
 
+  has_many :applications
+
   belongs_to :representing_country
   belongs_to :counsellor, foreign_key: :user_id, optional: true
 
