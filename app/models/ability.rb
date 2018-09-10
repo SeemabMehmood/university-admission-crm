@@ -5,7 +5,7 @@ class Ability
     user ||= User.new
     if user.present?
       if user.admin?
-        can :manage, :all
+        can :manage, :all, except: [Application]
 
       elsif user.agent?
         can :manage, EmailTemplate
@@ -22,6 +22,7 @@ class Ability
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.counsellor?
+        can :manage, Application
         can [:read], RepresentingInstitution, user_id: user.id
         can [:read, :edit, :update], User, id: user.id
       end
