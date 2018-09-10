@@ -4,20 +4,16 @@
   <%= render "shared/error_messages", target: @representing_institution %>
 
   <div class="row">
-    <% if current_user.admin? || current_user.agent? %>
-      <% if current_user.admin? && @representing_institution.new_record? %>
-        <div class="form-group col-md-3" id="agents">
-          <%= label_tag :agent, "Agent", class: "control-label" %>
-          <%= select_tag :agent, options_for_select(Agent.active.collect { |a| [a.name.titleize, a.id] }.insert(0, "- Select Agent -")), { class: "form-control" } %>
-        </div>
-      <% end %>
-      <div class="form-group col-md-<%= current_user.admin? ? 3 : 6 %> rep-countries">
-        <%= form.label :representing_country_id, class: "control-label" %>
-        <%= form.select :representing_country_id, @representing_countries.collect { |n, i| [n.titleize, i] }, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
+    <% if current_user.admin? && @representing_institution.new_record? %>
+      <div class="form-group col-md-3" id="agents">
+        <%= label_tag :agent, "Agent", class: "control-label" %>
+        <%= select_tag :agent, options_for_select(Agent.active.collect { |a| [a.name.titleize, a.id] }.insert(0, "- Select Agent -")), { class: "form-control" } %>
       </div>
-    <% elsif current_user.branch_officer? %>
-      <%= form.hidden_field :representing_country_id, value: current_user.representing_country.id %>
     <% end %>
+    <div class="form-group col-md-<%= current_user.admin? ? 3 : 6 %> rep-countries">
+      <%= form.label :representing_country_id, class: "control-label" %>
+      <%= form.select :representing_country_id, @representing_countries.collect { |n, i| [n.titleize, i] }, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
+    </div>
 
     <div class="form-group col-md-6">
       <%= form.label :name, class: "control-label" %>
