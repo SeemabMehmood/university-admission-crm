@@ -5,7 +5,8 @@ class Ability
     user ||= User.new
     if user.present?
       if user.admin?
-        can :manage, :all, except: [Application]
+        can :manage, :all
+        cannot :manage, Application
 
       elsif user.agent?
         can :manage, EmailTemplate
