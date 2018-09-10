@@ -54,7 +54,7 @@
           <td>
             <%= format_datetime(user.last_sign_in_at) %>
           </td>
-          <% if user.counsellor? %>
+          <% if user.counsellor? && user.agent.representing_institutions.present? %>
             <td>
               <%= link_to assign_institutions_path(user.id), method: :post, remote: true, title: "Assign Institutions" do %>
                 <i class="fa fa-list-ul"></i>

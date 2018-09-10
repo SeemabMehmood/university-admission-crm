@@ -22,4 +22,8 @@ class Counsellor < User
   def institution_assigned?(institution_id)
     self.representing_institutions.active.pluck(:id).include?(institution_id)
   end
+
+  def agent
+    branch_officer.agent
+  end
 end

@@ -71,12 +71,7 @@ class RepresentingInstitutionsController < ApplicationController
 
   def assign_institutions
     @counsellor = User.find(params[:user_id])
-    if @counsellor.branch_officer.representing_country.present?
-      @institutions = @counsellor.branch_officer.representing_institutions.active
-      @message = "Please add at least one representing institutions for the selected country." unless @institutions.present?
-    else
-      @message = "Please add a representing country for selected counsellor's branch officer."
-    end
+    @institutions = @counsellor.branch_officer.representing_institutions.active
   end
 
   def manage_counsellor
@@ -109,8 +104,8 @@ class RepresentingInstitutionsController < ApplicationController
     def for_user
       return RepresentingInstitution.all if current_user.admin?
       return RepresentingInstitution.for_agent(current_user.id) if current_user.agent?
-      return RepresentingInstitution.for_branch_officer(current_user.id) if current_user.branch_officer?
-      return RepresentingInstitution.for_counsellor(current_user.id) if current_user.counsellor?
+      return RepresentingInstitution.for_agent(current_user.agent.id) if current_user.branch_officer?
+      return RepresentingInstitution.for_agent(current_user.branch_officer.agent.id) if current_user.counsellor?
     end
 
     def set_representing_countries
