@@ -32,6 +32,15 @@
           <% end %>
         </li>
       <% end %>
+
+       <% if can? :manage, Application %>
+        <li class="<%= sidebar_active_class('applciations_path') %>">
+          <%= link_to applications_path do %>
+            <%= content_tag :span, "Applications", class: "nav-label" %>
+            <i class="fa fa-user-plus pull-right"></i>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </aside>

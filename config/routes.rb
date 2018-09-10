@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :email_templates, except: [:index, :destroy]
+  resources :applications, except: [:destroy]
 
   post 'application_processes/:id/change_status', to: 'application_processes#change_status', as: :application_process_change_status
   post 'representing_institutions/:user_id/assign_institutions', to: 'representing_institutions#assign_institutions', as: :assign_institutions
