@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_113314) do
+ActiveRecord::Schema.define(version: 2018_09_10_155248) do
 
   create_table "application_processes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -68,13 +68,11 @@ ActiveRecord::Schema.define(version: 2018_09_10_113314) do
     t.datetime "updated_at", null: false
     t.bigint "counsellor_id"
     t.bigint "counsellors_id"
-    t.bigint "user_id"
     t.bigint "representing_country_id"
     t.integer "agent_id", null: false
     t.index ["counsellor_id"], name: "index_representing_institutions_on_counsellor_id"
     t.index ["counsellors_id"], name: "index_representing_institutions_on_counsellors_id"
     t.index ["representing_country_id"], name: "index_representing_institutions_on_representing_country_id"
-    t.index ["user_id"], name: "index_representing_institutions_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -128,5 +126,4 @@ ActiveRecord::Schema.define(version: 2018_09_10_113314) do
   add_foreign_key "applications", "users"
   add_foreign_key "email_templates", "application_processes"
   add_foreign_key "representing_institutions", "representing_countries"
-  add_foreign_key "representing_institutions", "users"
 end

@@ -5,7 +5,7 @@ class RepresentingInstitution < ApplicationRecord
 
   belongs_to :agent
   belongs_to :representing_country
-  belongs_to :counsellor, foreign_key: :user_id, optional: true
+  belongs_to :counsellor, foreign_key: :counsellor_id, optional: true
 
   mount_uploader :logo, ImageUploader
 
@@ -46,7 +46,7 @@ class RepresentingInstitution < ApplicationRecord
   }
 
   scope :for_agent, -> (agent_id) { where(representing_countries: { agent_id: agent_id }).joins(:representing_country) }
-  scope :for_counsellor, -> (counsellor_id) { where(user_id: counsellor_id ) }
+  scope :for_counsellor, -> (counsellor_id) { where(counsellor_id: counsellor_id ) }
 
   def self.options_for_sorted_by
     [
