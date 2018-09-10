@@ -16,4 +16,8 @@ module RepresentingCountriesHelper
     return edit_email_template_path(application_process.email_template) if application_process.email_template.present?
     new_email_template_path(application_process_id: application_process.id)
   end
+
+  def form_serial_no(form_object, representing_country)
+    form_object.serial.present? || representing_country.persisted? ? form_object.serial : 1
+  end
 end
