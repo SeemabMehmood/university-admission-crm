@@ -12,8 +12,6 @@
           <th data-breakpoints="xs md" data-title="Agent">Agent</th>
         <% end %>
 
-        <th data-breakpoints="xs md" data-title="Branch Officer">Branch Officer</th>
-        <th data-breakpoints="xs md" data-title="Counsellor">Counsellor</th>
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
         <th></th>
         <th></th>
@@ -41,13 +39,6 @@
                   user_path(representing_institution.representing_country.agent) if representing_institution.representing_country.agent.present? %>
             </td>
           <% end %>
-          <td>
-            <%= link_to representing_institution.representing_country.branch_officer.name.titleize,
-                  user_path(representing_institution.representing_country.branch_officer) if representing_institution.representing_country.branch_officer.present? %>
-          </td>
-          <td>
-            <%= link_to representing_institution.counsellor.name.titleize, user_path(representing_institution.counsellor) if representing_institution.counsellor.present? %>
-          </td>
           <td>
             <%= format_datetime(representing_institution.created_at) %>
           </td>
