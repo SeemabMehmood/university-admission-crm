@@ -3,6 +3,7 @@ class RepresentingInstitution < ApplicationRecord
 
   has_many :applications
 
+  belongs_to :agent
   belongs_to :representing_country
   belongs_to :counsellor, foreign_key: :user_id, optional: true
 
@@ -55,14 +56,5 @@ class RepresentingInstitution < ApplicationRecord
 
   def agent
     self.representing_country.agent
-  end
-
-  def branch_officer
-    self.representing_country.branch_officer
-  end
-
-  def self.for_branch_officer(branch_officer_id)
-    branch_officer = User.find(branch_officer_id)
-    where(representing_countries: { name: branch_officer.country } ).joins(:representing_country)
   end
 end

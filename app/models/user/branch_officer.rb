@@ -15,10 +15,6 @@ class BranchOfficer < User
     agent.representing_countries.where(name: country).last
   end
 
-  def representing_institutions
-    representing_country.representing_institutions
-  end
-
   def subordinate_count
     [counsellors.count, " Counsellors"].join
   end
