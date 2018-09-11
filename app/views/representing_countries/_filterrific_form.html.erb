@@ -1,26 +1,26 @@
 <div class="col-sm-12 text-center m-b-md">
   <div class="row">
     <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
-      <div class="col-md-3">
+      <div class="form-group col-md-3">
         <%= f.select(:with_name, country_filter_options, { include_blank: '- Select Country -' }, { class: "form-control" }) %>
       </div>
       <% if current_user.admin? %>
-        <div class="col-md-2">
+        <div class="form-group col-md-2">
           <%= f.select(:with_agent, Agent.active.pluck(:name, :id).collect { |n, i| [n.titleize, i] } , { include_blank: '- Select Agent -' }, { class: "form-control" }) %>
         </div>
       <% end %>
 
-      <div class="col-md-2">
+      <div class="form-group col-md-2">
         <%= f.select(:with_status, User::STATUS.collect { |n, i| [n.titleize, i] } , { include_blank: '- Select Status -' }, { class: "form-control" }) %>
       </div>
 
-      <div class="col-md-3">
+      <div class="form-group col-md-3">
         <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], { include_blank: '- Sort By -' }, { class: "form-control" }) %>
       </div>
 
-      <div class="col-md-2">
-        <%= f.submit 'Filter', class: "btn btn-primary" %>
-        <%= link_to reset_filterrific_url, class: "btn btn-default" do %>
+      <div class="form-group col-md-2">
+        <%= f.submit 'Filter', class: "btn btn-primary btn-sm ripple" %>
+        <%= link_to reset_filterrific_url, class: "btn btn-default btn-sm ripple" do %>
           <i class="fa fa-refresh"></i>
         <% end %>
       </div>

@@ -1,25 +1,25 @@
 <div class="col-sm-12 text-center m-b-md">
   <div class="row">
     <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
-      <div class="col-md-3">
+      <div class="form-group col-md-3">
         <%= f.select(:with_name, @institution_names.collect { |n| [n.titleize, n] }, { include_blank: '- Select Institution Name -' }, { class: "form-control" }) %>
       </div>
 
-      <div class="col-md-3">
+      <div class="form-group col-md-3">
         <%= f.select(:with_campus, @campuses.collect { |n| [n.titleize, n] } , { include_blank: '- Select Institution Campus -' }, { class: "form-control" }) %>
       </div>
 
-      <div class="col-md-2">
+      <div class="form-group col-md-2">
         <%= f.select(:with_status, User::STATUS.collect { |n, i| [n.titleize, i] } , { include_blank: '- Select Status -' }, { class: "form-control" }) %>
       </div>
 
-      <div class="col-md-2">
+      <div class="form-group col-md-2">
         <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], { include_blank: '- Sort By -' }, { class: "form-control" }) %>
       </div>
 
-      <div class="col-md-2">
-        <%= f.submit 'Filter', class: "btn btn-primary" %>
-        <%= link_to reset_filterrific_url, class: "btn btn-default" do %>
+      <div class="form-group col-md-2">
+        <%= f.submit 'Filter', class: "btn btn-primary btn-sm ripple" %>
+        <%= link_to reset_filterrific_url, class: "btn btn-default btn-sm ripple" do %>
           <i class="fa fa-refresh"></i>
         <% end %>
       </div>
