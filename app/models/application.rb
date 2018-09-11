@@ -7,6 +7,61 @@ class Application < ApplicationRecord
 
   after_create :set_reference_no
 
+  INTAKE_YEARS = Date.today.year..Date.today.year + 8
+  INTAKE_MONTHS = Date::MONTHNAMES
+
+  filterrific(
+   default_filter_params: { sorted_by: 'created_at_desc' },
+   available_filters: [
+     :sorted_by,
+     :with_course_name,
+     :with_intake_month,
+     :with_intake_year,
+     :with_reference_no
+   ]
+ )
+
+  scope :sorted_by, lambda { |sort_option|
+    direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+    case sort_option.to_s
+    when /^created_at_/
+      order("applications.created_at #{ direction }")
+    when /^course_name_/
+      order("LOWER(applications.course_name) #{ direction }")
+    when /^reference_no_/
+      order("LOWER(applications.reference_no) #{ direction }")
+    else
+      raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
+
+  scope :with_course_name, lambda { |inst_course_name|
+    where(course_name: inst_course_name)
+  }
+
+  scope :with_intake_month, lambda { |intake_month|
+    where(intake_month: intake_month)
+  }
+
+  scope :with_intake_year, lambda { |intake_year|
+    where(intake_year: intake_year)
+  }
+
+  scope :with_reference_no, lambda { |reference_no|
+    where(reference_no: reference_no)
+  }
+
+  def self.options_for_sorted_by
+    [
+      ['Course Name (a-z)', 'course_name_asc'],
+      ['Reference No', 'reference_no_asc']
+    ]
+  end
+
+  def intake
+    [intake_month, intake_year].join(", ")
+  end
+
   private
 
   def set_reference_no

@@ -1,0 +1,58 @@
+<div id="filterrific_results">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Reference No</th>
+        <th>Course Name</th>
+        <th data-breakpoints="xs md" data-title="Intake">Intake</th>
+
+        <th data-breakpoints="xs md" data-title="Representing Institution">Institution</th>
+        <th data-breakpoints="xs md" data-title="Representing Country">Country</th>
+
+        <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% applications.each_with_index do |application, index| %>
+        <tr>
+          <td>
+            <%= link_to application.reference_no, application_path(application.id) %>
+          </td>
+          <td>
+            <%= application.course_name.titleize %>
+          </td>
+          <td>
+            <%= application.intake %>
+          </td>
+          <td>
+            <%= link_to application.representing_country.name.titleize, representing_country_path(application.representing_country.id) %>
+          </td>
+          <td>
+            <%= link_to application.representing_institution.name.titleize, representing_institution_path(application.representing_institution.id) %>
+          </td>
+          <td>
+            <%= format_datetime(application.created_at) %>
+          </td>
+          <td>
+            <% if can? :edit, Application %>
+              <%= link_to edit_application_path(application, method: "index") do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if can? :read, Application %>
+              <%= link_to application_path(application) do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="paging-ui-container"></div>
+</div>
