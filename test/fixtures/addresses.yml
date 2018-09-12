@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  state: MyString
+  city: MyString
+  address: MyString
+  country: MyString
+  area_code: MyString
+  permenant: false
+
+two:
+  state: MyString
+  city: MyString
+  address: MyString
+  country: MyString
+  area_code: MyString
+  permenant: false

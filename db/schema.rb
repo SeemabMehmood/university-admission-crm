@@ -10,7 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_160600) do
+ActiveRecord::Schema.define(version: 2018_09_12_123359) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "state"
+    t.string "city", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "country", default: "", null: false
+    t.string "area_code"
+    t.boolean "permenant", default: true, null: false
+    t.integer "applicant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_addresses_on_applicant_id"
+  end
+
+  create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "gender", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "dob", default: "", null: false
+    t.string "marital_status", default: "", null: false
+    t.string "nationality", default: "", null: false
+    t.boolean "password"
+    t.string "passport_no"
+    t.string "phone_cc", default: "", null: false
+    t.string "phone_code", default: "", null: false
+    t.string "phone_num", default: "", null: false
+    t.string "mobile_cc"
+    t.string "mobile_code"
+    t.string "mobile_num"
+    t.string "email", default: "", null: false
+    t.string "skypeid"
+    t.integer "application_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_applicants_on_application_id"
+  end
 
   create_table "application_processes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
