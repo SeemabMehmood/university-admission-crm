@@ -13,6 +13,8 @@ class Application < ApplicationRecord
 
   after_create :set_reference_no
 
+  audited
+
   mount_uploader :additional_document, DocUploader
   mount_uploader :statement_of_purpose_doc, DocUploader
 

@@ -8,6 +8,7 @@ class RepresentingInstitution < ApplicationRecord
   belongs_to :counsellor, foreign_key: :counsellor_id, optional: true
 
   mount_uploader :logo, ImageUploader
+  audited
 
   validates :name, :contact_person, :email, :contact, presence: true
 

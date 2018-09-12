@@ -28,6 +28,7 @@ gem 'filterrific'
 gem 'carrierwave'
 gem 'nested_form_fields'
 gem 'summernote-rails', '~> 0.8.10.0'
+gem 'audited', '~> 4.7'
 
 gem 'exception_notification'
 

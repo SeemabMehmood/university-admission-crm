@@ -8,6 +8,7 @@ class User < ApplicationRecord
   mount_uploader :logo, ImageUploader
 
   after_initialize :setup_password
+  audited except: :password
 
   validates :name, :country, presence: true
   validates :contact_person_name, :contact_person_email,
