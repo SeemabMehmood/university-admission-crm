@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  qualification: MyString
+  institute: MyString
+  year_passing: MyString
+  grade: MyString
+  scanned_doc: MyString
+
+two:
+  qualification: MyString
+  institute: MyString
+  year_passing: MyString
+  grade: MyString
+  scanned_doc: MyString

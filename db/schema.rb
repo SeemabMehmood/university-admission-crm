@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_123359) do
+ActiveRecord::Schema.define(version: 2018_09_12_134537) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_09_12_123359) do
     t.string "dob", default: "", null: false
     t.string "marital_status", default: "", null: false
     t.string "nationality", default: "", null: false
-    t.boolean "password"
+    t.boolean "passport"
     t.string "passport_no"
     t.string "phone_cc", default: "", null: false
     t.string "phone_code", default: "", null: false
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 2018_09_12_123359) do
     t.integer "counsellor_id", null: false
     t.index ["representing_country_id"], name: "index_applications_on_representing_country_id"
     t.index ["representing_institution_id"], name: "index_applications_on_representing_institution_id"
+  end
+
+  create_table "educations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "qualification"
+    t.string "institute"
+    t.string "year_passing"
+    t.string "grade"
+    t.string "scanned_doc"
+    t.integer "applicant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_educations_on_applicant_id"
   end
 
   create_table "email_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

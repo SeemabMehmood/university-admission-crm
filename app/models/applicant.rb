@@ -1,6 +1,9 @@
 class Applicant < ApplicationRecord
   belongs_to :application
 
+  has_many :addresses
+  has_many :educations
+
   validates :first_name, :last_name, :dob, :title, :gender,
             :marital_status, :nationality, :phone_num,
             :phone_code, :phone_cc, :email, presence: true
