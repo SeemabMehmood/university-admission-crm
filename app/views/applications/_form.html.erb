@@ -1,0 +1,61 @@
+<%= form_for @application do |form| %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+
+  <%= form.hidden_field :counsellor_id, value: current_user.id %>
+
+  <%= render "shared/error_messages", target: @application %>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :representing_country_id, "Country", class: "control-label" %>
+      <%= form.select :representing_country_id, @representing_countries, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
+    </div>
+    <div id="institutions"></div>
+  </div>
+
+  <div class="application-form">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form.label :course_name, class: "control-label" %>
+        <%= form.text_field :course_name, placeholder: "Enter Course Name", class: "form-control" %>
+      </div>
+
+      <div class="form-group col-md-3">
+        <%= form.label :intake_month, class: "control-label" %>
+        <%= form.select :intake_month, Application::INTAKE_MONTHS , { include_blank: '- Select Intake Month -' }, { class: "form-control" } %>
+      </div>
+
+      <div class="form-group col-md-3">
+        <%= form.label :intake_year, class: "control-label" %>
+        <%= form.select :intake_year, Application::INTAKE_YEARS , { include_blank: '- Select Intake Year -' }, { class: "form-control" } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6 logo">
+        <%= form.label :logo, class: "control-label" %>
+        <%= form.file_field :logo, title: "Please Upload Logo", class: "form-control" %>
+        <%= label_tag "files", @application.logo.filename if @application.persisted? && @application.logo.file.present? %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+      </div>
+
+      <div class="form-group col-md-6">
+      </div>
+    </div>
+
+    <div class="text-right m-t-xs">
+      <%= form.button :submit, class: "btn btn-success btn-sm ripple" do %>
+        <i class="fa fa-send-o"></i>
+        <%= form_submit_text(form.object) %>
+      <% end %>
+
+      <%= link_to back_application_form_url(params[:method], form.object), class: "btn btn-default btn-sm ripple" do %>
+        <i class="fa fa-arrow-left"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

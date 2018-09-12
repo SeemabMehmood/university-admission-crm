@@ -6,6 +6,7 @@ class ApplicationsController < ApplicationController
   before_action :check_if_representing_institutions_assigned
   before_action :set_application, only: [:show, :edit, :update]
   before_action :set_redirect_url, only: [:update]
+  before_action :set_form_data, only: [:new, :create, :edit, :update]
 
   def index
     begin
@@ -82,5 +83,10 @@ class ApplicationsController < ApplicationController
 
     def check_if_representing_institutions_assigned
       redirect_to root_path, alert: "You have no assigned Representing Institution." unless current_user.representing_institutions.present?
+    end
+
+    def set_form_data
+      @representing_countries = current_user.branch_officer.representing_countries.pluck(:name, :id)
+      @representing_institutions = current_user.representing_institutions
     end
 end

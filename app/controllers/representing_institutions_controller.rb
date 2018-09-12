@@ -86,6 +86,10 @@ class RepresentingInstitutionsController < ApplicationController
     end
   end
 
+  def get_institutions_from_country
+    @representing_institutions = current_user.representing_institutions.for_country(params[:country_id]).pluck(:name, :id)
+  end
+
   private
     def set_representing_institution
       id = params[:id] || params[:representing_institution_id]

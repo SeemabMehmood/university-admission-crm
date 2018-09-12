@@ -13,6 +13,7 @@
 #= require common
 #= require representing_countries
 #= require representing_institutions
+#= require applications
 #= require users
 #= require devdap
 #= require turbolinks

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :representing_institutions, except: [:destroy] do
+    collection do
+      get 'get_institutions_from_country'
+    end
     post 'change_status'
   end
 
