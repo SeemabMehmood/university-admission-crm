@@ -10,7 +10,12 @@
       <%= form.label :representing_country_id, "Country", class: "control-label" %>
       <%= form.select :representing_country_id, @representing_countries, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
     </div>
-    <div id="institutions"></div>
+    <div class="institutions">
+      <div class="form-group col-md-6">
+        <%= form.label :representing_institution_id, "Institution", class: "control-label" %>
+        <%= form.select :representing_institution_id, @representing_institutions, { prompt: "- Select Institution -" }, { required: true, class: "form-control" } %>
+      </div>
+    </div>
   </div>
 
   <div class="application-form">

@@ -74,7 +74,7 @@ class ApplicationsController < ApplicationController
     end
 
     def application_params
-      params.require(:application).permit()
+      params.require(:application).permit(:counsellor_id, :representing_country_id, :course_name, :intake_year, :intake_month, :representing_institution_id)
     end
 
     def set_redirect_url
@@ -87,6 +87,6 @@ class ApplicationsController < ApplicationController
 
     def set_form_data
       @representing_countries = current_user.branch_officer.representing_countries.pluck(:name, :id)
-      @representing_institutions = current_user.representing_institutions
+      @representing_institutions = current_user.representing_institutions.pluck(:name, :id)
     end
 end

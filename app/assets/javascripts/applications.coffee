@@ -4,6 +4,7 @@ $ ->
 ready = ->
   if $("#new_application").length
     $(".application-form").hide()
+    $(".institutions").hide()
 
     $("#application_representing_country_id").on "change", (event) ->
       selected_country = event.target.options[event.target.selectedIndex].value

@@ -1,1 +1,19 @@
-$("#institutions").html("<%= j render 'representing_institutions/select_institution', locals: { representing_institutions: @representing_institutions } %>")
+$("#application_representing_institution_id").empty();
+x = document.getElementById("application_representing_institution_id");
+c = document.createElement("option");
+c.text = '- Select Representing Country -';
+c.value = "";
+x.options.add(c, 0);
+
+JSON.parse('<%= j @representing_institutions.to_json.html_safe %>').forEach(function(o) {
+    c = document.createElement("option");
+    c.text = o[0];
+    c.value = o[1];
+    x.options.add(c);
+});
+
+$(".institutions").show(1000);
+
+$("#application_representing_institution_id").on("change", function(event) {
+  $(".application-form").show(1000);
+});
