@@ -74,7 +74,9 @@ class ApplicationsController < ApplicationController
     end
 
     def application_params
-      params.require(:application).permit(:counsellor_id, :representing_country_id, :course_name, :intake_year, :intake_month, :representing_institution_id)
+      params.require(:application).permit(:counsellor_id, :representing_country_id,
+                                          :course_name, :intake_year, :intake_month,
+                                          :representing_institution_id, :additional_document)
     end
 
     def set_redirect_url

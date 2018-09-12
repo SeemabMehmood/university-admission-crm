@@ -7,6 +7,8 @@ class Application < ApplicationRecord
 
   after_create :set_reference_no
 
+  mount_uploader :additional_document, DocUploader
+
   INTAKE_YEARS = Date.today.year..Date.today.year + 8
   INTAKE_MONTHS = Date::MONTHNAMES.compact
 

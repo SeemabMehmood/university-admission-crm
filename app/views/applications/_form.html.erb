@@ -38,9 +38,9 @@
 
     <div class="row">
       <div class="form-group col-md-6 logo">
-        <%= form.label :logo, class: "control-label" %>
-        <%= form.file_field :logo, title: "Please Upload Logo", class: "form-control" %>
-        <%= label_tag "files", @application.logo.filename if @application.persisted? && @application.logo.file.present? %>
+        <%= form.label :additional_document, class: "control-label" %>
+        <%= form.file_field :additional_document, title: "Please Upload additional_document", class: "form-control" %>
+        <%= label_tag "files", @application.additional_document.filename if @application.persisted? && @application.additional_document.file.present? %>
       </div>
     </div>
 
