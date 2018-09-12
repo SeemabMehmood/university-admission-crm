@@ -4,6 +4,7 @@ class Applicant < ApplicationRecord
   has_many :addresses
   has_many :educations
   has_many :languages
+  has_many :work_experiences
 
   validates :first_name, :last_name, :dob, :title, :gender,
             :marital_status, :nationality, :phone_num,
