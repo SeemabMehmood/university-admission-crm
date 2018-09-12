@@ -8,7 +8,7 @@ class Application < ApplicationRecord
   after_create :set_reference_no
 
   INTAKE_YEARS = Date.today.year..Date.today.year + 8
-  INTAKE_MONTHS = Date::MONTHNAMES
+  INTAKE_MONTHS = Date::MONTHNAMES.compact
 
   filterrific(
    default_filter_params: { sorted_by: 'created_at_desc' },
@@ -69,6 +69,7 @@ class Application < ApplicationRecord
                          self.representing_country.name[0].upcase, self.id,
                          self.counsellor.branch_officer.name[0].upcase,
                          self.created_at.strftime("%d%m%Y") ].join()
+    self.save!
   end
 
 end
