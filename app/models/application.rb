@@ -6,6 +6,7 @@ class Application < ApplicationRecord
   has_one :applicant
   has_many :application_histories
   has_many :admin_notes
+  has_many :forwards
 
   validates :course_name, :intake_year, :intake_month, presence: true
 
