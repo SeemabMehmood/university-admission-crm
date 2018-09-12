@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  listening: 1
+  speaking: 1
+  reading: 1
+  writing: 1
+  overall: 1
+  type: 
+  applicant_id: 1
+
+two:
+  listening: 1
+  speaking: 1
+  reading: 1
+  writing: 1
+  overall: 1
+  type: 
+  applicant_id: 1

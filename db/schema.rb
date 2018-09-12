@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_134537) do
+ActiveRecord::Schema.define(version: 2018_09_12_134901) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -93,6 +93,20 @@ ActiveRecord::Schema.define(version: 2018_09_12_134537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_process_id"], name: "index_email_templates_on_application_process_id"
+  end
+
+  create_table "languages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "listening"
+    t.integer "speaking"
+    t.integer "reading"
+    t.integer "writing"
+    t.integer "overall"
+    t.string "type"
+    t.string "scanned_doc"
+    t.integer "applicant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_languages_on_applicant_id"
   end
 
   create_table "representing_countries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
