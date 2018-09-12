@@ -4,6 +4,7 @@ class Application < ApplicationRecord
   belongs_to :counsellor, foreign_key: :counsellor_id
 
   has_one :applicant
+  has_many :application_histories
 
   validates :course_name, :intake_year, :intake_month, presence: true
 
