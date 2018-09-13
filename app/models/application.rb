@@ -75,6 +75,14 @@ class Application < ApplicationRecord
     [intake_month, intake_year].join(", ")
   end
 
+  def country
+    representing_country.name
+  end
+
+  def institute
+    representing_institution.name
+  end
+
   private
 
   def set_reference_no

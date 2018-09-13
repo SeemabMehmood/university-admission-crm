@@ -14,4 +14,8 @@ class Applicant < ApplicationRecord
   MARITAL_STATUS = ["Single", "Married", "Divorced", "Widowed", "Other"]
   GENDER         = ["Male", "Female"]
   TITLE          = ["Mr.", "Mrs.", "Ms.", "Other"]
+
+  def name
+    [first_name, last_name].join(" ")
+  end
 end
