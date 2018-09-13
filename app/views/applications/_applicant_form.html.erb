@@ -1,0 +1,111 @@
+<div class="hpanel">
+  <div class="panel-heading hbuilt h-bg-navy-blue text-white">
+    Applicant Information
+  </div>
+  <div class="panel-body">
+    <%= form.fields_for :applicant, Applicant.new do |applicant| %>
+
+      <div class="row">
+        <div class="col-lg-6 border-right">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <%= applicant.label :first_name, class: "control-label" %>
+              <%= applicant.text_field :first_name, placeholder: "Enter Applicant First Name", required: true, class: "form-control" %>
+            </div>
+
+            <div class="form-group col-md-6">
+              <%= applicant.label :last_name, class: "control-label" %>
+              <%= applicant.text_field :last_name, placeholder: "Enter Applicant Last Name", required: true, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-4">
+              <%= applicant.label :gender, class: "control-label" %>
+              <%= applicant.select :gender, Applicant::GENDER , { include_blank: '- Select Gender -' }, { required: true, class: "form-control" } %>
+            </div>
+
+            <div class="form-group col-md-4 pad-left-0">
+              <%= applicant.label :title, class: "control-label" %>
+              <%= applicant.select :title, Applicant::TITLE , { include_blank: '- Select Title -' }, { required: true, class: "form-control" } %>
+            </div>
+
+            <div class="form-group col-md-4 pad-left-0">
+              <%= applicant.label :marital_status, class: "control-label" %>
+              <%= applicant.select :marital_status, Applicant::MARITAL_STATUS , { include_blank: '- Select Marital Status -' }, { required: true, class: "form-control" } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <%= applicant.label :dob, class: "control-label" %>
+              <%= applicant.text_field :dob, data: { provide: "datepicker" }, placeholder: "Select Date", required: true, class: "form-control" %>
+            </div>
+
+            <div class="form-group col-md-6">
+              <%= applicant.label :nationality, class: "control-label" %>
+              <%= applicant.text_field :nationality, placeholder: "Enter Nationality", required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6 margin-top-12">
+              <div class="checkbox checkbox-warning">
+                <%= applicant.check_box :passport %>
+                <%= applicant.label :passport, "Do you have a Valid Passport?", class: "font-bold" %>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <%= applicant.label :passport_no, "Passport No", class: "control-label" %>
+              <%= applicant.text_field :passport_no, placeholder: "Enter Passport No", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <%= label_tag nil, "Phone", class: "control-label" %>
+              <div class="clearfix"></div>
+              <div class="col-md-4 pad-0">
+                <%= applicant.text_field :phone_cc, placeholder: "Country Code", required: true, class: "form-control small-placeholder", title: "Enter Country Code" %>
+              </div>
+              <div class="col-md-3 pad-0">
+                <%= applicant.text_field :phone_code, placeholder: "Code", required: true, class: "form-control small-placeholder", title: "Enter Code" %>
+              </div>
+              <div class="col-md-5 pad-0">
+                <%= applicant.text_field :phone_num, placeholder: "Number", required: true, class: "form-control small-placeholder", title: "Enter Number" %>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <%= label_tag nil, "Mobile", class: "control-label" %>
+              <div class="clearfix"></div>
+              <div class="col-md-4 pad-0">
+                <%= applicant.text_field :mobile_cc, placeholder: "Country Code", class: "form-control small-placeholder", title: "Enter Country Code" %>
+              </div>
+              <div class="col-md-3 pad-0">
+                <%= applicant.text_field :mobile_code, placeholder: "Code", class: "form-control small-placeholder", title: "Enter Code" %>
+              </div>
+              <div class="col-md-5 pad-0">
+                <%= applicant.text_field :mobile_num, placeholder: "Number", class: "form-control small-placeholder", title: "Enter Number" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <%= applicant.label :email, class: "control-label" %>
+              <%= applicant.text_field :email, placeholder: "Enter Email", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-12">
+              <%= applicant.label :skypeid, "Skype ID", class: "control-label" %>
+              <%= applicant.text_field :skypeid, placeholder: "Enter Skype Id", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

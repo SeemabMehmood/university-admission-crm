@@ -13,6 +13,8 @@ class Application < ApplicationRecord
 
   after_create :set_reference_no
 
+  accepts_nested_attributes_for :applicant
+
   audited
 
   mount_uploader :additional_document, DocUploader

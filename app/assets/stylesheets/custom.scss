@@ -38,7 +38,7 @@
 }
 
 .font-bold {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 #logo {
@@ -63,4 +63,19 @@
 .foat-margin-l {
   float: left;
   margin-left: 10px;
+}
+
+.small-placeholder::-webkit-input-placeholder {
+  font-size: 10px;
+}
+
+@media screen and (min-width: 1400px) {
+
+  .pad-left-0 {
+    padding-left: 0px;
+  }
+
+  .margin-top-12 {
+    margin-top: 12px;
+  }
 }

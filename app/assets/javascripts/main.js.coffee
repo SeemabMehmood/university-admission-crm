@@ -10,6 +10,7 @@
 #= require filterrific/filterrific-jquery
 #= require nested_form_fields
 #= require summernote/summernote-bs4.min
+#= require bootstrap-datepicker
 #= require common
 #= require representing_countries
 #= require representing_institutions

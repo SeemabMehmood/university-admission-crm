@@ -36,6 +36,7 @@ class ApplicationsController < ApplicationController
   end
 
   def new
+    @application = Application.new
   end
 
   def create
@@ -76,7 +77,12 @@ class ApplicationsController < ApplicationController
     def application_params
       params.require(:application).permit(:counsellor_id, :representing_country_id,
                                           :course_name, :intake_year, :intake_month,
-                                          :representing_institution_id, :additional_document)
+                                          :representing_institution_id, :additional_document,
+                                          applicant_attributes: [:first_name, :last_name, :gender,
+                                            :title, :marital_status, :dob, :nationality,
+                                            :passport, :passport_no, :phone_cc, :phone_code,
+                                            :phone_num, :mobile_cc, :mobile_code,
+                                            :mobile_num, :email, :skypeid] )
     end
 
     def set_redirect_url
