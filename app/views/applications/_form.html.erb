@@ -52,7 +52,7 @@
         <%= form_submit_text(form.object) %>
       <% end %>
 
-      <%= link_to back_application_form_url(params[:method], form.object), class: "btn btn-default btn-sm ripple" do %>
+      <%= link_to "javascript:history.back()", class: "btn btn-default btn-sm ripple" do %>
         <i class="fa fa-arrow-left"></i>
       <% end %>
     </div>

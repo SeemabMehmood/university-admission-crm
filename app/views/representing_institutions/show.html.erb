@@ -21,7 +21,7 @@
               <%= link_to "Edit", edit_representing_institution_path(@representing_institution, method: "show"), class: "btn btn-primary btn-xs ripple" %>
             <% end %>
 
-            <%= link_to "Back", representing_institutions_path, class: "btn btn-default btn-xs ripple" %>
+            <%= link_to "Back", "javascript:history.back()", class: "btn btn-default btn-xs ripple" %>
           </div>
           <p>
             <%= image_tag @representing_institution.logo_url.to_s, class: "m-b float-margin-left" %>

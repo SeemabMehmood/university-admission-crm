@@ -22,7 +22,7 @@
             <% if can? :edit, RepresentingCountry %>
               <%= link_to "Edit", edit_representing_country_path(@representing_country, method: "show"), class: "btn btn-primary btn-xs ripple" %>
 
-              <%= link_to "Back", representing_countries_path(mthod: "show"), class: "btn btn-default btn-xs ripple" %>
+              <%= link_to "Back", "javascript:history.back()", class: "btn btn-default btn-xs ripple" %>
             <% end %>
 
           </div>

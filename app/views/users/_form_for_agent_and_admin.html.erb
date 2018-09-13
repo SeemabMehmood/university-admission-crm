@@ -174,7 +174,7 @@
       <%= user_form_submit_text(f.object) %>
     <% end %>
 
-    <%= link_to back_user_form_url(params[:method], f.object), class: "btn btn-default" do %>
+    <%= link_to "javascript:history.back()", class: "btn btn-default" do %>
       <i class="fa fa-arrow-left"></i>
     <% end %>
   </div>
