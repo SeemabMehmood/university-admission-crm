@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="headingOne">
+     <h4 class="panel-title font-bold">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="">
+        Applicant Information
+        </a>
+     </h4>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-4 border-right">
+          <div class="col-lg-12">
+            <p>Name: <span class="font-bold"><%= applicant.name %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Gender: <span class="font-bold"><%= applicant.gender %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Title: <span class="font-bold"><%= applicant.title %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Marital Status: <span class="font-bold"><%= applicant.marital_status %></span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 border-right">
+
+          <div class="col-lg-12">
+            <p>Date of Birth: <span class="font-bold"><%= applicant.dob %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Nationality: <span class="font-bold"><%= applicant.nationality %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Email: <span class="font-bold"><%= applicant.email %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Skype ID: <span class="font-bold"><%= applicant.skypeid %></span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 border-right">
+          <div class="col-lg-12">
+            <p>Passport: <span class="font-bold"><%= not_available(applicant.passport_no) %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Phone: <span class="font-bold"><%= applicant.phone_number %></span></p>
+          </div>
+
+          <div class="col-lg-12">
+            <p>Mobile: <span class="font-bold"><%= applicant.mobile_number %></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

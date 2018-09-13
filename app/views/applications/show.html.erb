@@ -11,89 +11,29 @@
           </div>
         </div>
         <div class="panel-body">
-            <div class="text-center m-b-md">
-               <h3>
-                  <%= @application.applicant.name.titleize %> - <%= link_to @application.country,
-                    representing_country_path(@application.representing_country.id) %>
-              </h3>
-              <small>
-                <%= @application.course_name.titleize %>, <%= @application.intake %> | <%= link_to @application.institute,
-                                  representing_institution_path(@application.representing_institution.id)  %>
-              </small>
-              <div class="clearfix"></div>
-            </div>
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-               <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingOne">
-                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
-                        Collapsible Group Item #1
-                        </a>
-                     </h4>
-                  </div>
-                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true" style="">
-                     <div class="panel-body">
-                        A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.
-                     </div>
-                  </div>
-               </div>
-               <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingTwo">
-                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Collapsible Group Item #2
-                        </a>
-                     </h4>
-                  </div>
-                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
-                     <div class="panel-body">
-                        A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.
-                     </div>
-                  </div>
-               </div>
-               <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingThree">
-                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Collapsible Group Item #3
-                        </a>
-                     </h4>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                     <div class="panel-body">
-                        A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.
-                     </div>
-                  </div>
-               </div>
-               <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingThree">
-                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Collapsible Group Item #4
-                        </a>
-                     </h4>
-                  </div>
-                  <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                     <div class="panel-body">
-                        A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.
-                     </div>
-                  </div>
-               </div>
-               <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingThree">
-                     <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Collapsible Group Item #5
-                        </a>
-                     </h4>
-                  </div>
-                  <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                     <div class="panel-body">
-                        A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.
-                     </div>
-                  </div>
-               </div>
-            </div>
+          <div class="text-center m-b-md">
+             <h3>
+                <%= @application.applicant.name.titleize %> - <%= link_to @application.country,
+                  representing_country_path(@application.representing_country.id) %>
+            </h3>
+            <small>
+              <%= @application.course_name.titleize %>, <%= @application.intake %> | <%= link_to @application.institute,
+                                representing_institution_path(@application.representing_institution.id)  %>
+            </small>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <%= render partial: "applications/applicant_info", locals: { applicant: @application.applicant } %>
+
+            <%= render partial: "applications/education_info", locals: { applicant: @application.applicant } %>
+
+            <%= render partial: "applications/language_details", locals: { applicant: @application.applicant } %>
+
+            <%= render partial: "applications/work_experiences", locals: { applicant: @application.applicant } %>
+
+            <%= render partial: "applications/references", locals: { applicant: @application.applicant } %>
+          </div>
         </div>
       </div>
     </div>

@@ -20,4 +20,12 @@ class Applicant < ApplicationRecord
   def name
     [first_name, last_name].join(" ")
   end
+
+  def phone_number
+    [phone_cc, phone_code, phone_num].join(" - ")
+  end
+
+  def mobile_number
+    [mobile_cc, mobile_code, mobile_num].join(" - ")
+  end
 end
