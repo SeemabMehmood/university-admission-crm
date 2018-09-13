@@ -3,7 +3,7 @@
     Applicant Information
   </div>
   <div class="panel-body">
-    <%= form.fields_for :applicant, Applicant.new do |applicant| %>
+    <%= form.fields_for :applicant do |applicant| %>
 
       <div class="row">
         <div class="col-lg-6 border-right">
@@ -38,8 +38,8 @@
 
           <div class="row">
             <div class="form-group col-md-6">
-              <%= applicant.label :dob, class: "control-label" %>
-              <%= applicant.text_field :dob, data: { provide: "datepicker" }, placeholder: "Select Date", required: true, class: "form-control" %>
+              <%= applicant.label :dob, "Date of Birth",class: "control-label" %>
+              <%= applicant.text_field :dob, data: { provide: "datepicker" }, placeholder: "Select Date of Birth", required: true, class: "form-control" %>
             </div>
 
             <div class="form-group col-md-6">
@@ -48,49 +48,53 @@
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-md-6 margin-top-12">
-              <div class="checkbox checkbox-warning">
+            <div class="form-group col-md-12">
+              <div id="passport_no">
+                <%= applicant.label :passport_no, "Passport No", class: "control-label" %>
+                <%= applicant.text_field :passport_no, placeholder: "Enter Passport No", class: "form-control" %>
+              </div>
+
+              <div class="checkbox checkbox-warning margin-top-12">
                 <%= applicant.check_box :passport %>
                 <%= applicant.label :passport, "Do you have a Valid Passport?", class: "font-bold" %>
               </div>
-            </div>
-            <div class="form-group col-md-6">
-              <%= applicant.label :passport_no, "Passport No", class: "control-label" %>
-              <%= applicant.text_field :passport_no, placeholder: "Enter Passport No", class: "form-control" %>
             </div>
           </div>
         </div>
 
         <div class="col-lg-6">
           <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <%= label_tag nil, "Phone", class: "control-label" %>
               <div class="clearfix"></div>
               <div class="col-md-4 pad-0">
-                <%= applicant.text_field :phone_cc, placeholder: "Country Code", required: true, class: "form-control small-placeholder", title: "Enter Country Code" %>
+                <%= applicant.text_field :phone_cc, placeholder: "Country Code", required: true, class: "form-control", title: "Enter Country Code" %>
               </div>
               <div class="col-md-3 pad-0">
-                <%= applicant.text_field :phone_code, placeholder: "Code", required: true, class: "form-control small-placeholder", title: "Enter Code" %>
+                <%= applicant.text_field :phone_code, placeholder: "Code", required: true, class: "form-control", title: "Enter Code" %>
               </div>
               <div class="col-md-5 pad-0">
-                <%= applicant.text_field :phone_num, placeholder: "Number", required: true, class: "form-control small-placeholder", title: "Enter Number" %>
-              </div>
-            </div>
-
-            <div class="form-group col-md-6">
-              <%= label_tag nil, "Mobile", class: "control-label" %>
-              <div class="clearfix"></div>
-              <div class="col-md-4 pad-0">
-                <%= applicant.text_field :mobile_cc, placeholder: "Country Code", class: "form-control small-placeholder", title: "Enter Country Code" %>
-              </div>
-              <div class="col-md-3 pad-0">
-                <%= applicant.text_field :mobile_code, placeholder: "Code", class: "form-control small-placeholder", title: "Enter Code" %>
-              </div>
-              <div class="col-md-5 pad-0">
-                <%= applicant.text_field :mobile_num, placeholder: "Number", class: "form-control small-placeholder", title: "Enter Number" %>
+                <%= applicant.text_field :phone_num, placeholder: "Number", required: true, class: "form-control", title: "Enter Number" %>
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="form-group col-md-12">
+              <%= label_tag nil, "Mobile", class: "control-label" %>
+              <div class="clearfix"></div>
+              <div class="col-md-4 pad-0">
+                <%= applicant.text_field :mobile_cc, placeholder: "Country Code", class: "form-control", title: "Enter Country Code" %>
+              </div>
+              <div class="col-md-3 pad-0">
+                <%= applicant.text_field :mobile_code, placeholder: "Code", class: "form-control", title: "Enter Code" %>
+              </div>
+              <div class="col-md-5 pad-0">
+                <%= applicant.text_field :mobile_num, placeholder: "Number", class: "form-control", title: "Enter Number" %>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             <div class="form-group col-md-12">
               <%= applicant.label :email, class: "control-label" %>

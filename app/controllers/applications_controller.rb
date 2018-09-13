@@ -37,16 +37,17 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
+    @application.build_applicant
   end
 
   def create
     @application = Application.new(application_params.except(:action_name))
-
     respond_to do |format|
       if @application.save
         format.html { redirect_to applications_path, notice: "Application was successfully created." }
         format.json { render :show, status: :created, location: @application }
       else
+        @application.build_applicant
         format.html { render :new }
         format.json { render json: @application.errors, status: :unprocessable_entity }
       end
@@ -77,7 +78,7 @@ class ApplicationsController < ApplicationController
     def application_params
       params.require(:application).permit(:counsellor_id, :representing_country_id,
                                           :course_name, :intake_year, :intake_month,
-                                          :representing_institution_id, :additional_document,
+                                          :action_name, :representing_institution_id, :additional_document,
                                           applicant_attributes: [:first_name, :last_name, :gender,
                                             :title, :marital_status, :dob, :nationality,
                                             :passport, :passport_no, :phone_cc, :phone_code,
