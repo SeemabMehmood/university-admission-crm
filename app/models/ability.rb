@@ -28,7 +28,7 @@ class Ability
 
         can :read, RepresentingCountry, agent_id: user.branch_officer.agent.id
         can :get_institutions_from_country, RepresentingInstitution
-        can [:read], RepresentingInstitution, user_id: user.id
+        can [:read], RepresentingInstitution, counsellor_id: user.id
         can [:read, :edit, :update], User, id: user.id
       end
     end
