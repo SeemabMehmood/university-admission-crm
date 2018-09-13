@@ -1,5 +1,5 @@
 class Applicant < ApplicationRecord
-  belongs_to :application
+  belongs_to :application, inverse_of: :applicant
 
   has_many :addresses
   has_many :educations
@@ -10,6 +10,8 @@ class Applicant < ApplicationRecord
   validates :first_name, :last_name, :dob, :title, :gender,
             :marital_status, :nationality, :phone_num,
             :phone_code, :phone_cc, :email, presence: true
+
+  validates :application, presence: true
 
   MARITAL_STATUS = ["Single", "Married", "Divorced", "Widowed", "Other"]
   GENDER         = ["Male", "Female"]

@@ -3,7 +3,7 @@ class Application < ApplicationRecord
   belongs_to :representing_institution
   belongs_to :counsellor, foreign_key: :counsellor_id
 
-  has_one :applicant
+  has_one :applicant, inverse_of: :application
   has_many :application_histories
   has_many :admin_notes
   has_many :forwards
