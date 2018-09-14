@@ -28,7 +28,6 @@ ready = ->
       $(".checkbox").show(1000)
 
   if $(".edit_application").length
-    console.log $("#application_applicant_attributes_passport").val()
     if $("#application_applicant_attributes_passport").val()
       $("#passport_no").show()
       $(".checkbox").hide()
@@ -36,4 +35,10 @@ ready = ->
       $("#passport_no").hide()
       $(".checkbox").show()
 
+turboload = ->
+  $("body").on "click", ".nested_application_applicant_educations a.remove", (e) ->
+    $(this).parents(".nested_application_applicant_educations").remove()
+    e.preventDefault()
+
 document.addEventListener 'turbolinks:load', ready
+document.addEventListener 'turbolinks:load', turboload

@@ -2,9 +2,8 @@
   <div class="panel-heading hbuilt h-bg-navy-blue text-white">
     Applicant Information
   </div>
-  <div class="panel-body">
-    <%= form.fields_for :applicant do |applicant| %>
-
+  <%= form.fields_for :applicant do |applicant| %>
+    <div class="panel-body">
       <div class="row">
         <div class="col-lg-6 border-right">
           <div class="row">
@@ -110,6 +109,7 @@
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+    <%= render partial: "applications/education_form", locals: { form: applicant } %>
+  <% end %>
 </div>

@@ -37,7 +37,7 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
-    @application.build_applicant
+    @application.build_applicant.educations.build
   end
 
   def create
@@ -83,7 +83,9 @@ class ApplicationsController < ApplicationController
                                             :title, :marital_status, :dob, :nationality,
                                             :passport, :passport_no, :phone_cc, :phone_code,
                                             :phone_num, :mobile_cc, :mobile_code,
-                                            :mobile_num, :email, :skypeid] )
+                                            :mobile_num, :email, :skypeid,
+                                            educations_attributes: [:id, :qualification, :institute,
+                                              :year_passing, :grade, :scanned_doc]] )
     end
 
     def set_redirect_url

@@ -65,11 +65,11 @@
   margin-left: 10px;
 }
 
-.small-placeholder::-webkit-input-placeholder {
-  font-size: 10px;
-}
-
 @media screen and (min-width: 1400px) {
+
+  .small-placeholder::-webkit-input-placeholder {
+    font-size: 12px;
+  }
 
   .pad-left-0 {
     padding-left: 0px;

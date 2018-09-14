@@ -12,7 +12,6 @@
   <% class_icon = "h4 font-18" %>
 <% end %>
 
-console.log($("#change-icon-application-<%= @application_process.id %>"));
 $("#change-icon-application-<%= @application_process.id %>").html("<i class='<%= class_icon %> fa fa-toggle-<%= @toggle %>' data-toggle='tooltip' data-placement='top' data-html='true' title='<%= tooltip %>'></i>");
 toastr['error']('<%= @message %>');
 
