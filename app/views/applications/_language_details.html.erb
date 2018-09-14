@@ -10,6 +10,7 @@
     <div class="panel-body">
       <% applicant.languages.each do |language| %>
         <div class="row">
+          <h4 class="pad-footer-btn"><%= language.test_type %></h4>
           <div class="col-lg-2 border-right">
             <p>Listening: <span class="font-bold"><%= language.listening %></span></p>
           </div>
