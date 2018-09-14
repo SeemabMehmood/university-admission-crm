@@ -1,0 +1,46 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="color-line"></div>
+    <div class="modal-header text-center">
+      <h4 class="modal-title">Update Status</h4>
+      <small class="font-bold"></small>
+    </div>
+    <div class="modal-body">
+      <%= form_with(model: @application_history, url: { controller: "applications", action: "update_status" }, method: :post) do |form| %>
+        <%= render "shared/error_messages", target: @application_history %>
+
+        <%= form.hidden_field :application_id, value: @application.id %>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :status, class: "control-label" %>
+            <%= form.select :status, @application.representing_country.get_statuses.collect { |n| [n.titleize, n] }, { prompt: "- Change Status -" }, { required: true, class: "form-control" } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :note, class: "control-label" %>
+            <%= form.text_area :note, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :document, "Document", class: "control-label" %>
+            <%= form.file_field :document, title: "Please Upload Document", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <%= form.button :submit, class: "btn btn-success" do %>
+            <i class="fa fa-send-o"></i>
+            <%= form_submit_text(form.object) %>
+          <% end %>
+
+          <%= link_to "Close", "#", data: { dismiss: "modal" }, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

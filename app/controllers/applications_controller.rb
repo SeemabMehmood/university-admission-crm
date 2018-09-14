@@ -4,7 +4,7 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_user!
 
   before_action :check_if_representing_institutions_assigned
-  before_action :set_application, only: [:show, :edit, :update]
+  before_action :set_application, only: [:show, :edit, :update, :edit_status, :update_status]
   before_action :set_redirect_url, only: [:update]
   before_action :set_form_data, only: [:new, :create, :edit, :update]
 
@@ -69,6 +69,22 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def edit_status
+    @application_history = @application.application_histories.new
+  end
+
+  def update_status
+    @application_history = @application.application_histories.new(application_history_params)
+    respond_to do |format|
+      if @application_history.save
+        format.html { redirect_to application_path(@application.id), notice: 'Status was successfully updated.' }
+      else
+        format.html { render "applications/edit_status" }
+        format.js { render "applications/edit_status.js.erb" }
+      end
+    end
+  end
+
   private
     def set_application
       id = params[:id] || params[:application_id]
@@ -107,5 +123,10 @@ class ApplicationsController < ApplicationController
     def set_form_data
       @representing_countries = current_user.branch_officer.representing_countries.pluck(:name, :id)
       @representing_institutions = current_user.representing_institutions.pluck(:name, :id)
+    end
+
+    def application_history_params
+      params.require(:application_history).permit(:application_id, :status,
+                                                  :note, :document)
     end
 end

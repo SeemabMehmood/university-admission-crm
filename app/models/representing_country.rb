@@ -54,6 +54,10 @@ class RepresentingCountry < ApplicationRecord
     ]
   end
 
+  def get_statuses
+    self.application_processes.order(:serial).pluck(:name)
+  end
+
   def branch_officer
     agent.branch_officers.where(country: self.name).last
   end
