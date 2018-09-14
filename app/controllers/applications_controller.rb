@@ -87,7 +87,9 @@ class ApplicationsController < ApplicationController
                                             educations_attributes: [:id, :qualification, :institute,
                                               :year_passing, :grade, :scanned_doc],
                                               languages_attributes: [:id, :test_type, :reading, :writing,
-                                                :scanned_doc, :listening, :speaking, :overall]] )
+                                                :scanned_doc, :listening, :speaking, :overall],
+                                                work_experiences_attributes: [:id, :employer, :position, :period,
+                                                  :responsibilities, :scanned_doc]] )
     end
 
     def set_redirect_url
