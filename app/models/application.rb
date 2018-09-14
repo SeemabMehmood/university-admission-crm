@@ -83,6 +83,14 @@ class Application < ApplicationRecord
     representing_institution.name
   end
 
+  def build_applicant_data
+    self.applicant = Applicant.new(application_id: self.id)
+    self.applicant.educations.build
+    self.applicant.languages.build
+    self.applicant.work_experiences.build
+    self.applicant.references.build
+  end
+
   private
 
   def set_reference_no

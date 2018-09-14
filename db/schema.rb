@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_164604) do
+ActiveRecord::Schema.define(version: 2018_09_14_111357) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2018_09_12_164604) do
     t.integer "reading"
     t.integer "writing"
     t.integer "overall"
-    t.string "type"
+    t.string "test_type"
     t.string "scanned_doc"
     t.integer "applicant_id", null: false
     t.datetime "created_at", null: false

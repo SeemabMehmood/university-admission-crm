@@ -14,6 +14,9 @@ class Applicant < ApplicationRecord
   validates :application, presence: true
 
   accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :languages
+  accepts_nested_attributes_for :work_experiences
+  accepts_nested_attributes_for :references
 
   MARITAL_STATUS = ["Single", "Married", "Divorced", "Widowed", "Other"]
   GENDER         = ["Male", "Female"]

@@ -79,3 +79,9 @@
     margin-top: 12px;
   }
 }
+
+@media (min-width: 992px) {
+  .nested_application_applicant_languages .col-md-2 {
+    width: 13.666667%;
+  }
+}

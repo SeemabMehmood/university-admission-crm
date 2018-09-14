@@ -40,5 +40,9 @@ turboload = ->
     $(this).parents(".nested_application_applicant_educations").remove()
     e.preventDefault()
 
+  $("body").on "click", ".nested_application_applicant_languages a.remove", (e) ->
+    $(this).parents(".nested_application_applicant_languages").remove()
+    e.preventDefault()
+
 document.addEventListener 'turbolinks:load', ready
 document.addEventListener 'turbolinks:load', turboload

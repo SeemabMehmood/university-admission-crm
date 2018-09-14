@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading" role="tab" id="headingThree">
-    <h4 class="panel-title">
+    <h4 class="panel-title font-bold">
       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         Language Details
       </a>
@@ -8,7 +8,37 @@
   </div>
   <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
     <div class="panel-body">
-      Language Details Here
+      <% applicant.languages.each do |language| %>
+        <div class="row">
+          <div class="col-lg-2 border-right">
+            <p>Listening: <span class="font-bold"><%= language.listening %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Speaking: <span class="font-bold"><%= language.speaking %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Reading: <span class="font-bold"><%= language.reading %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Writing: <span class="font-bold"><%= language.writing %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Overall: <span class="font-bold"><%= language.overall %></span></p>
+          </div>
+
+          <div class="col-lg-2">
+            <% if language.scanned_doc.file.present? %>
+              <%= link_to "Scanned Copy", language.scanned_doc.url %>
+            <% else %>
+              <p>Scanned Copy not found.</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

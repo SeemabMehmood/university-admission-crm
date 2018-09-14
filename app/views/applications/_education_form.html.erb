@@ -38,7 +38,7 @@
             <div class="form-group col-md-3 pad-left-0">
               <%= education.label :scanned_doc, class: "control-label" %>
               <%= education.file_field :scanned_doc, title: "Please Upload Scanned Copy", class: "form-control" %>
-              <%= label_tag "files", education.object.scanned_doc.filename if education.object.persisted? && education.object.scanned_doc.file.present? %>
+              <%= label_tag "files", trncate(education.object.scanned_doc.filename) if education.object.persisted? && education.object.scanned_doc.file.present? %>
             </div>
 
             <%= link_to "#", class: "btn remove" do %>
