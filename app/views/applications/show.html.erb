@@ -33,6 +33,8 @@
             <%= render partial: "applications/work_experiences", locals: { applicant: @application.applicant } %>
 
             <%= render partial: "applications/references", locals: { applicant: @application.applicant } %>
+
+            <%= render partial: "applications/additional", locals: { application: @application } %>
           </div>
         </div>
       </div>

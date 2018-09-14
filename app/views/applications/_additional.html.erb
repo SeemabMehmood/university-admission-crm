@@ -1,0 +1,48 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="headingFour">
+    <h4 class="panel-title font-bold">
+      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        Additional Details
+      </a>
+    </h4>
+  </div>
+  <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour" aria-expanded="false">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-4 border-right">
+          <p>Accommodation: <span class="font-bold"><%= human_boolean(application.accommodation) %></span></p>
+        </div>
+
+        <div class="col-lg-4 border-right">
+          <p>Medical: <span class="font-bold"><%= human_boolean(application.medical) %></span></p>
+        </div>
+
+        <div class="col-lg-4 border-right">
+          <p>Additional Comments: <span class="font-bold"><%= application.details_additional %></span></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 border-right">
+          <p>Statement of Purpose: <span class="font-bold"><%= application.statement_of_purpose %></span></p>
+        </div>
+
+        <div class="col-lg-4 border-right">
+          <% if application.statement_of_purpose_doc.file.present? %>
+            <%= link_to "Statement of Purpose", application.statement_of_purpose_doc.url %>
+          <% else %>
+            <p>Statement of Purpose not found.</p>
+          <% end %>
+        </div>
+
+        <div class="col-lg-4 border-right">
+          <% if application.additional_document.file.present? %>
+            <%= link_to "Additional Document", application.additional_document.url %>
+          <% else %>
+            <p>Additional Document not found.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
