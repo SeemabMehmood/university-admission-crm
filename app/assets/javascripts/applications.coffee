@@ -14,7 +14,7 @@ ready = ->
         type: "GET"
         url: "/representing_institutions/get_institutions_from_country?country_id=#{selected_country}"
 
-  $(document).on 'change', '#application_applicant_attributes_dob', ->
+  $(document).on 'change', '#datepicker', ->
     $(this).datepicker 'hide'
 
   $("#application_applicant_attributes_passport").on "click", (event) ->

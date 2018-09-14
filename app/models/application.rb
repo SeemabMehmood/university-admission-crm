@@ -9,7 +9,7 @@ class Application < ApplicationRecord
   has_many :forwards
   has_many :reminders
 
-  validates :course_name, :intake_year, :intake_month, presence: true
+  validates :course_name, :intake_year, :intake_month, :interview_date, presence: true
 
   after_create :set_reference_no
 

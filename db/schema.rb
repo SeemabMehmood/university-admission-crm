@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_14_111357) do
+ActiveRecord::Schema.define(version: 2018_09_14_144210) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2018_09_14_111357) do
     t.text "details_additional"
     t.text "statement_of_purpose"
     t.string "statement_of_purpose_doc"
+    t.string "interview_date", default: "", null: false
     t.index ["representing_country_id"], name: "index_applications_on_representing_country_id"
     t.index ["representing_institution_id"], name: "index_applications_on_representing_institution_id"
   end
