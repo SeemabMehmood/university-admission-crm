@@ -48,5 +48,9 @@ turboload = ->
     $(this).parents(".nested_application_applicant_work_experiences").remove()
     e.preventDefault()
 
+  $("body").on "click", ".nested_application_applicant_references a.remove", (e) ->
+    $(this).parents(".nested_application_applicant_references").remove()
+    e.preventDefault()
+
 document.addEventListener 'turbolinks:load', ready
 document.addEventListener 'turbolinks:load', turboload

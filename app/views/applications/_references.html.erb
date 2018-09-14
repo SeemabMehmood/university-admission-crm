@@ -1,14 +1,40 @@
 <div class="panel panel-default">
   <div class="panel-heading" role="tab" id="headingThree">
-    <h4 class="panel-title">
+    <h4 class="panel-title font-bold">
       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
         References
       </a>
     </h4>
   </div>
   <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-     <div class="panel-body">
-        References Here
-     </div>
+    <div class="panel-body">
+      <% applicant.references.each do |reference| %>
+        <div class="row">
+          <div class="col-lg-2 border-right">
+            <p>Name: <span class="font-bold"><%= reference.name.titleize %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Designation: <span class="font-bold"><%= reference.designation.titleize %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Institution: <span class="font-bold"><%= reference.institution.titleize %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Country: <span class="font-bold"><%= reference.country %></span></p>
+          </div>
+
+          <div class="col-lg-2 border-right">
+            <p>Phone: <span class="font-bold"><%= reference.phone %></span></p>
+          </div>
+
+          <div class="col-lg-2">
+            <p>Email: <span class="font-bold"><%= reference.email %></span></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

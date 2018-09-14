@@ -1,0 +1,82 @@
+<div class="hpanel">
+  <div class="panel-heading hbuilt h-bg-navy-blue text-white">
+    References Information
+    <div class="pull-right">
+      <%= form.add_nested_fields_link :references, class: "btn btn-xs btn-warning" do %>
+        <i class="fa fa-plus-square"></i>
+         Add Reference
+      <% end %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%= form.nested_fields_for :references do |reference| %>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :name, class: "control-label" %>
+              <%= reference.text_field :name, placeholder: "Enter Name", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :designation, class: "control-label" %>
+              <%= reference.text_field :designation, placeholder: "Enter Designation", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :institution, class: "control-label" %>
+              <%= reference.text_field :institution, placeholder: "Enter Institution", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :fax, class: "control-label" %>
+              <%= reference.text_field :fax, placeholder: "Enter Fax", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+
+            <div class="form-group col-md-3 pad-left-0">
+              <%= reference.label :address, class: "control-label" %>
+              <%= reference.text_field :address, placeholder: "Enter Address", required: true, class: "form-control small-placeholder" %>
+            </div>
+            <%= link_to "#", class: "btn remove" do %>
+              <i class="fa fa-times text-danger"></i>
+            <% end %>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :email, class: "control-label" %>
+              <%= reference.text_field :email, placeholder: "Enter Email", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :phone, class: "control-label" %>
+              <%= reference.text_field :phone, placeholder: "Enter Phone", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :city, class: "control-label" %>
+              <%= reference.text_field :city, placeholder: "Enter City", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :state, class: "control-label" %>
+              <%= reference.text_field :state, placeholder: "Enter State", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :postal_code, class: "control-label" %>
+              <%= reference.text_field :postal_code, placeholder: "Enter Postal Code", required: true, class: "form-control small-placeholder" %>
+            </div>
+
+            <div class="form-group col-md-2 pad-left-0">
+              <%= reference.label :country, class: "control-label" %>
+              <%= reference.select :country, ApplicationHelper::COUNTRIES, { prompt: "- Select Country -" }, required: true, class: "form-control small-placeholder" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
