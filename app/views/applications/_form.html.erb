@@ -38,13 +38,7 @@
 
     <%= render partial: "applications/applicant_form", locals: { form: form } %>
 
-    <div class="row">
-      <div class="form-group col-md-6 logo">
-        <%= form.label :additional_document, class: "control-label" %>
-        <%= form.file_field :additional_document, title: "Please Upload additional_document", class: "form-control" %>
-        <%= label_tag "files", @application.additional_document.filename if @application.persisted? && @application.additional_document.file.present? %>
-      </div>
-    </div>
+    <%= render partial: "applications/additional_form", locals: { form: form } %>
 
     <div class="text-right m-t-xs">
       <%= form.button :submit, class: "btn btn-success btn-sm ripple" do %>

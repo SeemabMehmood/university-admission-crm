@@ -21,19 +21,31 @@ ready = ->
     if $(this).is(":checked")
       $('#application_applicant_attributes_passport').attr("value", 1)
       $("#passport_no").show(1000)
-      $(".checkbox").hide(1000)
+      $(".passport-check").hide(1000)
     else
       $('#application_applicant_attributes_passport').attr("value", 0)
       $("#passport_no").hide(1000)
-      $(".checkbox").show(1000)
+      $(".passport-check").show(1000)
 
   if $(".edit_application").length
     if $("#application_applicant_attributes_passport").val()
       $("#passport_no").show()
-      $(".checkbox").hide()
+      $(".passport-check").hide()
     else
       $("#passport_no").hide()
-      $(".checkbox").show()
+      $(".passport-check").show()
+
+  $("#application_accommodation").on "click", (event) ->
+    if $(this).is(":checked")
+      $('#application_accommodation').attr("value", 1)
+    else
+      $('#application_accommodation').attr("value", 0)
+
+  $("#application_medical").on "click", (event) ->
+    if $(this).is(":checked")
+      $('#application_medical').attr("value", 1)
+    else
+      $('#application_medical').attr("value", 0)
 
 turboload = ->
   $("body").on "click", ".nested_application_applicant_educations a.remove", (e) ->

@@ -79,6 +79,8 @@ class ApplicationsController < ApplicationController
       params.require(:application).permit(:counsellor_id, :representing_country_id,
                                           :course_name, :intake_year, :intake_month,
                                           :action_name, :representing_institution_id, :additional_document,
+                                          :accommodation, :medical, :details_additional,
+                                          :statement_of_purpose, :statement_of_purpose_doc,
                                           applicant_attributes: [:id, :first_name, :last_name, :gender,
                                             :title, :marital_status, :dob, :nationality,
                                             :passport, :passport_no, :phone_cc, :phone_code,
