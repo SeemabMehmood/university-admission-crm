@@ -10,6 +10,8 @@
 
         <% if current_user.admin? %>
           <th data-breakpoints="xs md" data-title="Agent">Agent</th>
+        <% elsif current_user.counsellor? %>
+          <th data-breakpoints="xs md" data-title="Assigned">Assigned</th>
         <% end %>
 
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
@@ -37,6 +39,10 @@
             <td>
               <%= link_to representing_institution.representing_country.agent.name.titleize,
                   user_path(representing_institution.representing_country.agent) if representing_institution.representing_country.agent.present? %>
+            </td>
+          <% elsif current_user.counsellor? %>
+            <td>
+              <p class="label label-<% if current_user.institution_assigned?(representing_institution.id) %>info<% else %>danger<% end %>"><%= human_boolean(current_user.institution_assigned?(representing_institution.id)) %></p>
             </td>
           <% end %>
           <td>
