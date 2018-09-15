@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     get 'track_history'
     get 'admin_notes'
     post 'create_admin_notes'
+    get 'forward'
+    post 'forward_application'
   end
 
 

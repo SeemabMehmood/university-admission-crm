@@ -1,0 +1,60 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="color-line"></div>
+    <div class="modal-header text-center">
+      <h4 class="modal-title">Forward Application</h4>
+      <small class="font-bold"></small>
+    </div>
+    <div class="modal-body">
+      <%= form_with(model: @forward, url: { controller: "applications", action: "forward_application" }, method: :post) do |form| %>
+        <%= render "shared/error_messages", target: @forward %>
+
+        <%= form.hidden_field :application_id, value: @application.id %>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :sender_name, "Sender Name", class: "control-label" %>
+            <%= form.text_field :sender_name, autofocus: true, required: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :sender_email, class: "control-label" %>
+            <%= form.text_field :sender_email, autofocus: true, required: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :reciever_name, "Reciever Name", class: "control-label" %>
+            <%= form.text_field :reciever_name, autofocus: true, required: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :reciever_email, "Reciever Email", class: "control-label" %>
+            <%= form.text_field :reciever_email, autofocus: true, required: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :message, class: "control-label" %>
+            <%= form.text_area :message, autofocus: true, required: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <%= form.button :submit, class: "btn btn-success" do %>
+            <i class="fa fa-send-o"></i>
+            Forward
+          <% end %>
+
+          <%= link_to "Close", "#", data: { dismiss: "modal" }, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

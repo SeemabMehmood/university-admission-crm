@@ -6,7 +6,9 @@ class ApplicationsController < ApplicationController
   before_action :check_if_representing_institutions_assigned
   before_action :set_application, only: [:show, :edit, :update, :edit_status,
                                         :update_status, :track_history,
-                                        :admin_notes, :create_admin_notes]
+                                        :admin_notes, :create_admin_notes,
+                                        :forward, :forward_application]
+
   before_action :set_redirect_url, only: [:update]
   before_action :set_form_data, only: [:new, :create, :edit, :update]
 
@@ -107,6 +109,22 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def forward
+    @forward = @application.forwards.new
+  end
+
+  def forward_application
+    @forward = @application.forwards.new(forward_params)
+    respond_to do |format|
+      if @forward.save
+        format.html { redirect_to application_path(@application.id), notice: 'Application was successfully forwarded.' }
+      else
+        format.html { render "applications/forward" }
+        format.js { render "applications/forward.js.erb" }
+      end
+    end
+  end
+
   private
     def set_application
       id = params[:id] || params[:application_id]
@@ -154,5 +172,11 @@ class ApplicationsController < ApplicationController
 
     def admin_notes_params
       params.require(:admin_note).permit(:application_id, :details)
+    end
+
+    def forward_params
+      params.require(:forward).permit(:application_id, :sender_name,
+                                      :sender_email, :reciever_email,
+                                      :reciever_name, :message)
     end
 end
