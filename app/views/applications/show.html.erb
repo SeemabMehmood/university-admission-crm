@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="hpanel">
-        <div class="panel-heading hbuilt">
+        <div class="panel-heading hbuilt show-page-header">
           Reference No: <%= @application.reference_no %>
-          <div class="pull-right">
+          <div class="pull-right panel-tools">
             Current Status: <span class="label label-info font-100"><%= @application.current_status %></span>
             <%= link_to "Update Status", application_edit_status_path(@application), remote: true, data: { toggle: "modal", target: '#update_status' } , class: "btn btn-success btn-xs ripple", title: "Update Status" %>
 
@@ -55,5 +55,7 @@
 <div id="track_history" class="modal fade" role="dialog" aria-labelledby="TrackHistory"></div>
 
 <div id="admin_notes" class="modal fade" role="dialog" aria-labelledby="AdminNotes"></div>
+
+<div id="forward" class="modal fade" role="dialog" aria-labelledby="Forward"></div>
 
 <div id="forward" class="modal fade" role="dialog" aria-labelledby="Forward"></div>

@@ -91,6 +91,7 @@ class ApplicationsController < ApplicationController
   def track_history
     @application_histories = @application.application_histories.order(:created_at)
     @admin_notes = @application.admin_notes.order(:created_at)
+    @forwards = @application.forwards.order(:created_at)
   end
 
   def admin_notes

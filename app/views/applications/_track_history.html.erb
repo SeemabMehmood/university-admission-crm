@@ -13,62 +13,101 @@
         <div class="panel-heading hbuilt h-bg-violet text-white">
           Application Updates History
         </div>
-        <% if @application_histories.present? %>
-          <% @application_histories.each do |history| %>
-            <div class="panel-body">
-              <div class="panel-heading h-bg-green text-white">
-                <%= history.status.titleize %> | <%= format_datetime(history.created_at) %> by <%= history.by_user %>
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <%= history.note %>
+        <div class="panel-body">
+          <% if @application_histories.present? %>
+            <% @application_histories.each do |history| %>
+              <div class="hpanel">
+                <div class="panel-heading h-bg-green text-white">
+                  <%= history.status.titleize %> | <%= format_datetime(history.created_at) %> by <%= history.by_user %>
                 </div>
-              </div>
-
-              <div class="col-lg-6">
-                <div class="row">
-                  <div class="col-md-12">
-                    <% if history.document.file.present? %>
-                      <%= link_to "Document", history.document.url %>
-                    <% end %>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <% if history.note.present? %>
+                        <%= history.note %>
+                      <% else %>
+                        No note added.
+                      <% end %>
+                    </div>
                   </div>
+
+                  <% if history.document.file.present? %>
+                    <div class="col-lg-6">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <%= link_to "Document", history.document.url %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
-            </div>
+              <hr/>
+            <% end %>
+          <% else %>
+            <div class="panel-heading h-bg-yellow">No record found.</div>
           <% end %>
-        <% else %>
-          <div class="row">
-            <div class="col-md-12 h-bg-yellow">
-              <h4>No record found.</h4>
-            </div>
-          </div>
-        <% end %>
+        </div>
       </div>
 
       <div class="hpanel">
         <div class="panel-heading hbuilt h-bg-violet text-white">
           Admin Notes History
         </div>
-        <% if @admin_notes.present? %>
-          <% @admin_notes.each do |admin_notes| %>
-            <div class="panel-body">
-              <div class="panel-heading h-bg-blue text-white">
-                <%= format_datetime(admin_notes.created_at) %> by <%= admin_notes.by_user %>
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <%= admin_notes.details %>
+        <div class="panel-body">
+          <% if @admin_notes.present? %>
+            <% @admin_notes.each do |admin_note| %>
+              <div class="hpanel">
+                <div class="panel-heading h-bg-blue text-white">
+                  <%= format_datetime(admin_note.created_at) %> by <%= admin_note.by_user %>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <%= admin_note.details %>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+              <hr/>
+            <% end %>
+          <% else %>
+            <div class="panel-heading h-bg-yellow">No record found.</div>
           <% end %>
-        <% else %>
-          <div class="row">
-            <div class="col-md-12 h-bg-yellow">
-              <h4>No record found.</h4>
-            </div>
-          </div>
-        <% end %>
+        </div>
+      </div>
+
+      <div class="hpanel">
+        <div class="panel-heading hbuilt h-bg-violet text-white">
+          Forwards History
+        </div>
+        <div class="panel-body">
+          <% if @forwards.present? %>
+            <% @forwards.each do |forward| %>
+              <div class="hpanel">
+                <div class="panel-heading label-warning text-white">
+                  <%= format_datetime(forward.created_at) %> by <%= forward.by_user %>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <strong><%= forward.sender_name.titleize %></strong> with email <strong><%= forward.sender_email %></strong> has forwarded following message to <strong><%= forward.reciever_name.titleize %></strong> with email <strong><%= forward.reciever_email %></strong>.
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <strong>Message:</strong> <%= forward.message %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr/>
+            <% end %>
+          <% else %>
+            <div class="panel-heading h-bg-yellow">No record found.</div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
