@@ -8,6 +8,7 @@ class Application < ApplicationRecord
   has_many :admin_notes
   has_many :forwards
   has_many :reminders
+  has_many :incomes
 
   validates :course_name, :intake_year, :intake_month, :interview_date, presence: true
 
