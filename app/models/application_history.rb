@@ -6,4 +6,9 @@ class ApplicationHistory < ApplicationRecord
                                     message: "has already been assigned." }
 
   mount_uploader :document, DocUploader
+  audited
+
+  def by_user
+    User.find(self.audits.last.user_id).name.titleize
+  end
 end

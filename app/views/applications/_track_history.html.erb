@@ -13,7 +13,7 @@
         <% @application_histories.each do |history| %>
           <div class="hpanel">
             <div class="panel-heading hbuilt h-bg-violet text-white">
-            <%= history.status.titleize %>
+            <%= history.status.titleize %> | <%= format_datetime(history.created_at) %> by <%= history.by_user %>
             </div>
             <div class="panel-body">
               <div class="row">
