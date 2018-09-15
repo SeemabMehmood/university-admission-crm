@@ -5,7 +5,8 @@ class ApplicationsController < ApplicationController
 
   before_action :check_if_representing_institutions_assigned
   before_action :set_application, only: [:show, :edit, :update, :edit_status,
-                                        :update_status, :track_history]
+                                        :update_status, :track_history,
+                                        :admin_notes, :create_admin_notes]
   before_action :set_redirect_url, only: [:update]
   before_action :set_form_data, only: [:new, :create, :edit, :update]
 
@@ -89,6 +90,22 @@ class ApplicationsController < ApplicationController
     @application_histories = @application.application_histories.order(:created_at)
   end
 
+  def admin_notes
+    @admin_note = @application.admin_notes.new
+  end
+
+  def create_admin_notes
+    @admin_note = @application.admin_notes.new(admin_notes_params)
+    respond_to do |format|
+      if @admin_note.save
+        format.html { redirect_to application_path(@application.id), notice: 'Admin note was successfully created.' }
+      else
+        format.html { render "applications/admin_notes" }
+        format.js { render "applications/admin_notes.js.erb" }
+      end
+    end
+  end
+
   private
     def set_application
       id = params[:id] || params[:application_id]
@@ -132,5 +149,9 @@ class ApplicationsController < ApplicationController
     def application_history_params
       params.require(:application_history).permit(:application_id, :status,
                                                   :note, :document)
+    end
+
+    def admin_notes_params
+      params.require(:admin_note).permit(:application_id, :details)
     end
 end

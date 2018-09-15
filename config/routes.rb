@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     post 'update_status'
     get 'edit_status'
     get 'track_history'
+    get 'admin_notes'
+    post 'create_admin_notes'
   end
 
 
