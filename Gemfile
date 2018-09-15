@@ -32,6 +32,8 @@ gem 'audited', '~> 4.7'
 gem 'bootstrap-datepicker-rails'
 
 gem 'exception_notification'
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
