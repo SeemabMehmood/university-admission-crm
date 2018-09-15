@@ -109,6 +109,47 @@
           <% end %>
         </div>
       </div>
+
+      <div class="hpanel">
+        <div class="panel-heading hbuilt h-bg-violet text-white">
+          Reminder Emails History
+        </div>
+        <div class="panel-body">
+          <% if @reminders.present? %>
+            <% @reminders.each do |reminder| %>
+              <div class="hpanel">
+                <div class="panel-heading label-danger text-white">
+                  <%= format_datetime(reminder.created_at) %> by <%= reminder.by_user %>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <strong><%= reminder.sender_name.titleize %></strong> with email <strong><%= reminder.sender_email %></strong> sent a reminder email to <strong><%= reminder.reciever_name.titleize %></strong> with email <strong><%= reminder.reciever_email %></strong>.
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <strong>Message:</strong> <%= reminder.message %>
+                    </div>
+                  </div>
+
+                  <% if reminder.attachment.file.present? %>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <%= link_to "Attachment", reminder.attachment.url, target: "_blank" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <hr/>
+            <% end %>
+          <% else %>
+            <div class="panel-heading h-bg-yellow">No record found.</div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
