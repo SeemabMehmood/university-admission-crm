@@ -1,0 +1,17 @@
+<container>
+  <row class="header">
+    <columns>
+      <spacer size="16"></spacer>
+      <h4 class="text-center">
+      </h4>
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <h1 class="text-center">Hello <%= @reciever_name.titleize %>!</h1>
+      <p class="text-center"><%= @message %></p>
+      <%= image_tag attachments[@filename].url %>
+      <hr/>
+    </columns>
+  </row>
+</container>

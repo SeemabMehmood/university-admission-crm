@@ -14,6 +14,8 @@
 
             <%= link_to "Forward", application_forward_path(@application), remote: true, data: { toggle: "modal", target: '#forward' } , class: "btn btn-outline btn-success btn-xs ripple", title: "Forward" %>
 
+            <%= link_to "Reminder Email", application_reminder_email_path(@application), remote: true, data: { toggle: "modal", target: '#reminder_email' } , class: "btn btn-outline btn-warning btn-xs ripple", title: "Reminder Email" %>
+
             <%= link_to "Edit", edit_application_path(@application, method: "show"), class: "btn btn-primary btn-xs ripple" %>
 
             <%= link_to "Back", "javascript:history.back()", class: "btn btn-default btn-xs ripple" %>
@@ -58,4 +60,4 @@
 
 <div id="forward" class="modal fade" role="dialog" aria-labelledby="Forward"></div>
 
-<div id="forward" class="modal fade" role="dialog" aria-labelledby="Forward"></div>
+<div id="reminder_email" class="modal fade" role="dialog" aria-labelledby="ReminderEmail"></div>

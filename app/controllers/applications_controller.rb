@@ -7,7 +7,8 @@ class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :edit_status,
                                         :update_status, :track_history,
                                         :admin_notes, :create_admin_notes,
-                                        :forward, :forward_application]
+                                        :forward, :forward_application,
+                                        :reminder_email, :send_reminder_email]
 
   before_action :set_redirect_url, only: [:update]
   before_action :set_form_data, only: [:new, :create, :edit, :update]
@@ -126,6 +127,26 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def reminder_email
+    @reminder = @application.reminders.new
+  end
+
+  def send_reminder_email
+    @reminder = @application.reminders.new(reminder_params)
+    respond_to do |format|
+      if @reminder.save
+        ApplicantMailer.reminder(@reminder.sender_name, @reminder.sender_email,
+                              @reminder.reciever_name, @reminder.reciever_email,
+                              @reminder.message, @reminder.attachment).deliver_now
+
+        format.html { redirect_to application_path(@application.id), notice: 'Reminder has successfully sent.' }
+      else
+        format.html { render "applications/reminder_email" }
+        format.js { render "applications/reminder_email.js.erb" }
+      end
+    end
+  end
+
   private
     def set_application
       id = params[:id] || params[:application_id]
@@ -179,5 +200,11 @@ class ApplicationsController < ApplicationController
       params.require(:forward).permit(:application_id, :sender_name,
                                       :sender_email, :reciever_email,
                                       :reciever_name, :message)
+    end
+
+    def reminder_params
+      params.require(:reminder).permit(:application_id, :sender_name,
+                                      :sender_email, :reciever_email,
+                                      :reciever_name, :message, :attachment)
     end
 end

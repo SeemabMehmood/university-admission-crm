@@ -9,6 +9,6 @@ class ApplicationHistory < ApplicationRecord
   audited
 
   def by_user
-    User.find(self.audits.last.user_id).name.titleize
+    User.find(self.audits.last.user_id).name.titleize if self.audits.present?
   end
 end

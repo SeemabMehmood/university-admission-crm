@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     post 'create_admin_notes'
     get 'forward'
     post 'forward_application'
+    get 'reminder_email'
+    post 'send_reminder_email'
   end
 
 
