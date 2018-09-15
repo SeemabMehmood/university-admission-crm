@@ -1,0 +1,46 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header text-center pad-6">
+      <small class="modal-title">Track History</small>
+      <div class="pull-right">
+        <%= link_to "#", data: { dismiss: "modal" }, class: "btn btn-danger btn-circle" do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-body">
+      <% if @application_histories.present? %>
+        <% @application_histories.each do |history| %>
+          <div class="hpanel">
+            <div class="panel-heading hbuilt h-bg-violet text-white">
+            <%= history.status.titleize %>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <%= history.note %>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <% if history.document.file.present? %>
+                        <%= link_to "Document", history.document.url %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="row">
+          <div class="col-md-12 h-bg-yellow">
+            <h4>No record found.</h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,8 @@
             Current Status: <span class="label label-info font-100"><%= @application.current_status %></span>
             <%= link_to "Update Status", application_edit_status_path(@application), remote: true, data: { toggle: "modal", target: '#update_status' } , class: "btn btn-success btn-xs ripple", title: "Update Status" %>
 
+            <%= link_to "Track History", application_track_history_path(@application), remote: true, data: { toggle: "modal", target: '#track_history' } , class: "btn btn-info btn-xs ripple", title: "Track History" %>
+
             <%= link_to "Edit", edit_application_path(@application, method: "show"), class: "btn btn-primary btn-xs ripple" %>
 
             <%= link_to "Back", "javascript:history.back()", class: "btn btn-default btn-xs ripple" %>
@@ -45,3 +47,5 @@
   </div>
 </div>
 <div id="update_status" class="modal fade" role="dialog" aria-labelledby="UpdateStatus"></div>
+
+<div id="track_history" class="modal fade" role="dialog" aria-labelledby="TrackHistory"></div>

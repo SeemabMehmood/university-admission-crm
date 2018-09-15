@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :applications, except: [:destroy] do
     post 'update_status'
     get 'edit_status'
+    get 'track_history'
   end
 
 

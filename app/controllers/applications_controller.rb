@@ -4,7 +4,8 @@ class ApplicationsController < ApplicationController
   before_action :authenticate_user!
 
   before_action :check_if_representing_institutions_assigned
-  before_action :set_application, only: [:show, :edit, :update, :edit_status, :update_status]
+  before_action :set_application, only: [:show, :edit, :update, :edit_status,
+                                        :update_status, :track_history]
   before_action :set_redirect_url, only: [:update]
   before_action :set_form_data, only: [:new, :create, :edit, :update]
 
@@ -82,6 +83,10 @@ class ApplicationsController < ApplicationController
         format.js { render "applications/edit_status.js.erb" }
       end
     end
+  end
+
+  def track_history
+    @application_histories = @application.application_histories.order(:created_at)
   end
 
   private
