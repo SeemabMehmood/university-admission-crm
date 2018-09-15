@@ -47,7 +47,6 @@ class ApplicationsController < ApplicationController
         format.html { redirect_to applications_path, notice: "Application was successfully created." }
         format.json { render :show, status: :created, location: @application }
       else
-        @application.build_applicant_data
         format.html { render :new }
         format.json { render json: @application.errors, status: :unprocessable_entity }
       end

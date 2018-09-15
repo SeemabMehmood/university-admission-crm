@@ -91,6 +91,11 @@ class Application < ApplicationRecord
     self.applicant.references.build
   end
 
+  def current_status
+    return "Unconditional" unless self.application_histories.present?
+    self.application_histories.last.status
+  end
+
   private
 
   def set_reference_no

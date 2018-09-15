@@ -5,7 +5,8 @@
         <div class="panel-heading hbuilt">
           Reference No: <%= @application.reference_no %>
           <div class="pull-right">
-            <%= link_to "Update Status", application_edit_status_path(@application), remote: true, data: { toggle: "modal", target: '#update_status' } , class: "btn btn-primary btn-xs ripple", title: "Update Status" %>
+            Current Status: <span class="label label-info font-100"><%= @application.current_status %></span>
+            <%= link_to "Update Status", application_edit_status_path(@application), remote: true, data: { toggle: "modal", target: '#update_status' } , class: "btn btn-success btn-xs ripple", title: "Update Status" %>
 
             <%= link_to "Edit", edit_application_path(@application, method: "show"), class: "btn btn-primary btn-xs ripple" %>
 
