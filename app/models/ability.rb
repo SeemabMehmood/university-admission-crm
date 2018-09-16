@@ -14,11 +14,14 @@ class Ability
         can :manage, RepresentingCountry
         can :manage, RepresentingInstitution
         can :manage, User, agent_id: user.id
+        can :manage, Application
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.branch_officer?
 
-        can [:read, :assign_institutions, :manage_counsellor], RepresentingInstitution, agent_id: user.agent.id
+        can :manage, Application
+        can [:read, :assign_institutions,
+            :manage_counsellor, :get_institutions_from_country], RepresentingInstitution, agent_id: user.agent.id
         can :read, RepresentingCountry, agent_id: user.agent.id
         can :manage, User, branch_officer_id: user.id
 

@@ -10,8 +10,10 @@ class ApplicantMailer < ApplicationMailer
     @sender_name = sender_name
     @reciever_name = reciever_name
     @message = message
-    @filename = attachment.filename
-    attachments.inline[attachment.filename] = File.read([Rails.root, "/public", attachment.url].join)
+    if attachment.present?
+      @filename = attachment.filename
+      attachments.inline[attachment.filename] = File.read([Rails.root, "/public", attachment.url].join)
+    end
     mail to: reciever_email, from: sender_email, subject: ["This is a reminder email from", sender_name.titleize].join(" ")
   end
 end

@@ -25,7 +25,10 @@ class ApplicationsController < ApplicationController
         sanitize_params: true
       ) or return
 
-      @applications = @filterrific.find()
+      @applications = Application.for_user(current_user)
+      if @applications.any?
+        @applications = @applications.filterrific_find(@filterrific)
+      end
 
       respond_to do |format|
         format.html
@@ -155,7 +158,8 @@ class ApplicationsController < ApplicationController
     end
 
     def application_params
-      params.require(:application).permit(:counsellor_id, :representing_country_id, :interview_date,
+      params.require(:application).permit(:counsellor_id, :branch_officer_id, :agent_id,
+                                          :representing_country_id, :interview_date,
                                           :course_name, :intake_year, :intake_month,
                                           :action_name, :representing_institution_id, :additional_document,
                                           :accommodation, :medical, :details_additional,
@@ -180,11 +184,26 @@ class ApplicationsController < ApplicationController
     end
 
     def check_if_representing_institutions_assigned
-      redirect_to root_path, alert: "You have no assigned Representing Institution." unless current_user.representing_institutions.present?
+      if current_user.counsellor?
+        redirect_to root_path, alert: "You have no assigned Representing Institution." unless current_user.representing_institutions.present?
+      end
     end
 
     def set_form_data
+      if current_user.counsellor?
+        set_form_data_for_counsellor
+      else
+        set_form_data_for_others
+      end
+    end
+
+    def set_form_data_for_counsellor
       @representing_countries = current_user.branch_officer.representing_countries.pluck(:name, :id)
+      @representing_institutions = current_user.representing_institutions.pluck(:name, :id)
+    end
+
+    def set_form_data_for_others
+      @representing_countries = current_user.representing_countries.pluck(:name, :id)
       @representing_institutions = current_user.representing_institutions.pluck(:name, :id)
     end
 

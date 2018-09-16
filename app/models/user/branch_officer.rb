@@ -1,5 +1,7 @@
 class BranchOfficer < User
   has_many :counsellors, foreign_key: :branch_officer_id
+  has_many :applications, foreign_key: :branch_officer_id
+
   belongs_to :agent
 
   filterrific(

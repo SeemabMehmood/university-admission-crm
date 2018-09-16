@@ -1,7 +1,9 @@
 class Application < ApplicationRecord
   belongs_to :representing_country
   belongs_to :representing_institution
-  belongs_to :counsellor, foreign_key: :counsellor_id
+  belongs_to :counsellor, foreign_key: :counsellor_id, optional: true
+  belongs_to :branch_officer, foreign_key: :branch_officer_id, optional: true
+  belongs_to :agent, foreign_key: :agent_id
 
   has_one :applicant, inverse_of: :application
   has_many :application_histories
@@ -65,6 +67,10 @@ class Application < ApplicationRecord
     where(reference_no: reference_no)
   }
 
+  scope :for_agent, -> (agent_id) { where(agent_id: agent_id) }
+  scope :for_branch_officer, -> (branch_officer_id) { where(branch_officer_id: branch_officer_id) }
+  scope :for_counsellor, -> (counsellor_id) { where(counsellor_id: counsellor_id) }
+
   def self.options_for_sorted_by
     [
       ['Course Name (a-z)', 'course_name_asc'],
@@ -97,12 +103,23 @@ class Application < ApplicationRecord
     self.application_histories.last.status
   end
 
+  def self.for_user(user)
+    if user.agent?
+      self.for_agent(user.id)
+    elsif user.branch_officer?
+      self.for_branch_officer(user.id)
+    elsif user.counsellor?
+      self.for_counsellor(user.id)
+    end
+  end
+
   private
 
   def set_reference_no
-    self.reference_no = [self.counsellor.name[0].upcase, self.counsellor.id,
+    user = User.find(self.agent_id)
+    self.reference_no = [user.name[0].upcase, user.id,
                          self.representing_country.name[0].upcase, self.id,
-                         self.counsellor.branch_officer.name[0].upcase,
+                         self.applicant.name[0].upcase,
                          self.created_at.strftime("%d%m%Y") ].join()
     self.save!
   end
