@@ -2,7 +2,11 @@ ready = ->
   $('[data-toggle="tooltip"]').tooltip()
 
   if $("#new_user").length > 0 || $(".edit_user").length > 0
-    $('#populate_agents').hide()
+    if $("#agents").val() == "" && $(".field_with_errors").length
+      $('#populate_agents').show()
+    else
+      $('#populate_agents').hide()
+
     $('#populate_branch_officers').hide()
 
     if $('#user_type').val() == "Counsellor"
