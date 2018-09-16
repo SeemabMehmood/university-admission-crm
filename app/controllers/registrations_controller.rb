@@ -3,9 +3,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = initialize_user(sign_up_params)
+    if sign_up_params[:agent_id].blank?
+      @user.errors.add(:base, "Please select an agent.")
+    end
 
     if current_user.admin?
-      @countries = ["Branch Officer", "BranchOfficer"].include?(sign_up_params[:type]) && @user.new_record? ? Agent.find(sign_up_params[:agent_id]).representing_countries.active.pluck(:name) : ApplicationHelper::COUNTRIES
+      @countries = ["Branch Officer", "BranchOfficer"].include?(sign_up_params[:type]) && @user.new_record? && sign_up_params[:agent_id].present? ? Agent.find(sign_up_params[:agent_id]).representing_countries.active.pluck(:name) : ApplicationHelper::COUNTRIES
     elsif current_user.agent?
       @countries = current_user.representing_countries.active.pluck(:name)
     else
