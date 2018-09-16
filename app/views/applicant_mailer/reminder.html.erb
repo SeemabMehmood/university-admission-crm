@@ -10,7 +10,7 @@
     <columns>
       <h1 class="text-center">Hello <%= @reciever_name.titleize %>!</h1>
       <p class="text-center"><%= @message %></p>
-      <%= image_tag attachments[@filename].url if attachments.present? %>
+      <%= link_to @filename, attachments[@filename].url if attachments.present? %>
       <hr/>
     </columns>
   </row>

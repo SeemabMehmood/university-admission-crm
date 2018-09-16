@@ -3,6 +3,7 @@ class Forward < ApplicationRecord
 
   after_create :send_forward_email
 
+  mount_uploader :attachment, DocUploader
   audited
 
   def by_user
@@ -14,6 +15,6 @@ class Forward < ApplicationRecord
   def send_forward_email
     ApplicantMailer.forward(self.sender_name, self.sender_email,
                             self.reciever_name, self.reciever_email,
-                            self.message).deliver_now
+                            self.message, self.attachment).deliver_now
   end
 end

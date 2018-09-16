@@ -219,7 +219,7 @@ class ApplicationsController < ApplicationController
     def forward_params
       params.require(:forward).permit(:application_id, :sender_name,
                                       :sender_email, :reciever_email,
-                                      :reciever_name, :message)
+                                      :reciever_name, :message, :attachment)
     end
 
     def reminder_params

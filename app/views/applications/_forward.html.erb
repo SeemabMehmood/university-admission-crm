@@ -46,6 +46,13 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="form-group col-md-12">
+            <%= form.label :attachment, class: "control-label" %>
+            <%= form.file_field :attachment, title: "Please Upload Attachment", class: "form-control" %>
+          </div>
+        </div>
+
         <div class="modal-footer">
           <%= form.button :submit, class: "btn btn-success" do %>
             <i class="fa fa-send-o"></i>
