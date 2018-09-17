@@ -1,5 +1,6 @@
 class ApplicantMailer < ApplicationMailer
-  def forward(sender_name, sender_email, reciever_name, reciever_email, message, attachment)
+  def forward(sender_name, sender_email, reciever_name, reciever_email, message, attachment, application)
+    @application = application
     @sender_name = sender_name
     @reciever_name = reciever_name
     @message = message

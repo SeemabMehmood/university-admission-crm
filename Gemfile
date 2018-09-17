@@ -34,6 +34,9 @@ gem 'bootstrap-datepicker-rails'
 gem 'exception_notification'
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
+gem 'prawn'
+gem 'responders'
+gem 'prawn-table'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

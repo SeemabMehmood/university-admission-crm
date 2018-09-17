@@ -41,6 +41,16 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ApplicationPdf.new(@application)
+        send_data pdf.render,
+                  filename: "applicant_#{@application.applicant.first_name}",
+                  type: 'application/pdf',
+                  disposition: 'inline'
+      end
+    end
   end
 
   def new

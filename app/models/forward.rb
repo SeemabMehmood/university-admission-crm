@@ -15,6 +15,6 @@ class Forward < ApplicationRecord
   def send_forward_email
     ApplicantMailer.forward(self.sender_name, self.sender_email,
                             self.reciever_name, self.reciever_email,
-                            self.message, self.attachment).deliver_now
+                            self.message, self.attachment, self.application).deliver_now
   end
 end
