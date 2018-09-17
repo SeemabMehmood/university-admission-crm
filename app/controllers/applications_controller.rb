@@ -186,7 +186,8 @@ class ApplicationsController < ApplicationController
                                                 work_experiences_attributes: [:id, :employer, :position, :period,
                                                   :responsibilities, :scanned_doc],
                                                   references_attributes: [:id, :name, :designation, :institution,
-                                                  :fax, :address, :email, :phone, :city, :state, :country, :postal_code]] )
+                                                  :fax, :address, :email, :phone, :city, :state, :country, :postal_code]],
+                                              income_attributes: [:total_amount, :remaining_balance, :id, :date] )
     end
 
     def set_redirect_url

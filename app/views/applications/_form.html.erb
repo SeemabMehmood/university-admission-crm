@@ -49,6 +49,28 @@
         <%= form.select :intake_year, Application::INTAKE_YEARS , { include_blank: '- Select Intake Year -' }, { class: "form-control" } %>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Income</h4>
+      </div>
+
+      <%= form.fields_for :income do |income| %>
+        <div class="form-group col-md-4">
+          <%= income.label :total_amount, class: "control-label" %>
+          <%= income.number_field :total_amount, class: "form-control", required: true %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= income.label :remaining_balance, class: "control-label" %>
+          <%= income.number_field :remaining_balance, class: "form-control", required: true %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= income.label :date, class: "control-label" %>
+          <%= income.text_field :date, data: { provide: "datepicker" }, placeholder: "Select Interview Date", class: "form-control", required: true, id: "datepicker" %>
+        </div>
+      <% end %>
+    </div>
 
     <%= render partial: "applications/applicant_form", locals: { form: form } %>
 

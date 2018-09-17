@@ -10,13 +10,13 @@ class Application < ApplicationRecord
   has_many :admin_notes, dependent: :destroy
   has_many :forwards, dependent: :destroy
   has_many :reminders, dependent: :destroy
-  has_many :incomes, dependent: :destroy
+  has_one :income, dependent: :destroy
 
   validates :course_name, :intake_year, :intake_month, :interview_date, presence: true
 
   after_create :set_reference_no
 
-  accepts_nested_attributes_for :applicant
+  accepts_nested_attributes_for :applicant, :income
 
   audited
 
@@ -92,6 +92,7 @@ class Application < ApplicationRecord
 
   def build_applicant_data
     self.applicant = Applicant.new(application_id: self.id)
+    self.income = Income.new(application_id: self.id)
     self.applicant.educations.build
     self.applicant.languages.build
     self.applicant.work_experiences.build
@@ -121,6 +122,7 @@ class Application < ApplicationRecord
                          self.representing_country.name[0].upcase, self.id,
                          self.applicant.name[0].upcase,
                          self.created_at.strftime("%d%m%Y") ].join()
+    self.income.update_attributes(date: self.created_at.strftime("%d-%m-%Y"))
     self.save!
   end
 
