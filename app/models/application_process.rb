@@ -3,7 +3,7 @@ class ApplicationProcess < ApplicationRecord
 
   belongs_to :representing_country
 
-  has_one :email_template
+  has_one :email_template, dependent: :destroy
 
   validates :name, :serial, presence: true
 

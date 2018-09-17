@@ -1,11 +1,11 @@
 class Applicant < ApplicationRecord
   belongs_to :application, inverse_of: :applicant
 
-  has_many :addresses
-  has_many :educations
-  has_many :languages
-  has_many :work_experiences
-  has_many :references
+  has_many :addresses, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  has_many :languages, dependent: :destroy
+  has_many :work_experiences, dependent: :destroy
+  has_many :references, dependent: :destroy
 
   validates :first_name, :last_name, :dob, :title, :gender,
             :marital_status, :nationality, :phone_num,

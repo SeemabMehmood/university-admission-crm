@@ -5,12 +5,12 @@ class Application < ApplicationRecord
   belongs_to :branch_officer, foreign_key: :branch_officer_id, optional: true
   belongs_to :agent, foreign_key: :agent_id
 
-  has_one :applicant, inverse_of: :application
-  has_many :application_histories
-  has_many :admin_notes
-  has_many :forwards
-  has_many :reminders
-  has_many :incomes
+  has_one :applicant, inverse_of: :application, dependent: :destroy
+  has_many :application_histories, dependent: :destroy
+  has_many :admin_notes, dependent: :destroy
+  has_many :forwards, dependent: :destroy
+  has_many :reminders, dependent: :destroy
+  has_many :incomes, dependent: :destroy
 
   validates :course_name, :intake_year, :intake_month, :interview_date, presence: true
 
