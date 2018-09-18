@@ -1,6 +1,8 @@
 class Reminder < ApplicationRecord
   belongs_to :application
 
+  validates :sender_name, :sender_email, :reciever_name, :reciever_email, presence: true
+
   mount_uploader :attachment, DocUploader
 
   audited

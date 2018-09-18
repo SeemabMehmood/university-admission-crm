@@ -1,6 +1,8 @@
 class Forward < ApplicationRecord
   belongs_to :application
 
+  validates :sender_name, :sender_email, :reciever_name, :reciever_email, presence: true
+
   after_create :send_forward_email
 
   mount_uploader :attachment, DocUploader
