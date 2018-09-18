@@ -7,6 +7,8 @@ class Ability
       if user.admin?
         can :manage, :all
         cannot :manage, Application
+        cannot :manage, Income
+        cannot :manage, Expense
 
       elsif user.agent?
         can :manage, EmailTemplate
