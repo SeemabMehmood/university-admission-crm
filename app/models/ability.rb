@@ -16,6 +16,7 @@ class Ability
         can :manage, User, agent_id: user.id
         can :manage, Application
         can :manage, Income
+        can :manage, Expense
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.branch_officer?

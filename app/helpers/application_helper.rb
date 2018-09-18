@@ -272,6 +272,7 @@ module ApplicationHelper
   end
 
   def sidebar_active_class(current_path)
+    return 'active' if current_path.index(action_name)
     return 'active' if current_path.index(/root/) && controller_name.index(/home/)
     'active' if current_path.index(controller_name)
   end

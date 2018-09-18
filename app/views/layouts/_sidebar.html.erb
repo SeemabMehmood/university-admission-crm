@@ -43,10 +43,19 @@
       <% end %>
 
       <% if can? :manage, Income %>
-        <li class="<%= sidebar_active_class('finance_income_path') %>">
+        <li class="<%= sidebar_active_class('income_path') %>">
           <%= link_to finance_income_path do %>
             <%= content_tag :span, "Incomes", class: "nav-label" %>
             <i class="fa fa-money pull-right"></i>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if can? :manage, Expense %>
+        <li class="<%= sidebar_active_class('expense_path') %>">
+          <%= link_to finance_expense_path do %>
+            <%= content_tag :span, "Expenses", class: "nav-label" %>
+            <i class="fa fa-line-chart pull-right"></i>
           <% end %>
         </li>
       <% end %>

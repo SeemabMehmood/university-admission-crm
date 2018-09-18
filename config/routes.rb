@@ -37,6 +37,12 @@ Rails.application.routes.draw do
   get 'finance/income'
   get 'finance/income/:income_id/edit', to: 'finance#edit_income', as: :edit_income
   post 'finance/income/:income_id/update', to: 'finance#update_income', as: :update_income
+  get 'finance/expense'
+  get 'finance/expense/new', to: 'finance#new_expense', as: :new_expense
+  post 'finance/expense/create', to: 'finance#create_expense', as: :create_expense
+  get 'finance/expense/:expense_id/edit', to: 'finance#edit_expense', as: :edit_expense
+  post 'finance/expense/:expense_id/update', to: 'finance#update_expense', as: :update_expense
+
   post 'application_processes/:id/change_status', to: 'application_processes#change_status', as: :application_process_change_status
   post 'representing_institutions/:counsellor_id/assign_institutions', to: 'representing_institutions#assign_institutions', as: :assign_institutions
   post 'representing_institutions/:representing_institution_id/manage_counsellor/(:counsellor_id)', to: 'representing_institutions#manage_counsellor', as: :manage_counsellor

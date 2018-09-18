@@ -1,0 +1,19 @@
+<div class="col-sm-12 text-center m-b-md">
+  <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group col-md-4">
+          <%= f.text_field :with_date, placeholder: "Select Date",data: { provide: "datepicker" }, class: "form-control", id: "date_picker" %>
+        </div>
+
+        <div class="form-group col-md-4">
+          <%= f.submit "Filter", class: "btn btn-primary pull-left ripple btn-sm" %>
+
+          <%= link_to reset_filterrific_url, class: "btn btn-default foat-margin-l ripple btn-sm" do %>
+            <i class="fa fa-refresh"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
