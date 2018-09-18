@@ -69,7 +69,7 @@
         <div class="form-group col-lg-2">
           <% if (@user.new_record? || @user.errors.any?) && current_user.admin? %>
             <%= f.label :type, class: "control-label" %>
-            <%= f.select :type, User::ROLES.map { |r| [r.titleize, r.titleize] }, { prompt: "Select Type", selected: "#{ params[:user][:type].present? ? params[:user][:type] : @user.type.present? ? @user.type.underscore : "admin" }" }, { required: true, class: "form-control" } %>
+            <%= f.select :type, User::ROLES.map { |r| [r.titleize, r.titleize] }, { prompt: "Select Type", selected: "#{ @user.persisted? ? params[:user][:type] : @user.type.present? ? @user.type.underscore : "admin" }" }, { required: true, class: "form-control" } %>
           <% else %>
             <%= f.hidden_field :type, value: @user.type %>
           <% end %>
