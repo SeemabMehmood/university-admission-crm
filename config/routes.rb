@@ -34,7 +34,9 @@ Rails.application.routes.draw do
     post 'send_reminder_email'
   end
 
-
+  get 'finance/income'
+  get 'finance/income/:income_id/edit', to: 'finance#edit_income', as: :edit_income
+  post 'finance/income/:income_id/update', to: 'finance#update_income', as: :update_income
   post 'application_processes/:id/change_status', to: 'application_processes#change_status', as: :application_process_change_status
   post 'representing_institutions/:counsellor_id/assign_institutions', to: 'representing_institutions#assign_institutions', as: :assign_institutions
   post 'representing_institutions/:representing_institution_id/manage_counsellor/(:counsellor_id)', to: 'representing_institutions#manage_counsellor', as: :manage_counsellor

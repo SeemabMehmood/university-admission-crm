@@ -1,0 +1,50 @@
+<div id="filterrific_results">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Total Amount</th>
+        <th data-breakpoints="xs md" data-title="Remaing Balance">Remaning Balance</th>
+        <th data-breakpoints="xs md" data-title="Paid">Paid</th>
+
+        <th data-breakpoints="xs md" data-title="Application">Application</th>
+        <th data-breakpoints="xs md" data-title="Last Updated At">Last Updated At</th>
+        <th data-breakpoints="xs md" data-title="Last Updated By">Last Updated By</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% incomes.each do |income| %>
+        <tr>
+          <td>
+            <%= income.date %>
+          </td>
+          <td>
+            <%= income.total_amount.to_f %>
+          </td>
+          <td>
+            <%= income.remaining_balance.to_f %>
+          </td>
+          <td>
+            <%= income.paid.to_f %>
+          </td>
+          <td>
+            <%= link_to income.application.reference_no, application_path(income.application.id) %>
+          </td>
+          <td>
+            <%= format_datetime(income.updated_at) %>
+          </td>
+          <td>
+            <%= link_to income.updated_by_name, user_path(income.updated_by_id) %>
+          </td>
+          <td>
+            <%= link_to edit_income_path(income), remote: true do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="paging-ui-container"></div>
+</div>
