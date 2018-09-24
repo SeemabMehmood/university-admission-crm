@@ -1,0 +1,40 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel">
+        <div class="panel-heading hbuilt">
+          Branch Offices' Report
+          <div class="pull-right">
+            Total Branch Offices: <%= @branch_offices_count %>
+          </div>
+        </div>
+        <div class="panel-body no-shadow">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th>Branch Office</th>
+                <th>Active</th>
+                <th data-breakpoints="xs" data-title="Total">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @representing_countries.each do |country| %>
+                <tr>
+                  <td>
+                    <%= link_to country.name.titleize, representing_country_path(country.id) %>
+                  </td>
+                  <td>
+                    <%= country.branch_officers.active.count %>
+                  </td>
+                  <td>
+                    <%= country.branch_officers.count %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

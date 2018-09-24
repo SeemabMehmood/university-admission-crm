@@ -59,6 +59,31 @@
           <% end %>
         </li>
       <% end %>
+
+      <% if current_user.agent? %>
+        <li class="<%= sidebar_active_class('branch_offices_report_path') %> <%= sidebar_active_class('counsellors_report_path') %> treeview">
+          <%= link_to "#" do %>
+            <span>Reports</span> <span id="caret"><i class="fa fa-caret-down"></i></span> <i class="fa fa-files-o pull-right"></i>
+          <% end %>
+
+          <ul class="treeview-menu">
+            <li class="<%= sidebar_active_class('branch_offices_report_path') %>">
+              <%= link_to branch_offices_report_path do %>
+                <%= content_tag :span, "Branch Offices", class: "nav-label" %>
+                <i class="fa fa-building-o pull-right"></i>
+              <% end %>
+            </li>
+
+            <li class="<%= sidebar_active_class('counsellors_report_path') %>">
+              <%= link_to counsellors_report_path do %>
+                <%= content_tag :span, "Counsellors", class: "nav-label" %>
+                <i class="fa fa-users pull-right"></i>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+
     </ul>
   </div>
 </aside>

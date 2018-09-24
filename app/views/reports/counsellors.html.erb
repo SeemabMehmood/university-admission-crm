@@ -1,0 +1,46 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="hpanel">
+        <div class="panel-heading hbuilt">
+          Counsellors' Report
+          <div class="pull-right">
+            Total Branch Offices: <%= @branch_offices_count %>
+          </div>
+        </div>
+        <div class="panel-body no-shadow">
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th>Counsellor Name</th>
+                <th data-breakpoints="xs" data-title="Branch Office Name">Branch Office Name</th>
+                <th data-breakpoints="xs" data-title="Active">Active</th>
+                <th data-breakpoints="xs" data-title="Total">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @representing_countries.each do |country| %>
+                <% country.branch_officers.each do |branch_office| %>
+                  <tr>
+                    <td>
+                      <%= link_to branch_office.name.titleize, user_path(branch_office.id) %>
+                    </td>
+                    <td>
+                      <%= link_to country.name.titleize, representing_country_path(country.id) %>
+                    </td>
+                    <td>
+                      <%= branch_office.counsellors.active.count %>
+                    </td>
+                    <td>
+                      <%= branch_office.counsellors.count %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

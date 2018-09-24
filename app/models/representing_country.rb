@@ -61,4 +61,8 @@ class RepresentingCountry < ApplicationRecord
   def branch_officer
     agent.branch_officers.where(country: self.name).last
   end
+
+  def branch_officers
+    agent.branch_officers.where(country: self.name)
+  end
 end
