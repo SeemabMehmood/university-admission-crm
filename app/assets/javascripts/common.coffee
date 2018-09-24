@@ -13,11 +13,6 @@ ready = ->
 
   $('[data-toggle="tooltip"]').tooltip()
 
-  if $('.treeview').hasClass('active')
-    $('.treeview-menu').show()
-  else
-    $('.treeview-menu').hide()
-
   tree_menu()
 
 turboload = ->
@@ -42,13 +37,18 @@ footable = ->
       "container": "#paging-ui-container"
 
 tree_menu = ->
+  if $('.treeview').hasClass('active')
+    $('li.active.treeview').find('.treeview-menu').show()
+  else
+    $('li.active.treeview').find('.treeview-menu').hide()
+
   $('.treeview a').on 'click', (e) ->
-    if $('.treeview').hasClass('active')
-      $('#caret').html('<i class="fa fa-caret-up"></i>')
-      $('.treeview-menu').show()
+    if $(this).parent('.treeview').find('.treeview-menu').length
+      $(this).find('#caret').html('<i class="fa fa-caret-up"></i>')
+      $(this).parent('.treeview').find('.treeview-menu').show()
     else
-      $('#caret').html('<i class="fa fa-caret-down"></i>')
-      $('.treeview-menu').hide()
+      $(this).find('#caret').html('<i class="fa fa-caret-down"></i>')
+      $(this).parent('.treeview').find('.treeview-menu').hide()
 
 document.addEventListener 'turbolinks:load', ready
 document.addEventListener 'turbolinks:load', turboload
