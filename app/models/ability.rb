@@ -24,7 +24,8 @@ class Ability
       elsif user.branch_officer?
 
         can :manage, Application
-        can [:edit, :update], Income, application: { branch_officer_id: user.id }
+        can :manage, Income, application: { branch_officer_id: user.id }
+        can :manage, Expense, application: { branch_officer_id: user.id }
         can [:read, :assign_institutions,
             :manage_counsellor, :get_institutions_from_country], RepresentingInstitution, agent_id: user.agent.id
         can :read, RepresentingCountry, agent_id: user.agent.id
