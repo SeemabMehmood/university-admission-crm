@@ -13,7 +13,7 @@ class RepresentingCountriesController < ApplicationController
         select_options: {
           sorted_by: RepresentingCountry.options_for_sorted_by
         },
-        persistence_id: true,
+        persistence_id: false,
         sanitize_params: true
       ) or return
 

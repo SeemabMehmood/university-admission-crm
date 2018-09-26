@@ -21,7 +21,7 @@ class ApplicationsController < ApplicationController
         select_options: {
           sorted_by: Application.options_for_sorted_by
         },
-        persistence_id: true,
+        persistence_id: false,
         sanitize_params: true
       ) or return
 
