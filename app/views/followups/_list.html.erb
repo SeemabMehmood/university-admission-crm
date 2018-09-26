@@ -6,6 +6,10 @@
         <th>Applicant Name</th>
         <th data-breakpoints="xs md" data-title="Country">Country</th>
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
+        <th data-breakpoints="xs md" data-title="Last Acivity By">Last Acivity By</th>
+        <% if current_user.admin? %>
+          <th data-breakpoints="xs md" data-title="Agent">Agent</th>
+        <% end %>
         <th></th>
         <th></th>
         <th></th>
@@ -26,6 +30,14 @@
           <td>
             <%= format_datetime(followup.created_at) %>
           </td>
+          <td>
+            <%= followup.by_user.titleize %>
+          </td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to followup.agent.name.titleize, user_path(followup.agent_id) %>
+            </td>
+          <% end %>
           <td>
             <% if can? :edit, Followup %>
               <%= link_to edit_followup_path(followup, method: "index") do %>
