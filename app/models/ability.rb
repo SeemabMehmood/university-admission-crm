@@ -9,6 +9,7 @@ class Ability
         cannot :manage, Application
         cannot :manage, Income
         cannot :manage, Expense
+        cannot :create, Followup
 
       elsif user.agent?
         can :manage, EmailTemplate
@@ -19,10 +20,12 @@ class Ability
         can :manage, Application
         can :manage, Income
         can :manage, Expense
+        can :manage, Followup
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.branch_officer?
 
+        can :manage, Followup
         can :manage, Application
         can :manage, Income, application: { branch_officer_id: user.id }
         can :manage, Expense, application: { branch_officer_id: user.id }
@@ -33,6 +36,7 @@ class Ability
 
         can [:read, :edit, :update], User, id: user.id
       elsif user.counsellor?
+        can :manage, Followup
         can :manage, Application
         can [:edit, :update], Income, application: { counsellor_id: user.id }
 

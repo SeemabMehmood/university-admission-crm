@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     post 'send_reminder_email'
   end
 
+  resources :followups, except: [:destroy] do
+    post 'change_status'
+  end
+
   get 'finance/income'
   get 'finance/income/:income_id/edit', to: 'finance#edit_income', as: :edit_income
   post 'finance/income/:income_id/update', to: 'finance#update_income', as: :update_income

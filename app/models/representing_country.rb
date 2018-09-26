@@ -4,6 +4,7 @@ class RepresentingCountry < ApplicationRecord
   has_many :applications, dependent: :destroy
   has_many :application_processes, dependent: :destroy
   has_many :representing_institutions, dependent: :destroy
+  has_many :followups, dependent: :destroy
 
   belongs_to :agent
 
