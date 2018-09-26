@@ -11,7 +11,7 @@ class FinanceController < ApplicationController
         sanitize_params: true
       ) or return
 
-      @incomes = Income.for_user(current_user.id)
+      @incomes = Income.for_user(current_user.agent? ? current_user.id : current_user.agent.id)
       if @incomes.any?
         @incomes = @incomes.filterrific_find(@filterrific)
       end
@@ -52,7 +52,7 @@ class FinanceController < ApplicationController
         sanitize_params: true
       ) or return
 
-      @expenses = Expense.for_agent(current_user.id)
+      @expenses = Expense.for_agent(current_user.agent? ? current_user.id : current_user.agent.id)
       if @expenses.any?
         @expenses = @expenses.filterrific_find(@filterrific)
       end
@@ -68,7 +68,7 @@ class FinanceController < ApplicationController
   end
 
   def new_expense
-    @expense = current_user.expenses.new
+    @expense = current_user.agent? ? current_user.expenses.new :  current_user.agent.expenses.new
   end
 
   def create_expense
