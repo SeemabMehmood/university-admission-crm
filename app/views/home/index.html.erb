@@ -14,7 +14,8 @@
         </div>
       </div>
     <% end %>
-    <% if current_user.agent? || current_user.admin? %>
+
+    <% unless current_user.branch_officer? %>
       <div class="col-md-3">
         <div class="hpanel hbgblue">
           <div class="panel-body">
@@ -29,7 +30,7 @@
       </div>
     <% end %>
 
-    <% if current_user.branch_officer? || current_user.agent? || current_user.admin? %>
+    <% unless current_user.counsellor? %>
       <div class="col-md-3">
         <div class="hpanel hbgyellow">
           <div class="panel-body">
@@ -44,17 +45,101 @@
       </div>
     <% end %>
 
-    <div class="col-md-3">
-      <div class="hpanel hbgred">
-        <div class="panel-body">
-          <div class="text-center">
-            <h3>Total Applications</h3>
-            <p class="text-big font-light">
-              0
-            </p>
+    <% unless current_user.admin? %>
+      <div class="col-md-3">
+        <div class="hpanel hbgred">
+          <div class="panel-body">
+            <div class="text-center">
+              <h3>Total Applications</h3>
+              <p class="text-big font-light">
+                <%= @applications.count %>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
+
+  <% unless current_user.admin? %>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="hpanel">
+           <div class="panel-body">
+              <div class="stats-title pull-left">
+                 <h4>Representing Countries</h4>
+              </div>
+              <div class="stats-icon pull-right">
+                 <i class="fa fa-flag fa-4x"></i>
+              </div>
+              <div class="m-t-xl">
+                 <h1 class="text-success"><%= @representing_countries.count %></h1>
+                 <small>
+                  Inactive: <%= @representing_countries.inactive.count %>
+                 </small>
+              </div>
+           </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="hpanel">
+           <div class="panel-body">
+              <div class="stats-title pull-left">
+                 <h4>Representing Institutions</h4>
+              </div>
+              <div class="stats-icon pull-right">
+                 <i class="fa fa-building fa-4x"></i>
+              </div>
+              <div class="m-t-xl">
+                 <h1 class="text-info"><%= @representing_institutions.count %></h1>
+                 <small>
+                    Inactive: <%= @representing_institutions.inactive.count %>
+                 </small>
+              </div>
+           </div>
+        </div>
+      </div>
+      <% unless current_user.counsellor? %>
+        <div class="col-md-3">
+          <div class="hpanel">
+             <div class="panel-body">
+                <div class="stats-title pull-left">
+                   <h4>Income</h4>
+                </div>
+                <div class="stats-icon pull-right">
+                   <i class="fa fa-money fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                   <h1 class="text-warning">$<%= @total_income %></h1>
+                   <small>
+                    Total Remaining Balance: $<%= @total_remaining %>
+                   </small>
+                </div>
+             </div>
+          </div>
+        </div>
+      <% end %>
+
+      <% if current_user.agent? %>
+        <div class="col-md-3">
+          <div class="hpanel">
+             <div class="panel-body">
+                <div class="stats-title pull-left">
+                   <h4>Expenses</h4>
+                </div>
+                <div class="stats-icon pull-right">
+                   <i class="fa fa-line-chart fa-4x"></i>
+                </div>
+                <div class="m-t-xl">
+                   <h1 class="text-danger">$<%= @total_expense.sum(:paid).to_f %></h1>
+                   <small>
+                    Last Expense Date: <%= @total_expense.present? ? format_datetime(@total_expense.last.date) : "No Expense found." %>
+                   </small>
+                </div>
+             </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
