@@ -1,0 +1,60 @@
+<div id="filterrific_results">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Applicant Name</th>
+        <th data-breakpoints="xs md" data-title="Country">Country</th>
+        <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% followups.each do |followup| %>
+        <tr>
+          <td>
+            <%= link_to followup.date, followup_path(followup.id) %>
+          </td>
+          <td>
+            <%= followup.applicant.name.titleize %>
+          </td>
+          <td>
+            <%= link_to followup.representing_country.name.titleize, representing_country_path(followup.representing_country.id) %>
+          </td>
+          <td>
+            <%= format_datetime(followup.created_at) %>
+          </td>
+          <td>
+            <% if can? :edit, Followup %>
+              <%= link_to edit_followup_path(followup, method: "index") do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if can? :read, Followup %>
+              <%= link_to followup_path(followup) do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
+
+          <td>
+            <%= link_to followup_change_status_path(followup), method: :post, remote: true do %>
+              <div id="change-icon-<%= followup.id %>">
+                <% if followup.inactive? %>
+                  <i class="fa fa-toggle-on" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>INACTIVE</strong> - Click & Change it to Active"></i>
+                <% else %>
+                  <i class="fa fa-toggle-off" data-toggle="tooltip" data-placement="top" data-html="true" title="Status: <strong>ACTIVE</strong> - Click & Change it to Inactive"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="paging-ui-container"></div>
+</div>

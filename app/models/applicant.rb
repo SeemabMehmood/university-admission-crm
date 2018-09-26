@@ -1,5 +1,6 @@
 class Applicant < ApplicationRecord
-  belongs_to :application, inverse_of: :applicant
+  belongs_to :application, inverse_of: :applicant, optional: true
+  belongs_to :followup, optional: true
 
   has_many :addresses, dependent: :destroy
   has_many :educations, dependent: :destroy

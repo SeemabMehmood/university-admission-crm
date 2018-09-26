@@ -1,0 +1,51 @@
+<%= form_for @followup do |form| %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+
+  <% if current_user.agent? %>
+    <%= form.hidden_field :agent_id, value: current_user.id %>
+  <% elsif current_user.branch_officer? %>
+    <%= form.hidden_field :agent_id, value: current_user.agent.id %>
+  <% elsif current_user.counsellor? %>
+    <%= form.hidden_field :agent_id, value: current_user.branch_officer.agent.id %>
+  <% end %>
+
+  <%= render "shared/error_messages", target: @followup %>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :date, "Followup Date", class: "control-label" %>
+      <%= form.text_field :date, data: { provide: "datepicker" }, placeholder: "Select Followup Date", required: true, class: "form-control", id: "datepicker" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :representing_country_id, "Country", class: "control-label" %>
+      <%= form.select :representing_country_id, @representing_countries, { prompt: "- Select Country -" }, { required: true, class: "form-control" } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :description, "Description", class: "control-label" %>
+      <%= form.text_area :description, placeholder: "Add Description", class: "form-control" %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :additional_document, "Additional Document", class: "control-label" %>
+      <%= form.file_field :additional_document, title: "Please Upload Additional Document Here", class: "form-control" %>
+      <%= label_tag "files", @followup.additional_document.filename if @followup.persisted? && @followup.additional_document.file.present? %>
+    </div>
+  </div>
+
+  <%= render partial: "applications/applicant_form", locals: { form: form } %>
+
+  <div class="text-right m-t-xs">
+    <%= form.button :submit, class: "btn btn-success btn-sm ripple" do %>
+      <i class="fa fa-send-o"></i>
+      <%= form_submit_text(form.object) %>
+    <% end %>
+
+    <%= link_to "javascript:history.back()", class: "btn btn-default btn-sm ripple" do %>
+      <i class="fa fa-arrow-left"></i>
+    <% end %>
+  </div>
+<% end %>

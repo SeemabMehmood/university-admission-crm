@@ -3,6 +3,8 @@ class Followup < ApplicationRecord
   belongs_to :agent, foreign_key: :agent_id
   belongs_to :representing_country
 
+  enum status: [:active, :inactive]
+
   mount_uploader :additional_document, DocUploader
 
   accepts_nested_attributes_for :applicant
@@ -36,7 +38,7 @@ class Followup < ApplicationRecord
 
   def self.options_for_sorted_by
     [
-      ['Date', 'date_asc']
+      ['Date (ASC)', 'date_asc']
     ]
   end
 
@@ -44,5 +46,13 @@ class Followup < ApplicationRecord
 
   def by_user
     User.find(self.audits.last.user_id).name.titleize
+  end
+
+  def build_applicant_data
+    self.applicant = Applicant.new(followup_id: self.id)
+    self.applicant.educations.build
+    self.applicant.languages.build
+    self.applicant.work_experiences.build
+    self.applicant.references.build
   end
 end

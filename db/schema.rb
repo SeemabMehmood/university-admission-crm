@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_095036) do
+ActiveRecord::Schema.define(version: 2018_09_26_105317) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -51,9 +51,10 @@ ActiveRecord::Schema.define(version: 2018_09_26_095036) do
     t.string "mobile_num"
     t.string "email", default: "", null: false
     t.string "skypeid"
-    t.integer "application_id", null: false
+    t.integer "application_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "followup_id"
     t.index ["application_id"], name: "index_applicants_on_application_id"
   end
 

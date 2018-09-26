@@ -4,6 +4,7 @@ class FollowupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_followup, only: [:show, :edit, :update, :change_status]
   before_action :set_redirect_url, only: [:update]
+  before_action :set_form_data, only: [:edit, :update, :new, :create]
 
   def index
     begin
@@ -13,11 +14,11 @@ class FollowupsController < ApplicationController
         select_options: {
           sorted_by: Followup.options_for_sorted_by
         },
-        persistence_id: true,
+        persistence_id: false,
         sanitize_params: true
       ) or return
 
-      @followups = Followup.for_user(current_user)
+      @followups = for_current_user()
       if @followups.any?
         @followups = @followups.filterrific_find(@filterrific)
       end
@@ -99,7 +100,7 @@ class FollowupsController < ApplicationController
                                                   :fax, :address, :email, :phone, :city, :state, :country, :postal_code]] )
     end
 
-    def for_user
+    def for_current_user
       return Followup.all if current_user.admin?
       return Followup.for_agent(current_user.id) if current_user.agent?
       return Followup.for_agent(current_user.agent.id) if current_user.branch_officer?
@@ -108,5 +109,15 @@ class FollowupsController < ApplicationController
 
     def set_redirect_url
       @redirect_url = followup_params[:action_name] == "show" ? @followup : followups_path
+    end
+
+    def set_form_data
+      if current_user.agent?
+        @representing_countries = current_user.representing_countries.pluck(:name, :id)
+      elsif current_user.branch_officer?
+        @representing_countries = current_user.representing_countries.pluck(:name, :id)
+      else
+        @representing_countries = current_user.branch_officer.representing_countries.pluck(:name, :id)
+      end
     end
 end

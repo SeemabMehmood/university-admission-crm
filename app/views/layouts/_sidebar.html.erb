@@ -94,6 +94,15 @@
         </li>
       <% end %>
 
+      <% if can? :read, Followup %>
+        <li class="<%= sidebar_active_class('followups_path') %>">
+          <%= link_to followups_path do %>
+            <%= content_tag :span, "Lead Management", class: "nav-label" %>
+            <i class="fa fa-bell-o pull-right"></i>
+          <% end %>
+        </li>
+      <% end %>
+
     </ul>
   </div>
 </aside>

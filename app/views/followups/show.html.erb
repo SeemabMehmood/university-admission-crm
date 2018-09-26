@@ -1,0 +1,40 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="hpanel">
+        <div class="panel-heading hbuilt show-page-header">
+          Date: <%= format_datetime(@followup.date) %>
+          <div class="pull-right panel-tools">
+            <%= link_to "Edit", edit_application_path(@followup, method: "show"), class: "btn btn-primary btn-xs ripple" %>
+
+            <%= link_to "Back", "javascript:history.back()", class: "btn btn-default btn-xs ripple" %>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="text-center m-b-md">
+             <h3>
+                <%= @followup.applicant.name.titleize %> - <%= link_to @followup.representing_country.name,
+                  representing_country_path(@followup.representing_country.id) %>
+            </h3>
+            <small>
+              <%= @followup.description %>
+            </small>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <%= render partial: "applications/applicant_info", locals: { applicant: @followup.applicant } %>
+
+            <%= render partial: "applications/education_info", locals: { applicant: @followup.applicant } %>
+
+            <%= render partial: "applications/language_details", locals: { applicant: @followup.applicant } %>
+
+            <%= render partial: "applications/work_experiences", locals: { applicant: @followup.applicant } %>
+
+            <%= render partial: "applications/references", locals: { applicant: @followup.applicant } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
