@@ -133,7 +133,7 @@
                 <div class="m-t-xl">
                    <h1 class="text-danger">$<%= @total_expense.sum(:paid).to_f %></h1>
                    <small>
-                    Last Expense Date: <%= @total_expense.present? ? format_datetime(@total_expense.last.date) : "No Expense found." %>
+                    Last Expense Date: <%= @total_expense.present? ? @total_expense.last.date : "No Expense found." %>
                    </small>
                 </div>
              </div>
