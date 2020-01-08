@@ -16,7 +16,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'jquery-rails'
 gem 'animate-rails'
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'font-awesome-rails'
 gem 'jquery-slimscroll-rails'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.4'
