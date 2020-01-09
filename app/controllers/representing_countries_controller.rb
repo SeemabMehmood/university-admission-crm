@@ -2,7 +2,7 @@ class RepresentingCountriesController < ApplicationController
   load_and_authorize_resource
 
   before_action :authenticate_user!
-  before_action :set_representing_country, only: [:show, :edit, :update, :change_status]
+  before_action :set_representing_country, only: [:show, :edit, :update, :change_status, :destroy]
   before_action :set_redirect_url, only: [:update]
 
   def index
@@ -65,6 +65,11 @@ class RepresentingCountriesController < ApplicationController
         format.json { render json: @representing_country.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @representing_country.destroy
+    redirect_to representing_countries_path
   end
 
   def change_status

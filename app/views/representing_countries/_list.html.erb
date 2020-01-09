@@ -12,6 +12,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +42,11 @@
               <%= link_to representing_country_path(representing_country) do %>
                 <i class="fa fa-eye"></i>
               <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to representing_country_path(representing_country), title: "Delete", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-trash"></i>
             <% end %>
           </td>
           <% if can? :change_status, RepresentingCountry %>
