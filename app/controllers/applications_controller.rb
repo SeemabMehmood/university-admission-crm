@@ -180,7 +180,7 @@ class ApplicationsController < ApplicationController
                                             :phone_num, :mobile_cc, :mobile_code,
                                             :mobile_num, :email, :skypeid,
                                             educations_attributes: [:id, :qualification, :institute,
-                                              :year_passing, :grade, :scanned_doc],
+                                              :year_passing, :grade, :scanned_doc, :starting_year],
                                               languages_attributes: [:id, :test_type, :reading, :writing,
                                                 :scanned_doc, :listening, :speaking, :overall],
                                                 work_experiences_attributes: [:id, :employer, :position, :period,
