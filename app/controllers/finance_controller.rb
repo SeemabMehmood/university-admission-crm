@@ -42,6 +42,19 @@ class FinanceController < ApplicationController
     end
   end
 
+  def destroy_income
+    @income = Income.find params[:income_id]
+    @income.destroy
+    redirect_to income_path
+  end
+
+
+  def destroy_expense
+    @expense = Expense.find params[:expense_id]
+    @expense.destroy
+    redirect_to expense_path
+  end
+
   def expense
     begin
       @filterrific = initialize_filterrific(

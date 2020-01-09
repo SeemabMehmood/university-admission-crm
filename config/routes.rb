@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   post 'finance/expense/create', to: 'finance#create_expense', as: :create_expense
   get 'finance/expense/:expense_id/edit', to: 'finance#edit_expense', as: :edit_expense
   post 'finance/expense/:expense_id/update', to: 'finance#update_expense', as: :update_expense
+  delete 'finance/expense/:expense_id', to: 'finance#destroy_expense', as: :destroy_expense
+  delete 'finance/income/:income_id', to: 'finance#destroy_income', as: :destroy_income
 
   get 'reports/branch_offices', to: 'reports#branch_offices', as: :branch_offices_report
   get 'reports/counsellors', to: 'reports#counsellors', as: :counsellors_report

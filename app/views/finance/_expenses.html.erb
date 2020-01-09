@@ -8,6 +8,7 @@
         <th data-breakpoints="xs md" data-title="Created At">Created At</th>
         <th data-breakpoints="xs md" data-title="Updated At">Updated At</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,11 @@
           <td>
             <%= link_to edit_expense_path(expense), remote: true do %>
               <i class="fa fa-pencil"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to destroy_expense_path(expense), title: "Delete", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-trash"></i>
             <% end %>
           </td>
         </tr>
