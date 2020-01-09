@@ -45,14 +45,14 @@ class FinanceController < ApplicationController
   def destroy_income
     @income = Income.find params[:income_id]
     @income.destroy
-    redirect_to income_path
+    redirect_to finance_income_path
   end
 
 
   def destroy_expense
     @expense = Expense.find params[:expense_id]
     @expense.destroy
-    redirect_to expense_path
+    redirect_to finance_expense_path
   end
 
   def expense
