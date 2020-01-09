@@ -61,10 +61,10 @@ class ApplicationPdf < Prawn::Document
   end
 
   def education_rows
-    [["Qualification", "Institute", "Passing Year", "Grade"]] +
+    [["Majore Degree", "Institution", "Year", "Grade"]] +
     @application.applicant.educations.map do |education|
       [education.qualification, education.institute,
-        education.year_passing, education.grade]
+      "#{education.starting_year} to #{education.year_passing}", education.grade]
     end
   end
 
