@@ -18,6 +18,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -62,6 +63,13 @@
               <% end %>
             <% end %>
           </td>
+
+          <td>
+            <%= link_to representing_institution_path(representing_institution), title: "Delete", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
+
           <% if can? :change_status, RepresentingInstitution %>
             <td>
               <%= link_to representing_institution_change_status_path(representing_institution), method: :post, remote: true do %>

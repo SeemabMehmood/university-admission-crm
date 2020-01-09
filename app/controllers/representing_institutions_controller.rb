@@ -3,7 +3,7 @@ class RepresentingInstitutionsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :check_if_representing_country_exists
-  before_action :set_representing_institution, only: [:show, :edit, :update, :change_status]
+  before_action :set_representing_institution, only: [:show, :edit, :update, :change_status, :destroy]
   before_action :set_redirect_url, only: [:update]
   before_action :set_representing_countries, only: [:new, :create, :edit, :update]
 
@@ -61,6 +61,11 @@ class RepresentingInstitutionsController < ApplicationController
         format.json { render json: @representing_institution.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @representing_institution.destroy
+    redirect_to representing_institutions_path
   end
 
   def change_status
