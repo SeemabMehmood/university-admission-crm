@@ -13,6 +13,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -52,7 +53,11 @@
               <% end %>
             <% end %>
           </td>
-
+          <td>
+            <%= link_to followup_path(followup), method: :delete, title: "Delete", data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
           <td>
             <%= link_to followup_change_status_path(followup), method: :post, remote: true do %>
               <div id="change-icon-<%= followup.id %>">

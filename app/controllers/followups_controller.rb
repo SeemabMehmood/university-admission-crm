@@ -2,7 +2,7 @@ class FollowupsController < ApplicationController
   load_and_authorize_resource
 
   before_action :authenticate_user!
-  before_action :set_followup, only: [:show, :edit, :update, :change_status]
+  before_action :set_followup, only: [:show, :edit, :update, :change_status, :destroy]
   before_action :set_redirect_url, only: [:update]
   before_action :set_form_data, only: [:edit, :update, :new, :create]
 
@@ -67,6 +67,11 @@ class FollowupsController < ApplicationController
         format.json { render json: @followup.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @followup.destroy
+    redirect_to followups_path
   end
 
   def change_status
