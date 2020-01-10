@@ -1,7 +1,14 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:dashboard]
 
   def index
+    redirect_to dashboard_path if user_signed_in?
+  end
+
+  def apply
+  end
+
+  def dashboard
     if current_user.admin?
       @agents = Agent.all
       @branch_officers = BranchOfficer.all

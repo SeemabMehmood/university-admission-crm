@@ -34,7 +34,7 @@
 
               <%= yield %>
 
-              <%= render "devise/shared/links" %>
+              <%= render "devise/shared/links" if controller_name == "session" %>
 
             </div>
           </div>
