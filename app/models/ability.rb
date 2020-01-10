@@ -44,6 +44,8 @@ class Ability
         can :get_institutions_from_country, RepresentingInstitution
         can [:read], RepresentingInstitution, counsellor_id: user.id
         can [:read, :edit, :update], User, id: user.id
+      else
+        can :create, Application
       end
     end
   end

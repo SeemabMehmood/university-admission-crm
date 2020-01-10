@@ -1,7 +1,8 @@
 class RepresentingInstitutionsController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource only: :get_institutions_from_country
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:get_institutions_from_country]
   before_action :check_if_representing_country_exists
   before_action :set_representing_institution, only: [:show, :edit, :update, :change_status, :destroy]
   before_action :set_redirect_url, only: [:update]
@@ -92,7 +93,11 @@ class RepresentingInstitutionsController < ApplicationController
   end
 
   def get_institutions_from_country
-    @representing_institutions = current_user.representing_institutions.for_country(params[:country_id]).pluck(:name, :id)
+    if current_user
+      @representing_institutions = current_user.representing_institutions.for_country(params[:country_id]).pluck(:name, :id)
+    else
+      @representing_institutions = RepresentingCountry.find(params[:country_id]).representing_institutions.pluck(:name, :id)
+    end
   end
 
   private
@@ -126,6 +131,7 @@ class RepresentingInstitutionsController < ApplicationController
     end
 
     def check_if_representing_country_exists
+      return unless current_user
       if current_user.branch_officer?
         redirect_to root_path, alert: "You have no assigned representing country." unless current_user.representing_country.present?
       end

@@ -1,15 +1,17 @@
 <%= form_for @application do |form| %>
   <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
 
-  <% if current_user.agent? %>
-    <%= form.hidden_field :agent_id, value: current_user.id %>
-  <% elsif current_user.branch_officer? %>
-    <%= form.hidden_field :agent_id, value: current_user.agent.id %>
-    <%= form.hidden_field :branch_officer_id, value: current_user.id %>
-  <% elsif current_user.counsellor? %>
-    <%= form.hidden_field :agent_id, value: current_user.branch_officer.agent.id %>
-    <%= form.hidden_field :branch_officer_id, value: current_user.branch_officer.id %>
-    <%= form.hidden_field :counsellor_id, value: current_user.id %>
+  <% if current_user %>
+    <% if current_user.agent? %>
+      <%= form.hidden_field :agent_id, value: current_user.id %>
+    <% elsif current_user.branch_officer? %>
+      <%= form.hidden_field :agent_id, value: current_user.agent.id %>
+      <%= form.hidden_field :branch_officer_id, value: current_user.id %>
+    <% elsif current_user.counsellor? %>
+      <%= form.hidden_field :agent_id, value: current_user.branch_officer.agent.id %>
+      <%= form.hidden_field :branch_officer_id, value: current_user.branch_officer.id %>
+      <%= form.hidden_field :counsellor_id, value: current_user.id %>
+    <% end %>
   <% end %>
 
   <%= render "shared/error_messages", target: @application %>

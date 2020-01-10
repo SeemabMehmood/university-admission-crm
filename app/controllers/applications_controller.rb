@@ -1,7 +1,8 @@
 class ApplicationsController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource only: [:new, :create]
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new, :create]
 
   before_action :check_if_representing_institutions_assigned
   before_action :set_application, only: [:show, :edit, :update, :edit_status,
@@ -60,9 +61,12 @@ class ApplicationsController < ApplicationController
 
   def create
     @application = Application.new(application_params.except(:action_name))
+    unless current_user
+      @application.agent_id = RepresentingCountry.find(application_params[:representing_country_id]).agent_id
+    end
     respond_to do |format|
       if @application.save
-        format.html { redirect_to applications_path, notice: "Application was successfully created." }
+        format.html { redirect_to current_user ? applications_path : root_path, notice: "Application was successfully created." }
         format.json { render :show, status: :created, location: @application }
       else
         format.html { render :new }
@@ -195,16 +199,21 @@ class ApplicationsController < ApplicationController
     end
 
     def check_if_representing_institutions_assigned
-      if current_user.counsellor?
+      if current_user && current_user.counsellor?
         redirect_to root_path, alert: "You have no assigned Representing Institution." unless current_user.representing_institutions.present?
       end
     end
 
     def set_form_data
-      if current_user.counsellor?
-        set_form_data_for_counsellor
+      if current_user
+        if current_user.counsellor?
+          set_form_data_for_counsellor
+        else
+          set_form_data_for_others
+        end
       else
-        set_form_data_for_others
+        @representing_countries = RepresentingCountry.all.pluck(:name, :id)
+        @representing_institutions = RepresentingCountry.first.representing_institutions.pluck(:name, :id)
       end
     end
 

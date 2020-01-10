@@ -59,5 +59,5 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get 'home/index', to: 'home#index'
-  get 'home/dashboard', to: 'home#dashboard'
+  get 'home/dashboard', to: 'home#dashboard', as: :dashboard
 end
