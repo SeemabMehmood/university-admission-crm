@@ -12,7 +12,8 @@ class Application < ApplicationRecord
   has_many :reminders, dependent: :destroy
   has_one :income, dependent: :destroy
 
-  validates :course_name, :intake_year, :intake_month, :interview_date, presence: true
+  validates :intake_year, :intake_month, :interview_date, presence: true
+  validate :has_course_name
 
   after_create :set_reference_no
 
@@ -43,7 +44,7 @@ class Application < ApplicationRecord
     when /^created_at_/
       order("applications.created_at #{ direction }")
     when /^course_name_/
-      order("LOWER(applications.course_name) #{ direction }")
+      order("LOWER(applications.course_name) #{ direction }, LOWER(applications.major) #{direction}")
     when /^reference_no_/
       order("LOWER(applications.reference_no) #{ direction }")
     else
@@ -52,7 +53,7 @@ class Application < ApplicationRecord
   }
 
   scope :with_course_name, lambda { |inst_course_name|
-    where(course_name: inst_course_name)
+    where(course_name: inst_course_name).or(where(major: inst_course_name))
   }
 
   scope :with_intake_month, lambda { |intake_month|
@@ -114,6 +115,11 @@ class Application < ApplicationRecord
     end
   end
 
+  def major_course
+    return course_name if course_name.present?
+    major
+  end
+
   private
 
   def set_reference_no
@@ -126,4 +132,9 @@ class Application < ApplicationRecord
     self.save!
   end
 
+  def has_course_name
+    if major.blank? && course_name.blank?
+      errors.add(:base, "Application must have at least one Major.")
+    end
+  end
 end

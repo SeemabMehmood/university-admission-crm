@@ -175,7 +175,7 @@ class ApplicationsController < ApplicationController
     def application_params
       params.require(:application).permit(:counsellor_id, :branch_officer_id, :agent_id,
                                           :representing_country_id, :interview_date,
-                                          :course_name, :intake_year, :intake_month,
+                                          :course_name, :major, :intake_year, :intake_month,
                                           :action_name, :representing_institution_id, :additional_document,
                                           :accommodation, :medical, :details_additional,
                                           :statement_of_purpose, :statement_of_purpose_doc,

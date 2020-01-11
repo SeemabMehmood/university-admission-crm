@@ -28,7 +28,7 @@
                   representing_country_path(@application.representing_country.id) %>
             </h3>
             <small>
-              <%= @application.course_name.titleize %>, <%= @application.intake %> | <%= link_to @application.institute,
+              <%= @application.major_course.titleize %>, <%= @application.intake %> | <%= link_to @application.institute,
                                 representing_institution_path(@application.representing_institution.id)  %> | Interview: <%= @application.interview_date %>
             </small>
             <div class="clearfix"></div>
