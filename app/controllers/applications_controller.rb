@@ -181,7 +181,7 @@ class ApplicationsController < ApplicationController
                                           :statement_of_purpose, :statement_of_purpose_doc,
                                           applicant_attributes: [:id, :first_name, :last_name, :gender,
                                             :title, :marital_status, :dob, :nationality,
-                                            :passport, :passport_no, :phone_cc, :phone_code,
+                                            :passport, :passport_no, :passport_file, :phone_cc, :phone_code,
                                             :phone_num, :mobile_cc, :mobile_code,
                                             :mobile_num, :email, :skypeid,
                                             educations_attributes: [:id, :qualification, :institute,

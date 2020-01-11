@@ -48,7 +48,16 @@
 
         <div class="col-lg-4 border-right">
           <div class="col-lg-12">
-            <p>Passport: <span class="font-bold"><%= not_available(applicant.passport_no) %></span></p>
+            <p>Passport: <span class="font-bold">
+              <% if applicant.passport_file.file.present? %>
+                  <%= link_to "Passport", applicant.passport_file.url %>
+                  <% if applicant.passport_no.present? %>
+                    No. <span><%= applicant.passport_no %></span>
+                  <% end %>
+              <% else %>
+                <%= not_available(applicant.passport_no) %>
+              <% end %>
+            </span></p>
           </div>
 
           <div class="col-lg-12">

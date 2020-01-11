@@ -46,21 +46,27 @@
               <%= applicant.text_field :nationality, placeholder: "Enter Nationality", required: true, class: "form-control" %>
             </div>
           </div>
-          <% if applicant.object.application_id.present? || !current_user %>
-            <div class="row">
-              <div class="form-group col-md-12">
-                <div id="passport_no">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <div id="passport_no">
+                <div class="col-md-6">
                   <%= applicant.label :passport_no, "Passport No", class: "control-label" %>
                   <%= applicant.text_field :passport_no, placeholder: "Enter Passport No", class: "form-control" %>
                 </div>
 
-                <div class="checkbox passport-check checkbox-warning margin-top-12">
-                  <%= applicant.check_box :passport %>
-                  <%= applicant.label :passport, "Do you have a Valid Passport?", class: "font-bold" %>
+                <div class="col-md-6">
+                  <%= applicant.label :passport_file, "Passport No", class: "control-label" %>
+                  <%= applicant.file_field :passport_file, title: "Please Upload Passport", class: "form-control" %>
+                  <%= label_tag "files", @application.applicant.passport_file.filename if @application.applicant.persisted? && @application.applicant.passport_file.file.present? %>
                 </div>
               </div>
+
+              <div class="checkbox passport-check checkbox-warning margin-top-12">
+                <%= applicant.check_box :passport %>
+                <%= applicant.label :passport, "Do you have a Valid Passport?", class: "font-bold" %>
+              </div>
             </div>
-          <% end %>
+          </div>
         </div>
 
         <div class="col-lg-6">

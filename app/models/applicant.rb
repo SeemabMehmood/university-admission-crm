@@ -19,6 +19,8 @@ class Applicant < ApplicationRecord
   accepts_nested_attributes_for :work_experiences
   accepts_nested_attributes_for :references
 
+  mount_uploader :passport_file, DocUploader
+
   MARITAL_STATUS = ["Single", "Married", "Divorced", "Widowed", "Other"]
   GENDER         = ["Male", "Female"]
   TITLE          = ["Mr.", "Mrs.", "Ms.", "Other"]
