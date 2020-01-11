@@ -22,6 +22,8 @@ class Application < ApplicationRecord
   audited
 
   mount_uploader :additional_document, DocUploader
+  mount_uploader :additional_document_1, DocUploader
+  mount_uploader :additional_document_2, DocUploader
   mount_uploader :statement_of_purpose_doc, DocUploader
 
   INTAKE_YEARS = Date.today.year..Date.today.year + 8
@@ -118,6 +120,10 @@ class Application < ApplicationRecord
   def major_course
     return course_name if course_name.present?
     major
+  end
+
+  def any_additional_document?
+    additional_document.present? || additional_document_2.present? || additional_document_1.present?
   end
 
   private

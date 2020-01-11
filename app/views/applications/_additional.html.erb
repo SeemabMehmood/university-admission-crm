@@ -37,8 +37,18 @@
 
         <div class="col-lg-4 border-right">
           <% if application.additional_document.file.present? %>
-            <%= link_to "Additional Document", application.additional_document.url %>
-          <% else %>
+            <%= link_to "Additional Document 1", application.additional_document.url %>
+          <% end %>
+
+          <% if application.additional_document_1.file.present? %>
+            | <%= link_to "Additional Document 2", application.additional_document_1.url %>
+          <% end %>
+
+          <% if application.additional_document_2.file.present? %>
+            | <%= link_to "Additional Document 3", application.additional_document_2.url %>
+          <% end %>
+
+          <% unless application.any_additional_document? %>
             <p>Additional Document not found.</p>
           <% end %>
         </div>
