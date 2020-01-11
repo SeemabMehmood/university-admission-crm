@@ -46,7 +46,7 @@
               <%= applicant.text_field :nationality, placeholder: "Enter Nationality", required: true, class: "form-control" %>
             </div>
           </div>
-          <% if applicant.object.application_id.present? %>
+          <% if applicant.object.application_id.present? || !current_user %>
             <div class="row">
               <div class="form-group col-md-12">
                 <div id="passport_no">
