@@ -76,6 +76,7 @@ class ApplicationsController < ApplicationController
   end
 
   def edit
+    @application.build_income unless @application.income.present?
   end
 
   def update
