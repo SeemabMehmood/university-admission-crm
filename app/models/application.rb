@@ -122,7 +122,7 @@ class Application < ApplicationRecord
                          self.representing_country.name[0].upcase, self.id,
                          self.applicant.name[0].upcase,
                          self.created_at.strftime("%d%m%Y") ].join()
-    self.income.update_attributes(date: self.created_at.strftime("%d-%m-%Y"))
+    self.income.update_attributes(date: self.created_at.strftime("%d-%m-%Y")) if self.income.present?
     self.save!
   end
 
