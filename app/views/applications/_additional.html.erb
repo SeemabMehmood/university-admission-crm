@@ -48,13 +48,17 @@
           <div class="alert alert-info">
             <i class="fa fa-money"></i> <span class="font-bold">Income</span>
             <div class="m">
-              <small>Paid</small>
-              <div class="progress m-t-xs full progress-striped active">
-                <div style="width: <%= (application.income.paid / application.income.total_amount) * 100 %>%" aria-valuemax="<%= application.income.total_amount %>" aria-valuemin="0" aria-valuenow="<%= application.income.paid %>" role="progressbar" class="progress-bar progress-bar-info">
-                  <%= (application.income.paid / application.income.total_amount) * 100 %>%
+              <% if @application.income.present? %>
+                <small>Paid</small>
+                <div class="progress m-t-xs full progress-striped active">
+                  <div style="width: <%= (application.income.paid / application.income.total_amount) * 100 %>%" aria-valuemax="<%= application.income.total_amount %>" aria-valuemin="0" aria-valuenow="<%= application.income.paid %>" role="progressbar" class="progress-bar progress-bar-info">
+                    <%= (application.income.paid / application.income.total_amount) * 100 %>%
+                  </div>
                 </div>
-              </div>
-          </div>
+              <% else %>
+                <small>No income yet.</small>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
