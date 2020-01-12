@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_105317) do
+ActiveRecord::Schema.define(version: 2020_01_11_222806) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_105317) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "followup_id"
+    t.string "passport_file"
     t.index ["application_id"], name: "index_applicants_on_application_id"
   end
 
@@ -66,6 +67,15 @@ ActiveRecord::Schema.define(version: 2018_09_26_105317) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_application_histories_on_application_id"
+  end
+
+  create_table "application_institutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "application_id", null: false
+    t.integer "representing_institution_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_application_institutions_on_application_id"
+    t.index ["representing_institution_id"], name: "index_application_institutions_on_representing_institution_id"
   end
 
   create_table "application_processes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -88,15 +98,18 @@ ActiveRecord::Schema.define(version: 2018_09_26_105317) do
     t.bigint "representing_institution_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "counsellor_id", default: 0, null: false
     t.boolean "accommodation", default: false
     t.boolean "medical", default: false
     t.text "details_additional"
     t.text "statement_of_purpose"
     t.string "statement_of_purpose_doc"
     t.string "interview_date", default: "", null: false
-    t.integer "counsellor_id", default: 0, null: false
     t.integer "branch_officer_id", default: 0, null: false
     t.integer "agent_id", default: 0, null: false
+    t.string "major"
+    t.string "additional_document_1"
+    t.string "additional_document_2"
     t.index ["representing_country_id"], name: "index_applications_on_representing_country_id"
     t.index ["representing_institution_id"], name: "index_applications_on_representing_institution_id"
   end
@@ -132,6 +145,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_105317) do
     t.integer "applicant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "starting_year"
     t.index ["applicant_id"], name: "index_educations_on_applicant_id"
   end
 
@@ -154,7 +168,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_105317) do
   end
 
   create_table "followups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "date", default: "2018-09-26", null: false
+    t.date "date", default: "2020-01-08", null: false
     t.text "description"
     t.integer "status", default: 0
     t.integer "agent_id", null: false
@@ -252,10 +266,9 @@ ActiveRecord::Schema.define(version: 2018_09_26_105317) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "counsellor_id"
     t.bigint "representing_country_id"
     t.integer "agent_id", null: false
-    t.index ["counsellor_id"], name: "index_representing_institutions_on_counsellor_id"
+    t.integer "counsellor_id"
     t.index ["representing_country_id"], name: "index_representing_institutions_on_representing_country_id"
   end
 
