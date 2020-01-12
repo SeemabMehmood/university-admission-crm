@@ -1,10 +1,11 @@
 class Application < ApplicationRecord
   belongs_to :representing_country
-  belongs_to :representing_institution
   belongs_to :counsellor, foreign_key: :counsellor_id, optional: true
   belongs_to :branch_officer, foreign_key: :branch_officer_id, optional: true
   belongs_to :agent, foreign_key: :agent_id
 
+  has_many :application_institutions
+  has_many :representing_institutions, through: :application_institutions
   has_one :applicant, inverse_of: :application, dependent: :destroy
   has_many :application_histories, dependent: :destroy
   has_many :admin_notes, dependent: :destroy
@@ -13,6 +14,7 @@ class Application < ApplicationRecord
   has_one :income, dependent: :destroy
 
   validates :intake_year, :intake_month, :interview_date, presence: true
+  validates :application_institutions, length: { in: 1..2, allow_blank: false, message: "can be maximum 2. Please select at least 1." }
   validate :has_course_name
 
   after_create :set_reference_no
@@ -90,7 +92,7 @@ class Application < ApplicationRecord
   end
 
   def institute
-    representing_institution.name
+    representing_institutions.first.name
   end
 
   def build_applicant_data

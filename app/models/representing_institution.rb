@@ -1,7 +1,8 @@
 class RepresentingInstitution < ApplicationRecord
   enum status: [:active, :inactive]
 
-  has_many :applications
+  has_many :application_institutions
+  has_many :applications, through: :application_institutions
 
   belongs_to :agent
   belongs_to :representing_country

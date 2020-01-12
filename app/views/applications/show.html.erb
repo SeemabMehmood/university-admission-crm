@@ -29,7 +29,7 @@
             </h3>
             <small>
               <%= @application.major_course.titleize %>, <%= @application.intake %> | <%= link_to @application.institute,
-                                representing_institution_path(@application.representing_institution.id)  %> | Interview: <%= @application.interview_date %>
+                                representing_institution_path(@application.representing_institutions.first.id)  %> | Interview: <%= @application.interview_date %>
             </small>
             <div class="clearfix"></div>
           </div>

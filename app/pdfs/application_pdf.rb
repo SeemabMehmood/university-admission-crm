@@ -9,7 +9,7 @@ class ApplicationPdf < Prawn::Document
     text "Reference No\: #{@application.reference_no}", size: 30, style: :bold
     move_down 10
     text "\t\tCourse Name:\t#{@application.major_course} #{@application.intake}", size: 12
-    text "Country: #{@application.representing_country.name}\t\t\tInstitution: #{@application.representing_institution.name}", size: 12
+    text "Country: #{@application.representing_country.name}\t\t\tInstitution: #{@application.representing_institutions.pluck(:name).join(" & ")}", size: 12
     move_down 10
     text "Accommodation: #{@application.accommodation ? "Yes" : "No"}\t\tMedical: #{@application.medical ? "Yes" : "No"}\t\tInterview Date: #{@application.interview_date}", size: 12
     move_down 10

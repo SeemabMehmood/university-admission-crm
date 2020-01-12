@@ -60,9 +60,12 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.new(application_params.except(:action_name))
+    @application = Application.new(application_params.except(:action_name, :representing_institution_ids))
     unless current_user
       @application.agent_id = RepresentingCountry.find(application_params[:representing_country_id]).agent_id
+    end
+    application_params[:representing_institution_ids].reject(&:blank?).each do |r|
+      @application.application_institutions.build(representing_institution_id: r)
     end
     respond_to do |format|
       if @application.save
@@ -80,6 +83,10 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    application_params[:representing_institution_ids].reject(&:blank?).each do |r|
+      @application.application_institutions.first_or_initialize(representing_institution_id: r)
+    end
+
     respond_to do |format|
       if @application.update(application_params.except(:action_name))
         format.html { redirect_to @redirect_url, notice: "Application was successfully updated." }
@@ -176,7 +183,7 @@ class ApplicationsController < ApplicationController
       params.require(:application).permit(:counsellor_id, :branch_officer_id, :agent_id,
                                           :representing_country_id, :interview_date,
                                           :course_name, :major, :intake_year, :intake_month,
-                                          :action_name, :representing_institution_id, :additional_document,
+                                          :action_name, :additional_document,
                                           :accommodation, :medical, :details_additional, :additional_document_1,
                                           :statement_of_purpose, :statement_of_purpose_doc, :additional_document_2,
                                           applicant_attributes: [:id, :first_name, :last_name, :gender,
@@ -192,7 +199,7 @@ class ApplicationsController < ApplicationController
                                                   :responsibilities, :scanned_doc],
                                                   references_attributes: [:id, :name, :designation, :institution,
                                                   :fax, :address, :email, :phone, :city, :state, :country, :postal_code]],
-                                              income_attributes: [:total_amount, :remaining_balance, :id, :date] )
+                                              income_attributes: [:total_amount, :remaining_balance, :id, :date], representing_institution_ids: [] )
     end
 
     def set_redirect_url

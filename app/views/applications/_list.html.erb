@@ -6,7 +6,7 @@
         <th>Course Name</th>
         <th data-breakpoints="xs md" data-title="Intake">Intake</th>
 
-        <th data-breakpoints="xs md" data-title="Representing Institution">Institution</th>
+        <th data-breakpoints="xs md" data-title="Representing Institution">Institutions</th>
         <th data-breakpoints="xs md" data-title="Representing Country">Country</th>
 
         <th data-breakpoints="xs md" data-title="Created At">Created Date</th>
@@ -31,7 +31,7 @@
             <%= link_to application.representing_country.name.titleize, representing_country_path(application.representing_country.id) %>
           </td>
           <td>
-            <%= link_to application.representing_institution.name.titleize, representing_institution_path(application.representing_institution.id) %>
+            <%= link_to application.representing_institutions.first.name.titleize, representing_institution_path(application.representing_institutions.first.id) %>
           </td>
           <td>
             <%= format_datetime(application.created_at) %>
