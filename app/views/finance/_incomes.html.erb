@@ -30,7 +30,11 @@
             <%= income.paid.to_f %>
           </td>
           <td>
-            <%= link_to income.application.reference_no, application_path(income.application.id) %>
+            <% if income.application.present? %>
+              <%= link_to income.application.reference_no, application_path(income.application.id) %>
+            <% else %>
+              Not Available
+            <% end %>
           </td>
           <td>
             <%= format_datetime(income.updated_at) %>

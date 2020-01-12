@@ -1,9 +1,10 @@
 class Income < ApplicationRecord
-  belongs_to :application
+  belongs_to :application, optional: true
+  belongs_to :agent, optional: true
 
   validates :date, :total_amount, presence: true
 
-  scope :for_user, -> (user_id) { where(applications: {agent_id: user_id}).includes(:application) }
+  scope :for_user, -> (user_id) { where(applications: {agent_id: user_id}).or(Income.where(agent_id: user_id)).includes(:application) }
 
   audited
 

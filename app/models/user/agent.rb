@@ -4,6 +4,7 @@ class Agent < User
   has_many :representing_institutions, foreign_key: :agent_id
   has_many :applications, foreign_key: :agent_id
   has_many :expenses
+  has_many :incomes
 
   def subordinate_count
     [branch_officers.count, " BO's"].join

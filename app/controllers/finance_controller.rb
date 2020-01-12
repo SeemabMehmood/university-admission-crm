@@ -26,6 +26,22 @@ class FinanceController < ApplicationController
     end
   end
 
+  def new_income
+    @income = current_user.agent? ? current_user.incomes.new :  current_user.agent.incomes.new
+  end
+
+  def create_income
+    @income = Income.new income_params
+    respond_to do |format|
+      if @income.update(income_params)
+        format.html { redirect_to finance_income_path, notice: "Income was successfully added." }
+      else
+        format.html { render "finance/new_income" }
+        format.js { render "finance/new_income.js.erb" }
+      end
+    end
+  end
+
   def edit_income
     @income = Income.find params[:income_id]
   end
@@ -115,7 +131,7 @@ class FinanceController < ApplicationController
   private
 
   def income_params
-    params.require(:income).permit(:date, :total_amount, :remaining_balance, :application_id)
+    params.require(:income).permit(:date, :total_amount, :remaining_balance, :application_id, :agent_id)
   end
 
   def expense_params
