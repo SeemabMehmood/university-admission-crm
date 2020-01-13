@@ -4,4 +4,4 @@
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
 
-<p>Please reset your password in order to log in after confirming your account.</p>
+<p>Please add your password <%= link_to "here", edit_user_password_url(@user, reset_password_token: @user.send(:set_reset_password_token))%> in order to log in after confirming your account.</p>
