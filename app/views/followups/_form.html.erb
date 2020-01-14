@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <%= render partial: "applications/applicant_form", locals: { form: form } %>
+  <%= render partial: "applications/applicant_form", locals: { form: form, application: @followup } %>
 
   <div class="text-right m-t-xs">
     <%= form.button :submit, class: "btn btn-success btn-sm ripple" do %>

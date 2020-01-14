@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_010032) do
+ActiveRecord::Schema.define(version: 2020_01_14_012733) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "state"
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_010032) do
   end
 
   create_table "followups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "date", default: "2020-01-08", null: false
+    t.string "date", default: "2020-01-08", null: false
     t.text "description"
     t.integer "status", default: 0
     t.integer "agent_id", null: false

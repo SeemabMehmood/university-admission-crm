@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                   <%= applicant.label :passport_file, "Passport No", class: "control-label" %>
                   <%= applicant.file_field :passport_file, title: "Please Upload Passport", class: "form-control" %>
-                  <%= label_tag "files", @application.applicant.passport_file.filename if @application.applicant.persisted? && @application.applicant.passport_file.file.present? %>
+                  <%= label_tag "files", application.applicant.passport_file.filename if application.applicant.persisted? && application.applicant.passport_file.file.present? %>
                 </div>
               </div>
 

@@ -35,7 +35,7 @@
           <div class="form-group col-md-6">
             <%= form.label :statement_of_purpose_doc, "Statement of Purpose Document", class: "control-label" %>
             <%= form.file_field :statement_of_purpose_doc, title: "Please Upload Statement of Purpose", class: "form-control" %>
-            <%= label_tag "files", @application.statement_of_purpose_doc.filename if @application.persisted? && @application.statement_of_purpose_doc.file.present? %>
+            <%= label_tag "files", application.statement_of_purpose_doc.filename if application.persisted? && application.statement_of_purpose_doc.file.present? %>
           </div>
         </div>
 
@@ -43,19 +43,19 @@
           <div class="form-group col-md-4">
             <%= form.label :additional_document, "Additional Document 1", class: "control-label" %>
             <%= form.file_field :additional_document, title: "Please Upload Additional Document Here", class: "form-control" %>
-            <%= label_tag "files", @application.additional_document.filename if @application.persisted? && @application.additional_document.file.present? %>
+            <%= label_tag "files", application.additional_document.filename if application.persisted? && application.additional_document.file.present? %>
           </div>
 
           <div class="form-group col-md-4">
             <%= form.label :additional_document_1, "Additional Document 2", class: "control-label" %>
             <%= form.file_field :additional_document_1, title: "Please Upload Additional Document Here", class: "form-control" %>
-            <%= label_tag "files", @application.additional_document_1.filename if @application.persisted? && @application.additional_document_1.file.present? %>
+            <%= label_tag "files", application.additional_document_1.filename if application.persisted? && application.additional_document_1.file.present? %>
           </div>
 
           <div class="form-group col-md-4">
             <%= form.label :additional_document_2, "Additional Document 3", class: "control-label" %>
             <%= form.file_field :additional_document_2, title: "Please Upload Additional Document Here", class: "form-control" %>
-            <%= label_tag "files", @application.additional_document_2.filename if @application.persisted? && @application.additional_document_2.file.present? %>
+            <%= label_tag "files", application.additional_document_2.filename if application.persisted? && application.additional_document_2.file.present? %>
           </div>
         </div>
       </div>

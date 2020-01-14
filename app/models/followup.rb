@@ -25,8 +25,7 @@ class Followup < ApplicationRecord
     when /^created_at_/
       order("followups.created_at #{ direction }")
     when /^date_/
-      converted_date = date.to_datetime
-      order("followups.converted_date #{ direction }")
+      order("followups.date #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end

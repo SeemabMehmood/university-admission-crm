@@ -81,7 +81,7 @@
       </div>
     <% end %>
 
-    <%= render partial: "applications/applicant_form", locals: { form: form } %>
+    <%= render partial: "applications/applicant_form", locals: { form: form, application: @application } %>
 
     <%= render partial: "applications/additional_form", locals: { form: form } %>
 
