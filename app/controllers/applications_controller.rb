@@ -199,7 +199,7 @@ class ApplicationsController < ApplicationController
                                                   :responsibilities, :scanned_doc],
                                                   references_attributes: [:id, :name, :designation, :institution,
                                                   :fax, :address, :email, :phone, :city, :state, :country, :postal_code]],
-                                              income_attributes: [:total_amount, :remaining_balance, :id, :date], representing_institution_ids: [] )
+                                              income_attributes: [:total_amount, :remaining_balance, :id, :date, :created_by], representing_institution_ids: [] )
     end
 
     def set_redirect_url

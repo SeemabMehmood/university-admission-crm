@@ -28,6 +28,8 @@ class Ability
         can :manage, Followup
         can :manage, Application
         can :manage, Income, application: { branch_officer_id: user.id }
+        can :manage, Income, created_by: user.id
+
         can :manage, Expense, application: { branch_officer_id: user.id }
         can [:read, :assign_institutions,
             :manage_counsellor, :get_institutions_from_country], RepresentingInstitution, agent_id: user.agent.id

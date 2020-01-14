@@ -11,7 +11,7 @@ class FinanceController < ApplicationController
         sanitize_params: true
       ) or return
 
-      @incomes = Income.for_user(current_user.agent? ? current_user.id : current_user.agent.id)
+      @incomes = Income.get_incomes_for(current_user)
       if @incomes.any?
         @incomes = @incomes.filterrific_find(@filterrific)
       end
@@ -131,7 +131,7 @@ class FinanceController < ApplicationController
   private
 
   def income_params
-    params.require(:income).permit(:date, :total_amount, :remaining_balance, :application_id, :agent_id)
+    params.require(:income).permit(:date, :total_amount, :remaining_balance, :application_id, :agent_id, :created_by)
   end
 
   def expense_params

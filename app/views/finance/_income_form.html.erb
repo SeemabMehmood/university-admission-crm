@@ -5,6 +5,7 @@
     <%= form.hidden_field :application_id, value: @income.application_id %>
   <% else %>
     <%= form.hidden_field :agent_id, value: @income.agent_id %>
+    <%= form.hidden_field :created_by, value: current_user.id %>
   <% end %>
 
   <div class="row">

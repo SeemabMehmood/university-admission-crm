@@ -76,6 +76,7 @@
             <%= income.label :date, class: "control-label" %>
             <%= income.text_field :date, data: { provide: "datepicker" }, placeholder: "Select Interview Date", class: "form-control", required: true, id: "datepicker" %>
           </div>
+          <%= income.hidden_field :created_by, value: current_user.id %>
         <% end %>
       </div>
     <% end %>
